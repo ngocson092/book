@@ -23,5 +23,6 @@ export function fetchGames () {
 }
 
 export function storeGame (game) {
+    console.log(game);
     axios.post('http://localhost:3001/api/games',{game})
 }

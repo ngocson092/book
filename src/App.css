@@ -1,3 +1,7 @@
 #content{
     margin-top: 70px;
 }
+
+.has-error .error{
+    color: red;
+}
