@@ -1,5 +1,6 @@
 
 import {SET_GAME} from '../actions'
+import {ADD_GAME} from '../actions'
 
 
 export default function games(state = [],action = {}) {

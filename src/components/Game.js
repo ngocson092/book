@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+import {Link,Route} from 'react-router-dom'
 export default function Game({game}) {
 
     const Game = (
@@ -10,8 +10,7 @@ export default function Game({game}) {
                 <div className="caption">
                     <h3>{game.title}</h3>
                     <p>
-                        <a href="#" className="btn btn-primary" role="button">View</a>
-                        <a href="#" className="btn btn-default" role="button">Button</a>
+                        <Link to={'/game/'+game._id} className="btn btn-primary" role="button">View Detail</Link>
                     </p>
                 </div>
             </div>

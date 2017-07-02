@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-export const SET_GAME ='SET_GAME'
+export const  SET_GAME ='SET_GAME'
+export const  ADD_GAME ='ADD_GAME'
 
 const setGame = (games)=>{
     return {
@@ -19,4 +20,8 @@ export function fetchGames () {
         })
 
     }
+}
+
+export function storeGame (game) {
+    axios.post('http://localhost:3001/api/games',{game})
 }
