@@ -20,7 +20,14 @@ class App extends Component {
                 </ul>
             </nav>
 
-            <Route path="/games" component={GamePage} />
+
+            <div className="container">
+                <div className="row" id="content">
+                    <Route path="/games" component={GamePage} />
+                </div>
+            </div>
+
+
         </div>
 
     );

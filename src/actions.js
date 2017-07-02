@@ -2,20 +2,21 @@ import axios from 'axios'
 
 export const SET_GAME ='SET_GAME'
 
-export const setGame = (game)=>{
+const setGame = (games)=>{
     return {
         type: SET_GAME,
-        game
+        games
     }
 }
 
 export function fetchGames () {
     return dispatch => {
 
-        axios.get('http://localhost:3001/api/games')
-            .then(data=>dispatch(setGame(data.game)))
+        fetch('http://localhost:3001/api/games')
+        .then(res=>res.json())
+        .then(data=>{
+            return dispatch(setGame(data))
+        })
 
     }
-
-
 }

@@ -1,6 +1,9 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import { fetchGames, deleteGame } from '../actions';
+
+import ListGame from './ListGame'
+
 class GamePage extends Component{
 
     componentDidMount() {
@@ -9,7 +12,9 @@ class GamePage extends Component{
 
     render(){
         return (
-            <p>List Game</p>
+            <div>
+                <ListGame games={this.props.games} />
+            </div>
         )
     }
 
