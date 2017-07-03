@@ -1,7 +1,9 @@
 import express from 'express'
 const app = express()
 import game from './routers/game'
+import bodyParser from 'body-parser'
 
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(function (req, res, next) {
 

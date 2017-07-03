@@ -9,7 +9,7 @@ class AddGame extends Component {
 
     state = {
         title:'',
-        url:'',
+        url:'https://www.w3schools.com/css/trolltunga.jpg',
         errors:{}
 
     }
@@ -30,6 +30,8 @@ class AddGame extends Component {
         if (form.url == '')
         {
             errors.url = 'url not empty'
+        }else if(!form.url.match(/\.(jpeg|jpg|gif|png)$/)){
+            errors.url = 'url is invalid'
         }
 
         return {
@@ -44,8 +46,9 @@ class AddGame extends Component {
 
         e.preventDefault()
 
-
+        delete this.state.errors
         const {isValid,errors} = this.validate(this.state)
+
 
         if(isValid){
             this.props.storeGame(this.state)
@@ -64,14 +67,14 @@ class AddGame extends Component {
                     <legend>Add New Game</legend>
 
                     <div className= {classNames('form-group ',{'has-error':!!this.state.errors.title})}>
-                        <label for="">Title</label>
+                        <label>Title</label>
                         <input  onChange={this.handleChange} type="text" className="form-control" name="title" id="" placeholder="Input..."/>
                         {this.state.errors.title != '' && <div className="error">{this.state.errors.title}</div>}
                     </div>
                     <div className= {classNames('form-group ',{'has-error':!!this.state.errors.url})}>
-                        <label for="">Url</label>
+                        <label>Url</label>
                         <input onChange={this.handleChange}  type="text" className="form-control" name="url" id="" placeholder="Input..."/>
-                        {this.state.errors.title != '' && <div className="error">{this.state.errors.title}</div>}
+                        {this.state.errors.url != '' && <div className="error">{this.state.errors.url}</div>}
                         {this.state.url != '' && <img  className="img img-responsive thumbnail" src={this.state.url} /> }
                     </div>
                     <button type="submit"

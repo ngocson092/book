@@ -12,6 +12,12 @@ mongodb.MongoClient.connect(DB_URL,function (err,db) {
              res.send(games)
         })
     })
+    router.post('/games',function (req,res) {
+
+        res.json(req.body)
+
+
+    })
 
 })
 
