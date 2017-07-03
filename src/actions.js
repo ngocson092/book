@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
 export const  SET_GAME ='SET_GAME'
 export const  ADD_GAME ='ADD_GAME'
 
@@ -24,6 +24,6 @@ export function fetchGames () {
 
 export function storeGame (game) {
     return dispatch => {
-        axios.post('http://localhost:3001/api/games',game)
+        return axios.post('http://localhost:3001/api/games',game)
     }
 }

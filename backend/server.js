@@ -4,6 +4,8 @@ import game from './routers/game'
 import bodyParser from 'body-parser'
 
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 
 app.use(function (req, res, next) {
 
@@ -25,6 +27,13 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api',game)
+app.use((req,res)=>{
+    res.status(404).send({
+        errors:{
+            global:'something was wrong'
+        }
+    })
+})
 
 app.listen(3001,function (err) {
     console.log('server is running');

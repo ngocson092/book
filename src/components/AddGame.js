@@ -3,24 +3,17 @@ import {connect} from 'react-redux'
 import classNames from 'classnames'
 import {storeGame} from '../actions';
 import _ from 'lodash';
-
+import {Redirect} from 'react-router-dom'
 class AddGame extends Component {
 
 
     state = {
         title:'',
-        url:'https://www.w3schools.com/css/trolltunga.jpg',
-        errors:{}
+        url:'',
+        errors:{},
+        done:false
 
     }
-
-    handleChange = (e)=>{
-
-        this.setState({[e.target.name]:e.target.value})
-
-    }
-
-
     validate = (form)=> {
         let errors = {}
         if (form.title == '')
@@ -39,8 +32,20 @@ class AddGame extends Component {
             errors
         }
 
+    }
+
+    handleChange = (e)=>{
+
+        let errors = Object.assign({},this.state.errors)
+
+        delete errors[e.target.name]
+
+        this.setState({[e.target.name]:e.target.value,errors})
 
     }
+
+
+
 
     submit = (e)=>{
 
@@ -49,9 +54,15 @@ class AddGame extends Component {
         delete this.state.errors
         const {isValid,errors} = this.validate(this.state)
 
-
         if(isValid){
             this.props.storeGame(this.state)
+                .then(
+                    (data)=>{
+                        this.setState({done:true})
+                    },
+                    err=>{
+                    }
+                )
         }else {
             this.setState({errors})
         }
@@ -61,7 +72,7 @@ class AddGame extends Component {
 
 
     render() {
-        return (
+        const Form = (
             <div>
                 <form action="" method="post" role="form">
                     <legend>Add New Game</legend>
@@ -69,13 +80,13 @@ class AddGame extends Component {
                     <div className= {classNames('form-group ',{'has-error':!!this.state.errors.title})}>
                         <label>Title</label>
                         <input  onChange={this.handleChange} type="text" className="form-control" name="title" id="" placeholder="Input..."/>
-                        {this.state.errors.title != '' && <div className="error">{this.state.errors.title}</div>}
+                        {this.state.errors.title && <div className="error">{this.state.errors.title}</div>}
                     </div>
                     <div className= {classNames('form-group ',{'has-error':!!this.state.errors.url})}>
                         <label>Url</label>
                         <input onChange={this.handleChange}  type="text" className="form-control" name="url" id="" placeholder="Input..."/>
-                        {this.state.errors.url != '' && <div className="error">{this.state.errors.url}</div>}
-                        {this.state.url != '' && <img  className="img img-responsive thumbnail" src={this.state.url} /> }
+                        {this.state.errors.url && <div className="error">{this.state.errors.url}</div>}
+                        {!(!!this.state.errors.url) && <img  className="img img-responsive thumbnail" src={this.state.url} /> }
                     </div>
                     <button type="submit"
                             onClick={this.submit}
@@ -84,11 +95,10 @@ class AddGame extends Component {
                 </form>
             </div>
         )
+
+        return (this.state.done) ? <Redirect to={'/games'}/> :Form
     }
 
 }
-const mapStateToProps = (state)=>{
-    return {}
-}
 
-export default connect(mapStateToProps,{storeGame})(AddGame)
+export default connect(null,{storeGame})(AddGame)
