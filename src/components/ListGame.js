@@ -1,13 +1,13 @@
 import React from 'react'
 import Game from './Game'
 
-export default function ListGame({games}) {
+export default function ListGame({games,deleteGame}) {
 
 
     const ListGame = (
 
         <div className="container">
-            { games.map(game=> <Game game={game} />)}
+            { games.map(game=> <Game game={game} deleteGame={deleteGame} />)}
         </div>
 
     )
@@ -22,5 +22,6 @@ export default function ListGame({games}) {
 }
 
 ListGame.PropTypes = {
-    games:React.PropTypes.array.isRequired
+    games:React.PropTypes.array.isRequired,
+    deleteGame: React.PropTypes.func.isRequired
 }

@@ -13,7 +13,7 @@ class GamePage extends Component{
     render(){
         return (
             <div>
-                <ListGame games={this.props.games} />
+                <ListGame games={this.props.games} deleteGame={deleteGame} />
             </div>
         )
     }
@@ -26,4 +26,4 @@ const mapStateToProps = (state)=>{
     }
 }
 
-export default connect(mapStateToProps,{fetchGames})(GamePage)
+export default connect(mapStateToProps,{fetchGames,deleteGame})(GamePage)

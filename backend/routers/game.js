@@ -49,6 +49,17 @@ mongodb.MongoClient.connect(DB_URL,function (err,db) {
         }
     })
 
+    router.delete('/games',function (req,res) {
+
+        let id = req.params.id
+
+        db.collection("games").deleteOne({id}, function(errors, record_delete) {
+            if (errors)
+                res.status(500).json({status:0,errors})
+            res.send({status:1,game:record_delete})
+        });
+    })
+
 })
 
 

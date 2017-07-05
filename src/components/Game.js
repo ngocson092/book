@@ -1,13 +1,21 @@
 import React from 'react'
-import {Link,Route} from 'react-router-dom'
 
-import * as Blueprint from "@blueprintjs/core"
-export default function Game({game}) {
+export default function Game({game,deleteGame}) {
+
     const Game = (
         <div className="box pt-card pt-elevation-0 pt-interactive">
             <img src={game.url} alt=""/>
             <h5><a href="#">{game.title}</a></h5>
-            <p>Overview of employee activity, including risk model, scores and scenario alert history.</p>
+
+
+            <a onClick={()=>{deleteGame(game._id)}}>delete</a>
+
+            <button
+
+                type="button" className="pt-button pt-large">
+                Delete
+                <span className="pt-icon-standard pt-icon-cross pt-align-right"></span>
+            </button>
         </div>
     )
 
@@ -15,5 +23,6 @@ export default function Game({game}) {
 }
 
 Game.propTypes = {
-    game:React.PropTypes.object.isRequired
+    game:React.PropTypes.object.isRequired,
+    deleteGame: React.PropTypes.func.isRequired
 }
