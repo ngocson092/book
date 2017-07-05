@@ -1,19 +1,13 @@
 import React from 'react'
-
 import {Link,Route} from 'react-router-dom'
-export default function Game({game}) {
 
+import * as Blueprint from "@blueprintjs/core"
+export default function Game({game}) {
     const Game = (
-        <div className="col-sm-6 col-md-4">
-            <div className="thumbnail">
-                <img className="img-responsive" src={game.url} alt="..."/>
-                <div className="caption">
-                    <h3>{game.title}</h3>
-                    <p>
-                        <Link to={'/game/'+game._id} className="btn btn-primary" role="button">View Detail</Link>
-                    </p>
-                </div>
-            </div>
+        <div className="box pt-card pt-elevation-0 pt-interactive">
+            <img src={game.url} alt=""/>
+            <h5><a href="#">{game.title}</a></h5>
+            <p>Overview of employee activity, including risk model, scores and scenario alert history.</p>
         </div>
     )
 

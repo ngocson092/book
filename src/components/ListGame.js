@@ -6,7 +6,7 @@ export default function ListGame({games}) {
 
     const ListGame = (
 
-        <div>
+        <div className="container">
             { games.map(game=> <Game game={game} />)}
         </div>
 

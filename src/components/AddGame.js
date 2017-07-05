@@ -58,7 +58,7 @@ class AddGame extends Component {
             this.props.storeGame(this.state)
                 .then(
                     (data)=>{
-                        this.setState({done:true})
+                        this.setState({done:true,errors:{}})
                     },
                     err=>{
                     }

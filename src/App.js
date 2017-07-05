@@ -9,19 +9,22 @@ class App extends Component {
     return (
 
         <div>
-            <nav className="navbar navbar-default navbar-fixed-top" role="navigation">
-                <Link className="navbar-brand" to='/'>Redux</Link>
-                <ul className="nav navbar-nav">
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/games">Games</Link>
-                    </li>
-                    <li>
-                        <Link to="/add-game">Add New Game</Link>
-                    </li>
-                </ul>
+
+            <nav className="pt-navbar pt-dark">
+                <div className="pt-navbar-group pt-align-left">
+                    <div className="pt-navbar-heading"> <Link to="/">Redux</Link></div>
+                    <input className="pt-input" placeholder="Search files..." type="text" />
+                </div>
+                <div className="pt-navbar-group pt-align-right">
+
+                    <Link className="pt-button pt-minimal pt-icon-home"  to="/">Home</Link>
+                    <Link  className="pt-button pt-minimal pt-icon-grid-view" to="/games">Games</Link>
+                    <Link  className="pt-button pt-minimal pt-icon-grid-view" to="/add-game">Add Game</Link>
+                    <span className="pt-navbar-divider"></span>
+                    <button className="pt-button pt-minimal pt-icon-user"></button>
+                    <button className="pt-button pt-minimal pt-icon-notifications"></button>
+                    <button className="pt-button pt-minimal pt-icon-cog"></button>
+                </div>
             </nav>
 
 
