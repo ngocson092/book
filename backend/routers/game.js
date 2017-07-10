@@ -28,6 +28,7 @@ mongodb.MongoClient.connect(DB_URL,function (err,db) {
         throw 'cannot connect to db'
 
     router.get('/games',function (req,res) {
+        console.log('11');
          db.collection('games').find({}).toArray((err,games)=>{
              res.send(games)
         })

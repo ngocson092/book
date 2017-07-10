@@ -12,21 +12,18 @@ class GamePage extends Component{
     }
 
     componentDidMount() {
-        this.state.loading = true
+        this.setState({loading:true})
         this.props
             .fetchGames()
             .then(()=>{
-                this.state.loading = false
+                this.setState({loading:false})
             });
     }
 
     render(){
         return (
-
-
             <div>
                 {(this.state.loading) && <div><Loading></Loading></div>}
-
                 <ListGame games={this.props.games} deleteGame={this.props.deleteGame}  />
             </div>
         )

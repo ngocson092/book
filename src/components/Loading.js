@@ -2,7 +2,7 @@ import React from 'react'
 export default function Loading() {
     
     return (
-        <div className="pt-spinner .modifier">
+        <div className="pt-spinner pt-small">
             <div className="pt-spinner-svg-container">
                 <svg viewBox="0 0 100 100">
                     <path className="pt-spinner-track" d="M 50,50 m 0,-44.5 a 44.5,44.5 0 1 1 0,89 a 44.5,44.5 0 1 1 0,-89"></path>
