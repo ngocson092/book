@@ -5,3 +5,7 @@
 .has-error .error{
     color: red;
 }
+
+.thumbnail{
+    max-width: 200px;
+}

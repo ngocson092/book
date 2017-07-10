@@ -74,23 +74,49 @@ class AddGame extends Component {
     render() {
         const Form = (
             <div>
-                <form action="" method="post" role="form">
-                    <legend>Add New Game</legend>
+                <form>
+                    <h1>Add New Game</h1>
+                    <br/>
 
-                    <div className= {classNames('form-group ',{'has-error':!!this.state.errors.title})}>
-                        <label>Title</label>
-                        <input  onChange={this.handleChange} type="text" className="form-control" name="title" id="" placeholder="Input..."/>
-                        {this.state.errors.title && <div className="error">{this.state.errors.title}</div>}
+                    <div className={classNames('pt-form-group',{'pt-intent-danger':!!this.state.errors.title})} >
+                        <label className="pt-label">
+                            Title
+                            <span className="pt-text-muted">(required)</span>
+                        </label>
+                        <div className="pt-form-content">
+                            <div className="pt-input-group">
+                                <span className="pt-icon pt-icon-calendar"></span>
+                                <input  onChange={this.handleChange} type="text"
+                                        className="pt-input"
+                                        name="title" id="" placeholder="Input..."/>
+                            </div>
+                            {this.state.errors.title && <div className="pt-form-helper-text">{this.state.errors.title}</div>}
+                        </div>
                     </div>
-                    <div className= {classNames('form-group ',{'has-error':!!this.state.errors.url})}>
-                        <label>Url</label>
-                        <input onChange={this.handleChange}  type="text" className="form-control" name="url" id="" placeholder="Input..."/>
-                        {this.state.errors.url && <div className="error">{this.state.errors.url}</div>}
-                        {!(!!this.state.errors.url) && <img  className="img img-responsive thumbnail" src={this.state.url} /> }
+
+
+
+                    <div className={classNames('pt-form-group',{'pt-intent-danger':!!this.state.errors.url})} >
+                        <label className="pt-label">
+                            URL
+                            <span className="pt-text-muted">(required)</span>
+                        </label>
+                        <div className="pt-form-content">
+                            <div className="pt-input-group">
+                                <span className="pt-icon pt-icon-calendar"></span>
+                                <input  onChange={this.handleChange} type="text"
+                                        className="pt-input"
+                                        name="url" id="" placeholder="Input..."/>
+                            </div>
+
+                            {this.state.errors.url && <div className="pt-form-helper-text">{this.state.errors.url}</div>}
+                            {!(!!this.state.errors.url) && <img  className="img img-responsive thumbnail" src={this.state.url} /> }
+
+                        </div>
                     </div>
-                    <button type="submit"
-                            onClick={this.submit}
-                            className="btn btn-primary">Submit</button>
+
+                    <button type="button"  onClick={this.submit} className="pt-button pt-icon-add pt-large">Button</button>
+
 
                 </form>
             </div>

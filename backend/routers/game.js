@@ -53,10 +53,10 @@ mongodb.MongoClient.connect(DB_URL,function (err,db) {
 
         let id = req.params.id
 
-        db.collection("games").deleteOne({id}, function(errors, record_delete) {
+         db.collection("games").deleteOne({id}, function(errors, record_delete) {
             if (errors)
                 res.status(500).json({status:0,errors})
-            res.send({status:1,game:record_delete})
+            res.send({status:1,id})
         });
     })
 

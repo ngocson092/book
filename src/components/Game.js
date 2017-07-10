@@ -6,12 +6,8 @@ export default function Game({game,deleteGame}) {
         <div className="box pt-card pt-elevation-0 pt-interactive">
             <img src={game.url} alt=""/>
             <h5><a href="#">{game.title}</a></h5>
-
-
-            <a onClick={()=>{deleteGame(game._id)}}>delete</a>
-
             <button
-
+                onClick={()=>{deleteGame(game._id)}}
                 type="button" className="pt-button pt-large">
                 Delete
                 <span className="pt-icon-standard pt-icon-cross pt-align-right"></span>

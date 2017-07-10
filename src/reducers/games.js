@@ -7,7 +7,7 @@ export default function games(state = [],action = {}) {
     switch (action.type) {
         case DELETE_GAME:
             return state.filter(v=>{
-                return v._id != action.game._id
+                return v._id != action.id
             })
         case ADD_GAME:
             return [...state,action.game]

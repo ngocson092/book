@@ -3,17 +3,31 @@ import {connect} from 'react-redux'
 import { fetchGames, deleteGame } from '../actions';
 
 import ListGame from './ListGame'
+import Loading from './Loading'
 
 class GamePage extends Component{
 
+    state = {
+        loading:false
+    }
+
     componentDidMount() {
-        this.props.fetchGames();
+        this.state.loading = true
+        this.props
+            .fetchGames()
+            .then(()=>{
+                this.state.loading = false
+            });
     }
 
     render(){
         return (
+
+
             <div>
-                <ListGame games={this.props.games} deleteGame={deleteGame} />
+                {(this.state.loading) && <div><Loading></Loading></div>}
+
+                <ListGame games={this.props.games} deleteGame={this.props.deleteGame}  />
             </div>
         )
     }

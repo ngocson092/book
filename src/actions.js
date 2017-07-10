@@ -14,7 +14,7 @@ const setGame = (games)=>{
 export function fetchGames () {
     return dispatch => {
 
-        fetch('http://localhost:3001/api/games')
+        return fetch('http://localhost:3001/api/games')
         .then(res=>res.json())
         .then(data=>{
             return dispatch(setGame(data))
@@ -36,7 +36,7 @@ export function deleteGame (id) {
             .then(game=>{
                 dispatch({
                     type:DELETE_GAME,
-                    game
+                    id
                 })
             })
     }
