@@ -1,28 +1,57 @@
 import React, {Component} from 'react'
+const LENGTH_OF_IMAGES = 3
+class Thumbnail extends Component {
 
-export default function Thumbnail({images}){
+    constructor(props) {
+        super(props)
+    }
 
+    state = {
+        active:null,
+        next: null
+    }
 
-        let
+    componentDidMount() {
+        let images = this.props.images,
+            active = images[0],
+            next = images[1]
+        this.setState({active, next})
+    }
+
+    changeImage = () => {
+        let images = this.props.images
+        let {active,next} = this.state
+
+        let indexActive = images.indexOf(active)
+
+        if( indexActive == (LENGTH_OF_IMAGES-1)){
             active = images[0]
+            next = images[1]
+        }else{
+            active = images[++indexActive]
 
-            ,next = images.filter(item=>item != active).pop()
-
-            ,changeImage = ()=>{
-                active = next
+            if(indexActive == (LENGTH_OF_IMAGES-1)){
+                next = images[0]
+            }else {
+                next = images[++indexActive]
 
             }
+        }
 
-        return (
+        this.setState({active,next})
+    }
+
+    render() {
+        return(
             <div className="thumbnail">
-                <img width="100%" src={active} />
+                <img width="100%" src={this.state.active}/>
 
-                <span className="icon" onClick={changeImage} ><img width="100%" src={next} /></span>
-
-
+                <span className="icon" onClick={this.changeImage}><img width="100%" src={this.state.next}/></span>
             </div>
         );
+    }
 
 
 }
 
+export default Thumbnail
