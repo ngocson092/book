@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 const LENGTH_OF_IMAGES = 3
+
 class Thumbnail extends Component {
 
     constructor(props) {
@@ -41,12 +42,14 @@ class Thumbnail extends Component {
         this.setState({active,next})
     }
 
+
     render() {
         return(
             <div className="thumbnail">
                 <img width="100%" src={this.state.active}/>
-
-                <span className="icon" onClick={this.changeImage}><img width="100%" src={this.state.next}/></span>
+                <span className="icon" onClick={this.changeImage}>
+                    <img width="100%" src={this.state.next}/>
+                </span>
             </div>
         );
     }
