@@ -10,13 +10,12 @@ class ChooseModel extends Component{
         list:[
             {
                 title:'X2 / 11',
-                model:'x2'
+                model:'a2000_x2'
             },
             {
-                title:'G5',
-                model:'g5'
+                title:'X2 / 12',
+                model:'a2000_x2'
             }
-
         ],
         model:null
     }
@@ -38,7 +37,10 @@ class ChooseModel extends Component{
             return (
 
                 <Col xs={24} sm={6} md={6} lg={6} xl={4} >
-                    <Card  className={classnames({'checked':this.state.model == item.model})} onClick={()=>{this.selectModel(item.model)}}  style={{ width: "100%" }} bodyStyle={{ padding: 0 }}>
+                    <Card  className={classnames({'checked':this.state.model == item.model})}
+                           onClick={()=>{this.selectModel(item.model)}}
+                           style={{ width: "100%" }}
+                    >
                         <Thumbnail images={images} />
                         <div className="custom-card">
                             <h3>{item.title} </h3>
@@ -62,7 +64,7 @@ class ChooseModel extends Component{
                             <Button
                                 type="primary" icon="smile-o"
                                 onClick={() => {
-                                    history.push('/design')
+                                    history.push(`/design/${this.state.model}`)
                                 }}
                             >
                                 Custom Now

@@ -10,7 +10,7 @@ class App extends Component {
 
         <div id="content">
             <Route path="/" component={ChooseModel} exact={true} />
-            <Route path="/design"  component={Design} />
+            <Route path="/design/:model"  component={Design} />
         </div>
 
     );

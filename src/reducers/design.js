@@ -1,18 +1,12 @@
 
-import {SET_GAME,ADD_GAME,DELETE_GAME} from '../actions'
+import {SET_ANGLE_COLOR} from '../actions'
 
 
-export default function games(state = [],action = {}) {
+export default function design(state = [],action = {}) {
 
     switch (action.type) {
-        case DELETE_GAME:
-            return state.filter(v=>{
-                return v._id != action.id
-            })
-        case ADD_GAME:
-            return [...state,action.game]
-        case SET_GAME:
-            return action.games
+        case SET_ANGLE_COLOR:
+            return {...state,angles:action.color}
 
         default:
             return state

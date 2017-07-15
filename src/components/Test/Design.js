@@ -6,44 +6,80 @@ import {TwitterPicker } from 'react-color'
 import {Button,Row,Col,Collapse,Radio, Input} from 'antd'
 import classnames from 'classnames'
 
-import Back from './Models/x2/back'
-import Front from './Models/x2/front'
 
+import {setAngleColor} from '../../actions'
+
+import RenderProduct from './Products/Render'
 
 
 const RadioGroup = Radio.Group
 const Panel = Collapse.Panel
 class Design extends Component{
 
-    state = {
-        model:'a2000_x2',
-        background:'ffffff',
-        value: 1,
-        angle_active:'front'
+    constructor(props){
+        super(props)
     }
 
+    state = {
+        color_play:{
+          leather:{
+              Active:true,
+              items:{
+                  fingers:{
+                      color:'#ffffff',
+                      active:true
+                  },
+                  wrist:{
+                      color:'#ffffff'
+                  },
+                  web:{
+                      color:'#ffffff'
+                  },
+                  palm:{
+                      color:'#ffffff'
+                  }
+              }
+          }
+        },
+        angle_active:'front',
+        product:{}
+    }
 
     onChange = (e) => {
-        console.log('radio checked', e.target.value);
+
         this.setState({
             value: e.target.value,
         });
     }
 
-
     componentDidMount(){
+
+
+        fetch(`/products/${this.props.match.params.model}.json`).then(res=>{
+            return res.json()
+        }).then(data=>{
+
+            this.setState({product:data})
+
+        })
+
+
+
 
 
     }
 
     handleChangeComplete = (color) => {
-        this.setState({ background: color.hex });
+        this.props.setAngleColor(color.hex)
     };
+
+    handleChangePanel = (panel)=>{
+
+        console.log(panel);
+
+    }
+
     render(){
-
-
-
-        let angles =  ['front','back','side']
 
         const radioStyle = {
             display: 'block',
@@ -53,41 +89,15 @@ class Design extends Component{
 
         const GloveContainer =
         (
-            <div className="glove-container">
-                {angles.map(angle=>{
-
-                    let src = '/images/'+ this.state.model + '_overlay_'+angle+'_600_ss.png'
-
-                    return (
-
-                        <div className={classnames(angle,{'active':this.state.angle_active === angle})}>
-                            <div className="glove-overlay">
-                                <img src={src} alt=""/>
-                            </div>
-
-                            <div className="glove-item">
-                                <Front/>
-                            </div>
-                        </div>
-
-                    )
-
-                })}
-
-            </div>
-
+            <div><RenderProduct product={this.state.product} model={this.props.match.params.model}/></div>
         )
 
 
         const Design = (
             <div>
-
-
                 <Row id="customize">
                     <Col xs={12} sm={20} md={18} lg={18} xl={20} className="main-design" >
                         {GloveContainer}
-
-
                     </Col>
                     <Col xs={12} sm={4} md={6} lg={6} xl={4} className="sidebar"  style={{height:$(window).height()}} >
 
@@ -98,8 +108,8 @@ class Design extends Component{
                             <h2>CUSTOMIZE</h2>
                         </div>
 
-                        <Collapse accordion bordered={false} defaultActiveKey={['1']} className="customize-glove-parts">
-                            <Panel header={'Leather'} key="1">
+                        <Collapse onChange={this.handleChangePanel} accordion bordered={false} defaultActiveKey={['1']} className="customize-glove-parts">
+                            <Panel header={'Leather'} key="leather">
 
                                 <TwitterPicker
                                     colors={[
@@ -113,20 +123,19 @@ class Design extends Component{
                                 />
 
 
-                                <RadioGroup onChange={this.onChange} value={this.state.value} style={{width:'100%','margin-top':'20px'}}>
-                                    <Radio style={radioStyle} value={1}>Back Finger</Radio>
-                                    <Radio style={radioStyle} value={2}>Wrist</Radio>
-                                    <Radio style={radioStyle} value={3}>Web</Radio>
-                                    <Radio style={radioStyle} value={4}>Palm</Radio>
-
+                                <RadioGroup onChange={this.onChange} value={'wrist'} style={{"width":"100%","margin-top":"20px"}}>
+                                    <Radio style={radioStyle} value={'fingers'}>Back Finger</Radio>
+                                    <Radio style={radioStyle} value={'wrist'}>Wrist</Radio>
+                                    <Radio style={radioStyle} value={'web'}>Web</Radio>
+                                    <Radio style={radioStyle} value={'palm'}>Palm</Radio>
                                 </RadioGroup>
 
 
                             </Panel>
-                            <Panel header={'Trim'} key="2">
+                            <Panel header={'Trim'} key="trim">
                                 <p>2222</p>
                             </Panel>
-                            <Panel header={'Lacing'} key="3">
+                            <Panel header={'Lacing'} key="lacing">
                                 <p>heheheeh11111111</p>
                             </Panel>
 
@@ -165,8 +174,7 @@ class Design extends Component{
 
 const mapStateToProps = (state)=>{
     return {
-        model:state.model
     }
 }
 
-export default connect(mapStateToProps)(Design)
+export default connect(mapStateToProps,{setAngleColor})(Design)
