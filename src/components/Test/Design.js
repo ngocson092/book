@@ -5,9 +5,10 @@ import {Route} from 'react-router-dom'
 import {TwitterPicker } from 'react-color'
 import {Button,Row,Col,Collapse,Radio, Input} from 'antd'
 import classnames from 'classnames'
+import update from 'react-addons-update'
 
 
-import {setAngleColor} from '../../actions'
+import {setAngleColor,initAngleColor,increase} from '../../actions'
 
 import RenderProduct from './Products/Render'
 
@@ -21,62 +22,74 @@ class Design extends Component{
     }
 
     state = {
-        color_play:{
-          leather:{
-              Active:true,
-              items:{
-                  fingers:{
-                      color:'#ffffff',
-                      active:true
-                  },
-                  wrist:{
-                      color:'#ffffff'
-                  },
-                  web:{
-                      color:'#ffffff'
-                  },
-                  palm:{
-                      color:'#ffffff'
-                  }
-              }
-          }
+        part_type:{
+          leather:'web'
         },
+        part_type_active:'leather',
         angle_active:'front',
-        product:{}
+        product:{},
+        angles :{}
     }
 
     onChange = (e) => {
 
-        this.setState({
-            value: e.target.value,
+
+
+        let part_type = update(this.state.part_type,
+            {
+                [this.state.part_type_active]: {
+
+                        $set: e.target.value
+                }
+            });
+
+       this.setState({
+            part_type
         });
     }
 
     componentDidMount(){
 
 
-        fetch(`/products/${this.props.match.params.model}.json`).then(res=>{
-            return res.json()
-        }).then(data=>{
+        const init_angle = (data)=>{
+            let angle_init = {}
+            Object.keys(data).forEach((angle)=>{
+
+                angle_init[angle] = {}
+                data[angle].forEach(item=>{
+                    if(typeof angle_init[angle][item.part_type] == 'undefined'){
+                        angle_init[angle][item.part_type] = {}
+                    }
+                    angle_init[angle][item.part_type][item.name] = '#ffffff'
+                })
+
+            })
+            return angle_init
+        }
+
+
+        fetch(`/products/${this.props.match.params.model}.json`)
+            .then(res=>res.json())
+            .then(data=>{
 
             this.setState({product:data})
-
+            this.props.initAngleColor(init_angle(data))
         })
-
-
-
 
 
     }
 
-    handleChangeComplete = (color) => {
-        this.props.setAngleColor(color.hex)
+    handleColorChange = (color) => {
+        let angle_active = this.state.angle_active,
+            part_type_active =  this.state.part_type_active,
+            part_name_active =  this.state.part_type[this.state.part_type_active];
+
+        this.props.setAngleColor(angle_active,part_type_active,part_name_active,color.hex)
+        this.props.increase(1)
     };
 
-    handleChangePanel = (panel)=>{
-
-        console.log(panel);
-
+    handleTypePartChange = (panel)=>{
+        this.setState({part_type_active:panel})
     }
 
     render(){
@@ -89,7 +102,9 @@ class Design extends Component{
 
         const GloveContainer =
         (
-            <div><RenderProduct product={this.state.product} model={this.props.match.params.model}/></div>
+            <div><RenderProduct product={this.state.product} model={this.props.match.params.model}/>
+                <pre>{JSON.stringify(this.props.number, null, 2) }</pre>
+            </div>
         )
 
 
@@ -108,7 +123,7 @@ class Design extends Component{
                             <h2>CUSTOMIZE</h2>
                         </div>
 
-                        <Collapse onChange={this.handleChangePanel} accordion bordered={false} defaultActiveKey={['1']} className="customize-glove-parts">
+                        <Collapse onChange={this.handleTypePartChange} accordion bordered={false} activeKey={this.state.part_type_active} defaultActiveKey={['leather']} className="customize-glove-parts">
                             <Panel header={'Leather'} key="leather">
 
                                 <TwitterPicker
@@ -119,11 +134,13 @@ class Design extends Component{
                                         '#452006','#b8d2da','#006ba6','#e033a2',
                                         '#1a407b','#0d1f2e','#2b1b66','#009d73','#009639']}
                                     color={ this.state.background }
-                                    onChangeComplete={ this.handleChangeComplete }
+                                    onChangeComplete={ this.handleColorChange }
                                 />
 
 
-                                <RadioGroup onChange={this.onChange} value={'wrist'} style={{"width":"100%","margin-top":"20px"}}>
+
+
+                                <RadioGroup onChange={this.onChange} value={this.state.part_type.leather} style={{"width":"100%","margin-top":"20px"}}>
                                     <Radio style={radioStyle} value={'fingers'}>Back Finger</Radio>
                                     <Radio style={radioStyle} value={'wrist'}>Wrist</Radio>
                                     <Radio style={radioStyle} value={'web'}>Web</Radio>
@@ -174,7 +191,9 @@ class Design extends Component{
 
 const mapStateToProps = (state)=>{
     return {
+        angles:state.design.angles,
+        number:state.design.number
     }
 }
 
-export default connect(mapStateToProps,{setAngleColor})(Design)
+export default connect(mapStateToProps,{setAngleColor,initAngleColor,increase})(Design)
