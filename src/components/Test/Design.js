@@ -102,8 +102,7 @@ class Design extends Component{
 
         const GloveContainer =
         (
-            <div><RenderProduct product={this.state.product} model={this.props.match.params.model}/>
-                <pre>{JSON.stringify(this.props.number, null, 2) }</pre>
+            <div><RenderProduct angles={this.props.angles} product={this.state.product} model={this.props.match.params.model}/>
             </div>
         )
 
@@ -191,8 +190,7 @@ class Design extends Component{
 
 const mapStateToProps = (state)=>{
     return {
-        angles:state.design.angles,
-        number:state.design.number
+        angles:state.design.angles
     }
 }
 

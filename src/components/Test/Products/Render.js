@@ -90,7 +90,6 @@ class Render extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-        angles:state.design.angles
     }
 }
 export default connect(mapStateToProps,{})(Render)
