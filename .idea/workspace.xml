@@ -8,9 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4a47f905-d0c2-4a5b-b56c-b4e230074778" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Test/Design.js" afterPath="$PROJECT_DIR$/src/components/Test/Design.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Test/Products/Render.js" afterPath="$PROJECT_DIR$/src/components/Test/Products/Render.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/design.js" afterPath="$PROJECT_DIR$/src/reducers/design.js" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,13 +40,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Design.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Design.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Test/Design.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="193" column="5" lean-forward="true" selection-start-line="193" selection-start-column="5" selection-end-line="193" selection-end-column="5" />
+            <state relative-caret-position="869">
+              <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
+                <marker date="1500128312435" expanded="true" signature="1070:1839" ph="{...}" />
+                <marker date="1500128312435" expanded="true" signature="1720:1830" ph="{...}" />
+                <marker date="1500128312435" expanded="true" signature="2310:5906" ph="{...}" />
+                <marker date="1500128312435" expanded="true" signature="2497:2631" ph="&lt;div/&gt;" />
+                <marker date="1500128312435" expanded="true" signature="5944:6001" ph="{...}" />
+                <marker date="1500128312435" expanded="true" signature="5957:5999" ph="{&quot;angles&quot;: state.design.angles...}" />
               </folding>
             </state>
           </provider>
@@ -58,7 +61,7 @@
       <file leaf-file-name="a2000_x2.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/products/a2000_x2.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="-286">
               <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="16" />
               <folding />
             </state>
@@ -69,10 +72,22 @@
         <entry file="file://$PROJECT_DIR$/src/components/Test/Products/Render.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="451">
-              <caret line="67" column="114" lean-forward="false" selection-start-line="67" selection-start-column="63" selection-end-line="67" selection-end-column="114" />
+              <caret line="58" column="53" lean-forward="false" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
+                <marker date="1500128412171" expanded="true" signature="516:2461" ph="{...}" />
+                <marker date="1500128412171" expanded="true" signature="1062:2251" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="792">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,9 +96,10 @@
         <entry file="file://$PROJECT_DIR$/src/reducers/design.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="418">
-              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
                 <element signature="e#1#43#0" expanded="true" />
+                <marker date="1500128312480" expanded="true" signature="145:526" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -150,7 +166,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="484">
               <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="18" />
-              <folding />
+              <folding>
+                <marker date="1500126162551" expanded="true" signature="611:669" ph="{&quot;type&quot;: INCREASE...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -279,9 +297,9 @@
         <option value="$PROJECT_DIR$/src/rootReducer.js" />
         <option value="$PROJECT_DIR$/public/products/a2000_x2.json" />
         <option value="$PROJECT_DIR$/src/actions.js" />
-        <option value="$PROJECT_DIR$/src/components/Test/Products/Render.js" />
         <option value="$PROJECT_DIR$/src/components/Test/Design.js" />
         <option value="$PROJECT_DIR$/src/reducers/design.js" />
+        <option value="$PROJECT_DIR$/src/components/Test/Products/Render.js" />
       </list>
     </option>
   </component>
@@ -437,6 +455,20 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wilson" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wilson" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="build" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -555,16 +587,16 @@
       <workItem from="1500006264793" duration="17284000" />
       <workItem from="1500046070947" duration="4129000" />
       <workItem from="1500089748777" duration="10989000" />
-      <workItem from="1500114282563" duration="13489000" />
+      <workItem from="1500114282563" duration="14205000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101602000" />
+    <option name="totallyTimeSpent" value="102318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.165625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -574,7 +606,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27589852" sideWeight="0.49573562" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27589852" sideWeight="0.49573562" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -793,14 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="32" column="1" lean-forward="false" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
@@ -975,7 +999,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/products/a2000_x2.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="-286">
           <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="16" />
           <folding />
         </state>
@@ -985,16 +1009,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="18" />
-          <folding />
+          <folding>
+            <marker date="1500126162551" expanded="true" signature="611:669" ph="{&quot;type&quot;: INCREASE...}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/Products/Render.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Test/Design.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="67" column="114" lean-forward="false" selection-start-line="67" selection-start-column="63" selection-end-line="67" selection-end-column="114" />
+        <state relative-caret-position="869">
+          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
           <folding>
-            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
+            <marker date="1500128312435" expanded="true" signature="1070:1839" ph="{...}" />
+            <marker date="1500128312435" expanded="true" signature="1720:1830" ph="{...}" />
+            <marker date="1500128312435" expanded="true" signature="2310:5906" ph="{...}" />
+            <marker date="1500128312435" expanded="true" signature="2497:2631" ph="&lt;div/&gt;" />
+            <marker date="1500128312435" expanded="true" signature="5944:6001" ph="{...}" />
+            <marker date="1500128312435" expanded="true" signature="5957:5999" ph="{&quot;angles&quot;: state.design.angles...}" />
           </folding>
         </state>
       </provider>
@@ -1002,20 +1034,31 @@
     <entry file="file://$PROJECT_DIR$/src/reducers/design.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <caret line="19" column="5" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding>
             <element signature="e#1#43#0" expanded="true" />
+            <marker date="1500128312480" expanded="true" signature="145:526" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Test/Design.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Test/Products/Render.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="193" column="5" lean-forward="true" selection-start-line="193" selection-start-column="5" selection-end-line="193" selection-end-column="5" />
+        <state relative-caret-position="451">
+          <caret line="58" column="53" lean-forward="false" selection-start-line="58" selection-start-column="53" selection-end-line="58" selection-end-column="53" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
+            <marker date="1500128412171" expanded="true" signature="516:2461" ph="{...}" />
+            <marker date="1500128412171" expanded="true" signature="1062:2251" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
