@@ -5,7 +5,6 @@ import classnames from 'classnames'
 import Thumbnail from './include/Thumbnail'
 import {Route} from 'react-router-dom'
 class ChooseModel extends Component{
-
     state = {
         list:[
             {
@@ -13,8 +12,8 @@ class ChooseModel extends Component{
                 model:'a2000_x2'
             },
             {
-                title:'X2 / 12',
-                model:'a2000_x2'
+                title:'g5 / 12',
+                model:'g5'
             }
         ],
         model:null
@@ -22,7 +21,6 @@ class ChooseModel extends Component{
     selectModel = (model)=>{
         this.setState({model})
     }
-
 
     render(){
 

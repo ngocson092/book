@@ -23,7 +23,9 @@ class Design extends Component{
 
     state = {
         part_type:{
-          leather:'web'
+          leather:'palm',
+          trim:'binding',
+          lacing:'lace_4',
         },
         part_type_active:'leather',
         angle_active:'front',
@@ -125,38 +127,70 @@ class Design extends Component{
                         <Collapse onChange={this.handleTypePartChange} accordion bordered={false} activeKey={this.state.part_type_active} defaultActiveKey={['leather']} className="customize-glove-parts">
                             <Panel header={'Leather'} key="leather">
 
-                                <TwitterPicker
-                                    colors={[
-                                        '#ffffff','#929292','#383838','#000000',
-                                        '#f2c250','#fab400','#fb5300','#d61200',
-                                        '#78000c','#78000c','#86105b','#a35802',
-                                        '#452006','#b8d2da','#006ba6','#e033a2',
-                                        '#1a407b','#0d1f2e','#2b1b66','#009d73','#009639']}
-                                    color={ this.state.background }
-                                    onChangeComplete={ this.handleColorChange }
-                                />
-
-
-
-
-                                <RadioGroup onChange={this.onChange} value={this.state.part_type.leather} style={{"width":"100%","margin-top":"20px"}}>
+                                <RadioGroup onChange={this.onChange} value={this.state.part_type.leather} style={{"width":"100%"}}>
                                     <Radio style={radioStyle} value={'fingers'}>Back Finger</Radio>
                                     <Radio style={radioStyle} value={'wrist'}>Wrist</Radio>
                                     <Radio style={radioStyle} value={'web'}>Web</Radio>
                                     <Radio style={radioStyle} value={'palm'}>Palm</Radio>
                                 </RadioGroup>
 
+                                <div className="color-watch"  style={{"margin-top":"20px"}}>
+                                    <TwitterPicker
+                                        colors={[
+                                            '#ffffff','#929292','#383838','#000000',
+                                            '#f2c250','#fab400','#fb5300','#d61200',
+                                            '#78000c','#78000c','#86105b','#a35802',
+                                            '#452006','#b8d2da','#006ba6','#e033a2',
+                                            '#1a407b','#0d1f2e','#2b1b66','#009d73','#009639']}
+                                        color={ this.state.background }
+                                        onChangeComplete={ this.handleColorChange }
+                                    />
+                                </div>
+
 
                             </Panel>
                             <Panel header={'Trim'} key="trim">
-                                <p>2222</p>
+                                <RadioGroup onChange={this.onChange} value={this.state.part_type.trim} style={{"width":"100%"}}>
+                                    <Radio style={radioStyle} value={'binding'}>Binding</Radio>
+                                    <Radio style={radioStyle} value={'beading_1'}>Welting Shell</Radio>
+                                    <Radio style={radioStyle} value={'beading_2'}>Welting Palm</Radio>
+                                </RadioGroup>
+
+                                <div className="color-watch"  style={{"margin-top":"20px"}}>
+                                    <TwitterPicker
+                                        colors={[
+                                            '#ffffff','#929292','#383838','#000000',
+                                            '#f2c250','#fab400','#fb5300','#d61200',
+                                            '#78000c','#78000c','#86105b','#a35802',
+                                            '#452006','#b8d2da','#006ba6','#e033a2',
+                                            '#1a407b','#0d1f2e','#2b1b66','#009d73','#009639']}
+                                        color={ this.state.background }
+                                        onChangeComplete={ this.handleColorChange }
+                                    />
+                                </div>
                             </Panel>
                             <Panel header={'Lacing'} key="lacing">
-                                <p>heheheeh11111111</p>
+                                <RadioGroup onChange={this.onChange} value={this.state.part_type.lacing} style={{"width":"100%"}}>
+                                    <Radio style={radioStyle} value={'lace_4'}>Web</Radio>
+                                    <Radio style={radioStyle} value={'lace_3'}>Fingertops</Radio>
+                                    <Radio style={radioStyle} value={'lace_1'}>Heel</Radio>
+                                </RadioGroup>
+
+                                <div className="color-watch"  style={{"margin-top":"20px"}}>
+                                    <TwitterPicker
+                                        colors={[
+                                            '#ffffff','#929292','#383838','#000000',
+                                            '#f2c250','#fab400','#fb5300','#d61200',
+                                            '#78000c','#78000c','#86105b','#a35802',
+                                            '#452006','#b8d2da','#006ba6','#e033a2',
+                                            '#1a407b','#0d1f2e','#2b1b66','#009d73','#009639']}
+                                        color={ this.state.background }
+                                        onChangeComplete={ this.handleColorChange }
+                                    />
+                                </div>
                             </Panel>
 
                         </Collapse>
-
 
                         <Route render={({history}) => (
                             <Button
