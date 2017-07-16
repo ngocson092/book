@@ -1,0 +1,32 @@
+@import '~antd/dist/antd.css';
+
+.ant-layout-header {
+
+  background: #090b0c;
+  .logo {
+    color: #ffbf00;
+    font-size: 20px;
+    text-transform: uppercase;
+    word-spacing: 0px;
+    font-variant: normal;
+    font: italic normal normal 25px/1.4em impact;
+    text-transform: uppercase;
+    line-height: 62.4px;
+  }
+  .logo span{
+    color: white;
+  }
+
+}
+
+.container {
+  max-width: 90%;
+  margin: 100px auto;
+}
+
+.main-design{
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+

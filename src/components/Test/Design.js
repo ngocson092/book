@@ -8,7 +8,9 @@ import classnames from 'classnames'
 import update from 'react-addons-update'
 
 
-import {setAngleColor,initAngleColor,increase} from '../../actions'
+import '../../stylesheet/_design.scss'
+
+import {setAngleColor,initAngleColor,setActiveAngle} from '../../actions'
 
 import RenderProduct from './Products/Render'
 
@@ -28,7 +30,6 @@ class Design extends Component{
           lacing:'lace_4',
         },
         part_type_active:'leather',
-        angle_active:'front',
         product:{},
         angles :{}
     }
@@ -76,18 +77,19 @@ class Design extends Component{
 
             this.setState({product:data})
             this.props.initAngleColor(init_angle(data))
+            this.props.setActiveAngle('front')
         })
-
 
     }
 
+
     handleColorChange = (color) => {
-        let angle_active = this.state.angle_active,
+        let angle_active = this.props.angle_active,
             part_type_active =  this.state.part_type_active,
             part_name_active =  this.state.part_type[this.state.part_type_active];
 
         this.props.setAngleColor(angle_active,part_type_active,part_name_active,color.hex)
-        this.props.increase(1)
+
     };
 
     handleTypePartChange = (panel)=>{
@@ -104,15 +106,23 @@ class Design extends Component{
 
         const GloveContainer =
         (
-            <div><RenderProduct angles={this.props.angles} product={this.state.product} model={this.props.match.params.model}/>
-            </div>
+                <RenderProduct isthumb={false} product={this.state.product} model={this.props.match.params.model}/>
         )
+
+        const GloveThumbContainer =
+        (
+                <RenderProduct isthumb={true} product={this.state.product} model={this.props.match.params.model}/>
+        )
+
 
         const Design = (
             <div>
                 <Row id="customize">
-                    <Col xs={12} sm={20} md={18} lg={18} xl={20} className="main-design" >
+
+                    <Col xs={12} sm={20} md={18} lg={18} xl={20} className="glove-container">
+                        {GloveThumbContainer}
                         {GloveContainer}
+
                     </Col>
                     <Col xs={12} sm={4} md={6} lg={6} xl={4} className="sidebar"  style={{height:$(window).height()-64}} >
 
@@ -220,11 +230,10 @@ class Design extends Component{
     }
 
 }
-
 const mapStateToProps = (state)=>{
     return {
-        angles:state.design.angles
+        angle_active:state.design.angle_active
     }
 }
 
-export default connect(mapStateToProps,{setAngleColor,initAngleColor,increase})(Design)
+export default connect(mapStateToProps,{setAngleColor,initAngleColor,setActiveAngle})(Design)

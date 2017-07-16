@@ -1,6 +1,6 @@
 
-import {SET_ANGLE_COLOR} from '../actions'
-import {INIT_ANGLE_COLOR} from '../actions'
+import {SET_ANGLE_COLOR,INIT_ANGLE_COLOR,SET_ACTIVE_ANGLE,ANGLES} from '../actions'
+
 
 
 export default function design(state = {},action = {}) {
@@ -12,8 +12,15 @@ export default function design(state = {},action = {}) {
         case SET_ANGLE_COLOR:
 
             let angles = Object.assign({},state.angles)
-            angles[action.data.angle][action.data.part_type][action.data.part_name] = action.data.color
-            return {angles}
+
+            ANGLES.forEach(angle=>{
+                angles[angle][action.data.part_type][action.data.part_name] = action.data.color
+            })
+
+
+            return {...state,angles}
+        case SET_ACTIVE_ANGLE:
+            return {...state,angle_active:action.angle}
 
         default:
             return state

@@ -1,0 +1,159 @@
+#customize{
+  z-index: 1;
+  background: #ddd;
+  .glove-container{
+    padding: 100px 0 0 20px;
+    .glove-shadow{
+      margin: 30px 0 0 30px;
+    }
+
+    .wrap-products{
+      position: relative;
+      float: left;
+      >div{
+        display: none;
+      }
+      >div.active{
+        display: block;
+      }
+    }
+
+
+    .wrap-thumbs{
+      width: 200px;
+      padding-right: 100px;
+      position: relative;
+      float: left;
+
+      >div:hover{
+        background: white;
+      }
+      >div{
+
+        background: #ececec;
+        position: relative;
+        float: left;
+        width: 100px ;
+        cursor: pointer;
+
+        img{
+          max-width: 100%;
+        }
+        .glove-shadow{
+          display: none;
+        }
+      }
+
+      >div:last-child{
+        //border-bottom: 1px solid #cccccc;
+      }
+      .glove-overlay {
+        z-index: 1;
+        position: relative;
+      }
+      .glove-item {
+        width: 100px;
+        position: absolute;
+        top: 0px;
+        z-index: 0;
+        left: 0px;
+      }
+    }
+
+    .glove-item{
+      position: absolute;
+      top: 0px;
+      z-index: -1;
+      left: 0px;
+    }
+  }
+
+  .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    height: 38px;
+    line-height: 38px;
+    padding-left: 32px;
+    color: #FFEB3B;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    text-align: center;
+    background: #292626;
+    border-bottom: 1px solid #4a4a4a;
+    font-size: 17px;
+    text-indent: -30px;
+  }
+  .ant-collapse > .ant-collapse-item > .ant-collapse-header:active {
+    background-color: #131212;
+    color: #ffe200;
+    text-align: center;
+    font-size: 20px;
+  }
+
+  .color-play-header {
+    text-align: center;
+    padding: 20px 0;
+    .content {
+      text-align: center;
+    }
+    h2 {
+      margin-top: -10px;
+      margin-bottom: 0px;
+      line-height: 1.6em;
+      font-size: 3.2em;
+    }
+    h2,h3 {
+      text-transform: uppercase;
+      text-align: center;
+      color: #333333;
+      font-weight: 100;
+    }
+  }
+
+  #glove-info {
+     text-transform: uppercase;
+     font-size: 1.8em;
+     color: #4c4949;
+     .price {
+       display: inline-block;
+       margin-left: 8px;
+       color: #818181;
+       font-weight: lighter;
+     }
+  }
+
+
+  .sidebar {
+    background: #f7f7f7;
+    .ant-collapse-content{
+      background: #f7f7f7;
+    }
+    .customize-glove-parts{
+      border-radius: 0;
+      border: 0;
+      .ant-collapse-item{
+        border-bottom:0
+      }
+    }
+
+    .back{
+      position: absolute;
+      right: 10px;bottom: 10px;
+    }
+
+  }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+

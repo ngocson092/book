@@ -1,7 +1,8 @@
-import './index.css'
+import './stylesheet/_layout.scss'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+
 
 import {createStore,applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'

@@ -121,10 +121,10 @@ class AddGame extends Component {
                 </form>
             </div>
         )
-
         return (this.state.done) ? <Redirect to={'/games'}/> :Form
     }
 
 }
+
 
 export default connect(null,{storeGame})(AddGame)
