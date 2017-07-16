@@ -24,9 +24,12 @@ import {setActiveAngle} from '../../../actions'
 
 class Render extends Component {
 
+
+
     changeAngle = (angle)=>{
         this.props.setActiveAngle(angle)
     }
+
 
     render() {
         const ProductCustomize =  Object.keys(this.props.product).map((angle,i)=>{
@@ -69,12 +72,14 @@ class Render extends Component {
 
                     })}
                 </div>
-
             )
-
         })
 
+
+
         return  (<div className={classnames({'wrap-products':!this.props.isthumb,'wrap-thumbs':this.props.isthumb})}>{ProductCustomize}</div>)
+
+
 
     }
 
