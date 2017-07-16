@@ -2,7 +2,6 @@
 import {SET_ANGLE_COLOR,INIT_ANGLE_COLOR,SET_ACTIVE_ANGLE,ANGLES} from '../actions'
 
 
-
 export default function design(state = {},action = {}) {
 
     switch (action.type) {

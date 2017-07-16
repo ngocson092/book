@@ -29,16 +29,15 @@ class ChooseModel extends Component{
 
 
 
-        const ListModel = this.state.list.map(item=>{
+        const ListModel = this.state.list.map((item,i)=>{
 
 
             let images = ANGLES.map(angle=>`/images/${item.model}-${angle}.png`)
 
-
             return (
 
-                <Col xs={24} sm={8} md={8} lg={8} xl={6} >
-                    <Card  className={classnames('card-item',{'checked':this.state.model == item.model})}
+                <Col  key={i} xs={24} sm={8} md={8} lg={8} xl={6} >
+                    <Card  className={classnames('card-item',{'checked':this.state.model === item.model})}
                            onClick={()=>{this.selectModel(item.model)}}
                            style={{ width: "100%" }}
                     >

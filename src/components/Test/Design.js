@@ -3,25 +3,17 @@ import $ from 'jquery'
 import {connect} from 'react-redux'
 import {Route} from 'react-router-dom'
 import {TwitterPicker } from 'react-color'
-import {Button,Row,Col,Collapse,Radio, Input} from 'antd'
-import classnames from 'classnames'
+import {Button,Row,Col,Collapse,Radio} from 'antd'
 import update from 'react-addons-update'
+import {setAngleColor,initAngleColor,setActiveAngle} from '../../actions'
+import RenderProduct from './Products/Render'
 
 
 import '../../stylesheet/_design.scss'
 
-import {setAngleColor,initAngleColor,setActiveAngle} from '../../actions'
-
-import RenderProduct from './Products/Render'
-
-
 const RadioGroup = Radio.Group
 const Panel = Collapse.Panel
 class Design extends Component{
-
-    constructor(props){
-        super(props)
-    }
 
     state = {
         part_type:{
@@ -51,9 +43,7 @@ class Design extends Component{
         });
     }
 
-    componentDidMount(){
-
-
+    componentWillMount() {
         const init_angle = (product)=>{
             let angle_init = {}
             Object.keys(product).forEach((angle)=>{
@@ -74,11 +64,10 @@ class Design extends Component{
             .then(res=>res.json())
             .then(data=>{
 
-            this.setState({product:data})
-            this.props.initAngleColor(init_angle(data))
-            this.props.setActiveAngle('front')
-        })
-
+                this.setState({product:data})
+                this.props.initAngleColor(init_angle(data))
+                this.props.setActiveAngle('front')
+            })
     }
 
 
@@ -142,7 +131,7 @@ class Design extends Component{
                                     <Radio style={radioStyle} value={'palm'}>Palm</Radio>
                                 </RadioGroup>
 
-                                <div className="color-watch"  style={{"margin-top":"20px"}}>
+                                <div className="color-watch">
                                     <TwitterPicker
                                         colors={[
                                             '#ffffff','#929292','#383838','#000000',
@@ -164,7 +153,7 @@ class Design extends Component{
                                     <Radio style={radioStyle} value={'beading_2'}>Welting Palm</Radio>
                                 </RadioGroup>
 
-                                <div className="color-watch"  style={{"margin-top":"20px"}}>
+                                <div className="color-watch">
                                     <TwitterPicker
                                         colors={[
                                             '#ffffff','#929292','#383838','#000000',
@@ -184,7 +173,7 @@ class Design extends Component{
                                     <Radio style={radioStyle} value={'lace_1'}>Heel</Radio>
                                 </RadioGroup>
 
-                                <div className="color-watch"  style={{"margin-top":"20px"}}>
+                                <div className="color-watch">
                                     <TwitterPicker
                                         colors={[
                                             '#ffffff','#929292','#383838','#000000',

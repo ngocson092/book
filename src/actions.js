@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const  SET_ANGLE_COLOR ='SET_ANGLE_COLOR'
 export const  INIT_ANGLE_COLOR ='INIT_ANGLE_COLOR'
 export const  SET_ACTIVE_ANGLE ='SET_ACTIVE_ANGLE'
@@ -26,6 +24,7 @@ export function initAngleColor (data){
         })
     }
 }
+
 
 export function setActiveAngle (angle){
     return dispatch => {

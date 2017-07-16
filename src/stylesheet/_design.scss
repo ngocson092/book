@@ -1,6 +1,7 @@
 #customize{
   z-index: 1;
   background: #fbfbfb;
+
   .glove-container{
     padding: 100px 0 0 20px;
     .glove-shadow{
@@ -136,7 +137,11 @@
 
 
   .sidebar {
+
     background: #f7f7f7;
+    .color-watch{
+      margin-top: 20px;
+    }
     .ant-collapse-content{
       background: #f7f7f7;
     }
@@ -162,9 +167,8 @@
 
 
 
-
-
-
-
-
-
+@media only screen and (min-width: 1600px){
+  .glove-container{
+    padding-left: 300px !important;
+  }
+}

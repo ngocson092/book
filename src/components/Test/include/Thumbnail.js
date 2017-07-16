@@ -3,16 +3,12 @@ const LENGTH_OF_IMAGES = 3
 
 class Thumbnail extends Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     state = {
         active:null,
         next: null
     }
 
-    componentDidMount() {
+    componentWillMount() {
         let images = this.props.images,
             active = images[0],
             next = images[1]

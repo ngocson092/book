@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 /*
 *
@@ -23,26 +24,15 @@ import {setActiveAngle} from '../../../actions'
 
 class Render extends Component {
 
-    constructor(props) {
-        super(props)
-    }
-
-
-    componentDidMount() {
-
-    }
-
     changeAngle = (angle)=>{
-
         this.props.setActiveAngle(angle)
-
     }
 
     render() {
-        const ProductCustomize =  Object.keys(this.props.product).map(angle=>{
+        const ProductCustomize =  Object.keys(this.props.product).map((angle,i)=>{
             let src = '/images/'+ this.props.model + '_overlay_'+angle+'_600_ss.png'
             return (
-                <div onClick={()=>{ if(this.props.isthumb){ this.changeAngle(angle) } }} className={classnames(angle,{'active':this.props.angle_active === angle})}>
+                <div    key={i} onClick={()=>{ if(this.props.isthumb){ this.changeAngle(angle) } }} className={classnames(angle,{'active':this.props.angle_active === angle})}>
 
                     <div className="glove-overlay">
                         <img src={src} alt=""/>
@@ -51,17 +41,14 @@ class Render extends Component {
                         <img src="/images/glove-shadow.png" alt=""/>
                     </div>
 
-                    {this.props.product[angle].data.map(item=>{
+                    {this.props.product[angle].data.map((item,i)=>{
+
                         if(typeof this.props.angles !='undefined'){
                             return (
-
                                 <div
+                                    key={i}
                                     className={classnames("glove-item",item.name)}
-                                    data-display-angle={angle}
-                                    data-part={item.name}
-                                    data-part-type={item.part_type}
-                                    data-test={this.props.angles[angle][item.part_type][item.name]}
-                                    style={{width: !this.props.isthumb ? "600px" : "100px", "fill-opacity": 1}}>
+                                    style={{width: !this.props.isthumb ? "600px" : "100px"}}>
 
                                     <svg version="1.1"
                                          xmlns="http://www.w3.org/2000/svg"
@@ -74,8 +61,11 @@ class Render extends Component {
                                     </svg>
                                 </div>
 
+
                             )
                         }
+
+
 
                     })}
                 </div>
@@ -89,6 +79,16 @@ class Render extends Component {
     }
 
 }
+
+
+
+Render.PropTypes = {
+    product:PropTypes.object.isRequired,
+    angles:PropTypes.array.isRequired,
+    isthumb:PropTypes.bool.isRequired,
+    model: PropTypes.string.isRequired
+}
+
 
 const mapStateToProps = (state)=>{
     return {
