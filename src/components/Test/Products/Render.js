@@ -25,6 +25,13 @@ import {setActiveAngle} from '../../../actions'
 class Render extends Component {
 
 
+    componentWillMount(){
+        console.log(1);
+    }
+
+    componentDidMount(){
+        console.log(2);
+    }
 
     changeAngle = (angle)=>{
         this.props.setActiveAngle(angle)
@@ -74,8 +81,6 @@ class Render extends Component {
                 </div>
             )
         })
-
-
 
         return  (<div className={classnames({'wrap-products':!this.props.isthumb,'wrap-thumbs':this.props.isthumb})}>{ProductCustomize}</div>)
 

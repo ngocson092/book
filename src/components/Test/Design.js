@@ -17,7 +17,6 @@ class Design extends Component {
 
 
     state = {
-        loading: true,
         part_type: {
             leather: 'palm',
             trim: 'binding',
@@ -44,9 +43,6 @@ class Design extends Component {
         });
     }
 
-    componentDidMount() {
-        this.setState({loading: false})
-    }
 
     componentWillMount() {
 
@@ -106,14 +102,8 @@ class Design extends Component {
                 <Row id="customize">
 
                     <Col xs={12} sm={20} md={18} lg={18} xl={20} className="glove-container">
-                        {(this.state.loading) ? (<div>Loading...</div> ) : (
-                            <div>
-
-                                <RenderProduct isthumb={true} product={this.state.product} model={this.props.match.params.model}/>
-                                <RenderProduct isthumb={false} product={this.state.product} model={this.props.match.params.model}/>
-
-                            </div>)
-                        }
+                        <RenderProduct isthumb={true} product={this.state.product} model={this.props.match.params.model}/>
+                        <RenderProduct isthumb={false} product={this.state.product} model={this.props.match.params.model}/>
                     </Col>
                     <Col xs={12} sm={4} md={6} lg={6} xl={4} className="sidebar"
                          style={{height: $(window).height() - 64}}>
