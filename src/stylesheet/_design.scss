@@ -1,6 +1,6 @@
 #customize{
   z-index: 1;
-  background: #ddd;
+  background: #fbfbfb;
   .glove-container{
     padding: 100px 0 0 20px;
     .glove-shadow{
@@ -25,7 +25,18 @@
       position: relative;
       float: left;
 
-      >div:hover{
+
+      >div.active:after{
+
+        content:'';
+        border-top: 10px solid transparent;
+        border-left: 15px solid #4b4b4b;
+        border-bottom: 10px solid transparent;
+        position: absolute;
+        right: -15px;
+        top:45px;
+      }
+      >div.active,>div:hover{
         background: white;
       }
       >div{

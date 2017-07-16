@@ -54,12 +54,12 @@ class Design extends Component{
     componentDidMount(){
 
 
-        const init_angle = (data)=>{
+        const init_angle = (product)=>{
             let angle_init = {}
-            Object.keys(data).forEach((angle)=>{
+            Object.keys(product).forEach((angle)=>{
 
                 angle_init[angle] = {}
-                data[angle].forEach(item=>{
+                product[angle].data.forEach(item=>{
                     if(typeof angle_init[angle][item.part_type] == 'undefined'){
                         angle_init[angle][item.part_type] = {}
                     }
@@ -69,7 +69,6 @@ class Design extends Component{
             })
             return angle_init
         }
-
 
         fetch(`/products/${this.props.match.params.model}.json`)
             .then(res=>res.json())

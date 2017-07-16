@@ -3,19 +3,24 @@
 .ant-layout-header {
 
   background: #090b0c;
-  .logo {
-    color: #ffbf00;
-    font-size: 20px;
-    text-transform: uppercase;
-    word-spacing: 0px;
-    font-variant: normal;
-    font: italic normal normal 25px/1.4em impact;
-    text-transform: uppercase;
-    line-height: 62.4px;
+  .logo{
+    a{
+      color: #ffbf00;
+      font-size: 20px;
+      text-transform: uppercase;
+      word-spacing: 0px;
+      font-variant: normal;
+      font: italic normal normal 25px/1.4em impact;
+      text-transform: uppercase;
+      line-height: 62.4px;
+      text-decoration: underline;
+      span{
+        color: white;
+      }
+    }
+
   }
-  .logo span{
-    color: white;
-  }
+
 
 }
 

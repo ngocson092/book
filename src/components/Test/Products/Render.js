@@ -39,7 +39,6 @@ class Render extends Component {
     }
 
     render() {
-
         const ProductCustomize =  Object.keys(this.props.product).map(angle=>{
             let src = '/images/'+ this.props.model + '_overlay_'+angle+'_600_ss.png'
             return (
@@ -52,8 +51,7 @@ class Render extends Component {
                         <img src="/images/glove-shadow.png" alt=""/>
                     </div>
 
-
-                    {this.props.product[angle].map(item=>{
+                    {this.props.product[angle].data.map(item=>{
                         if(typeof this.props.angles !='undefined'){
                             return (
 
@@ -68,7 +66,7 @@ class Render extends Component {
                                     <svg version="1.1"
                                          xmlns="http://www.w3.org/2000/svg"
                                          x="0px" y="0px"
-                                         viewBox="0 0 583.2 583.2"
+                                         viewBox={this.props.product[angle].viewbox}
                                     >
                                         <g>
                                             <path style={{fill:this.props.angles[angle][item.part_type][item.name]}} d={item.svg}></path>
