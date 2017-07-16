@@ -1,0 +1,27 @@
+.thumbnail img  {
+    display: block;
+    max-width:100%;
+}
+.thumbnail {
+    position: relative;
+    cursor: pointer;
+}
+
+.thumbnail .icon{
+    position: absolute;
+    width: 69px;
+    height: 69px;
+    bottom: -44px;
+    right: 10px;
+    cursor: pointer;
+    padding: 10px;
+    background: #efedec;
+    border-radius: 50%;
+}
+
+.custom-card {
+    padding: 10px 16px;
+}
+.custom-card p {
+    color: #999;
+}

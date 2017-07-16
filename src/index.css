@@ -1,46 +1,33 @@
 @import '~antd/dist/antd.css';
-.thumbnail img  {
-  display: block;
-  max-width:100%;
-}
-.thumbnail {
-  position: relative;
-  cursor: pointer;
-}
 
-.thumbnail .icon{
-  position: absolute;
-  width: 69px;
-  height: 69px;
-  bottom: -44px;
-  right: 10px;
-  cursor: pointer;
-  padding: 10px;
-  background: #efedec;
-  border-radius: 50%;
-}
-
-.custom-card {
-  padding: 10px 16px;
-}
-.custom-card p {
-  color: #999;
-}
-
-#content{
-  margin: auto;
-}
 .sidebar{
   background: #f1f1f1;
 }
+
+.container {
+  max-width: 90%;
+  margin: 100px auto;
+}
+
 .main-design{
   padding-left: 20px;
   padding-top: 20px;
 }
-.container{
-  max-width: 90%;
-  margin: auto;
-
+.ant-layout-header .logo span{
+  color: white;
+}
+.ant-layout-header .logo {
+  color: #ffbf00;
+  font-size: 20px;
+  text-transform: uppercase;
+  word-spacing: 0px;
+  font-variant: normal;
+  font: italic normal normal 25px/1.4em impact;
+  text-transform: uppercase;
+  line-height: 62.4px;
+}
+.ant-layout-header {
+  background: #090b0c;
 }
 
 
@@ -127,4 +114,7 @@ body.customize #main-content #color-play-container .color-play-header .content {
   top: 20px;
   z-index: -1;
   left: 21px;
+}
+.card-item{
+  background: linear-gradient(-45deg, #F9F9F9 50%, #F3F3F3 50%);
 }

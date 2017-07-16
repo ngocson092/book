@@ -108,14 +108,13 @@ class Design extends Component{
             </div>
         )
 
-
         const Design = (
             <div>
                 <Row id="customize">
                     <Col xs={12} sm={20} md={18} lg={18} xl={20} className="main-design" >
                         {GloveContainer}
                     </Col>
-                    <Col xs={12} sm={4} md={6} lg={6} xl={4} className="sidebar"  style={{height:$(window).height()}} >
+                    <Col xs={12} sm={4} md={6} lg={6} xl={4} className="sidebar"  style={{height:$(window).height()-64}} >
 
                         <div className="color-play-header">
                             <div className="content">

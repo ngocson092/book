@@ -4,6 +4,9 @@ import { Card,Col,Row,Button } from 'antd';
 import classnames from 'classnames'
 import Thumbnail from './include/Thumbnail'
 import {Route} from 'react-router-dom'
+import {ANGLES} from  '../../actions'
+import '../../stylesheet/_home.scss'
+
 class ChooseModel extends Component{
     state = {
         list:[
@@ -24,18 +27,18 @@ class ChooseModel extends Component{
 
     render(){
 
+
+
         const ListModel = this.state.list.map(item=>{
 
-            let images = [
-                '/images/'+item.model+'-front.png',
-                '/images/'+item.model+'-back.png',
-                '/images/'+item.model+'-side.png',
-            ]
+
+            let images = ANGLES.map(angle=>`/images/${item.model}-${angle}.png`)
+
 
             return (
 
-                <Col xs={24} sm={6} md={6} lg={6} xl={4} >
-                    <Card  className={classnames({'checked':this.state.model == item.model})}
+                <Col xs={24} sm={8} md={8} lg={8} xl={6} >
+                    <Card  className={classnames('card-item',{'checked':this.state.model == item.model})}
                            onClick={()=>{this.selectModel(item.model)}}
                            style={{ width: "100%" }}
                     >
