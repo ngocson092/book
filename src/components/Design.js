@@ -5,11 +5,11 @@ import {Route} from 'react-router-dom'
 import {TwitterPicker} from 'react-color'
 import {Button, Row, Col, Collapse, Radio} from 'antd'
 import update from 'react-addons-update'
-import {setAngleColor, initAngleColor, setActiveAngle} from '../../actions'
+import {setAngleColor, initAngleColor, setActiveAngle} from '../actions'
 import RenderProduct from './Products/Render'
 
 
-import '../../stylesheet/_design.scss'
+import '../stylesheet/_design.scss'
 
 const RadioGroup = Radio.Group
 const Panel = Collapse.Panel

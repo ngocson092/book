@@ -47,7 +47,8 @@
         float: left;
         width: 100px ;
         cursor: pointer;
-
+        border: 1px solid #cccccc;
+        border-bottom: 0;
         img{
           max-width: 100%;
         }
@@ -57,7 +58,8 @@
       }
 
       >div:last-child{
-        //border-bottom: 1px solid #cccccc;
+        border-bottom: 1px solid #cccccc;
+
       }
       .glove-overlay {
         z-index: 1;

@@ -1,44 +1,84 @@
-.thumbnail
-{
-  position: relative;
-  cursor: pointer;
-  img{
-    display: block;
-    max-width:100%;
-  }
-  .icon {
-    position: absolute;
-    width: 69px;
-    height: 69px;
-    bottom: -44px;
-    right: 10px;
-    cursor: pointer;
-    padding: 10px;
-    background: #efedec;
-    border-radius: 50%;
-  }
-}
+#home {
 
-.ant-layout{
-  background: white;
-}
+  #line-intro {
+    color: #F9F9F9;
+    text-align: left;
+    background-color: #FFFFFF;
+    padding: 80px 0;
+    background-color: #EEA824;
+    position: relative;
 
-.card-item.checked:before{
-  content: '';
-  display: block;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(179, 189, 195, 0.37);
-  position: absolute;
-}
-.card-item{
-  background: linear-gradient(-45deg, #F9F9F9 50%, #F3F3F3 50%);
-}
-
-.custom-card {
-    padding: 10px 16px;
-    p {
-      color: #999;
+    h3 {
+      font-size: 70px;
+      position: absolute;
+      margin: 0 auto;
+      left: 0;
+      right: 0;
+      bottom: -42px;
+      z-index: 3;
     }
+    .font-i {
+      padding-top: 0px;
+      font-weight: 500;
+      font-style: normal;
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      letter-spacing: 0px;
+      word-spacing: 0px;
+      font-variant: normal;
+      font: italic normal normal 25px/1.4em impact;
+      text-transform: uppercase;
+      line-height: 42.4px;
+      text-transform: uppercase;
+    }
+  }
+  #home-intro {
+
+    .btn{
+      background: #ffc517;
+      border: 0;
+      padding: 6px 50px;
+      text-transform: uppercase;
+      font-size: 17px;
+      margin-top: 30px;
+      font-weight: bold;
+      color: #2b2a2a;
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      right: 0;
+      width: 200px;
+      margin: auto;
+      bottom: 100px;
+    }
+
+    ul {
+      position: relative;
+    }
+    ul li{
+      z-index: 0;
+      position: absolute;
+      visibility: hidden;
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      transition: visibility 0s, opacity .4s  ease-out;
+    }
+    ul li.active{
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity .4s  ease-in;
+
+    }
+    ul li img{ display: inline-block}
+
+    text-align: center;
+    min-height: 700px;
+    width: 100%;
+    padding: 60px 0;
+    background: url(/images/home-intro-bg.jpg) no-repeat;
+    background-size: 100% 100%;
+  }
+
+
 }

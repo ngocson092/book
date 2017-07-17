@@ -19,7 +19,7 @@ import {connect} from 'react-redux'
 *
 * */
 
-import {setActiveAngle} from '../../../actions'
+import {setActiveAngle} from '../../actions'
 
 
 class Render extends Component {

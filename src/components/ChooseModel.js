@@ -4,8 +4,8 @@ import { Card,Col,Row,Button } from 'antd';
 import classnames from 'classnames'
 import Thumbnail from './include/Thumbnail'
 import {Route} from 'react-router-dom'
-import {ANGLES} from  '../../actions'
-import '../../stylesheet/_home.scss'
+import {ANGLES} from  '../actions'
+import '../stylesheet/_choose_model.scss'
 
 class ChooseModel extends Component{
     state = {
