@@ -10,6 +10,7 @@ import RenderProduct from './Products/Render'
 
 
 import '../stylesheet/_design.scss'
+const Preload = require('react-preload').Preload
 
 const RadioGroup = Radio.Group
 const Panel = Collapse.Panel
@@ -95,6 +96,11 @@ class Design extends Component {
             lineHeight: '30px',
         };
 
+        const loadingIndicator = (
+            <div>
+                <img src="http://www.arunachaluniversity.ac.in/wp-content/uploads/2017/03/ajax-loader.gif" alt=""/>
+            </div>
+        )
 
 
         const Design = (
@@ -102,8 +108,19 @@ class Design extends Component {
                 <Row id="customize">
 
                     <Col xs={12} sm={20} md={18} lg={18} xl={20} className="glove-container">
-                        <RenderProduct isthumb={true} product={this.state.product} model={this.props.match.params.model}/>
-                        <RenderProduct isthumb={false} product={this.state.product} model={this.props.match.params.model}/>
+
+                        <Preload
+                            loadingIndicator={loadingIndicator}
+                            mountChildren
+                            resolveOnError
+                        >
+                            <div>
+                                <RenderProduct isthumb={true} product={this.state.product} model={this.props.match.params.model}/>
+                                <RenderProduct isthumb={false} product={this.state.product} model={this.props.match.params.model}/>
+                            </div>
+                        </Preload>
+
+
                     </Col>
                     <Col xs={12} sm={4} md={6} lg={6} xl={4} className="sidebar"
                          style={{height: $(window).height() - 64}}>

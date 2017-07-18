@@ -23,34 +23,62 @@ import {setActiveAngle} from '../../actions'
 
 import {BASE_URL} from '../../CONFIG'
 
+function imagesLoaded(parentNode) {
+    const imgElements = parentNode.querySelectorAll('img');
+    for (const img of imgElements) {
+        if (!img.complete) {
+            return false;
+        }
+    }
+    return true;
+}
 
 class Render extends Component {
 
-
-    componentWillMount(){
-        console.log(1);
-    }
-
-    componentDidMount(){
-        console.log(2);
-    }
+    state = { loading:true };
 
     changeAngle = (angle)=>{
         this.props.setActiveAngle(angle)
     }
 
+    renderSpinner() {
+        if (this.state.loading){
+            return (
+                <span className="spinner">loadding</span>
+            )
+        }
+        return null;
+    }
+
+    handleImageChange() {
+        this.setState({
+            loading: !imagesLoaded(this.refs.product_customize),
+        });
+    }
+
+    renderImage(imageUrl) {
+        return (
+            <div>
+                <img
+                    src={imageUrl}
+                    onLoad={this.handleImageChange.bind(this)}
+                    onError={this.handleImageChange.bind(this)}
+                />
+            </div>
+        );
+    }
 
     render() {
         const ProductCustomize =  Object.keys(this.props.product).map((angle,i)=>{
             let src = BASE_URL+ 'images/'+ this.props.model + '_overlay_'+angle+'_600_ss.png'
             return (
-                <div    key={i} onClick={()=>{ if(this.props.isthumb){ this.changeAngle(angle) } }} className={classnames(angle,{'active':this.props.angle_active === angle})}>
+                <div key={i} onClick={()=>{ if(this.props.isthumb){ this.changeAngle(angle) } }} className={classnames(angle,{'active':this.props.angle_active === angle})}>
 
                     <div className="glove-overlay">
-                        <img src={src} alt=""/>
+                        {this.renderImage(src)}
                     </div>
                     <div className="glove-shadow">
-                        <img src={BASE_URL+ "images/glove-shadow.png"} alt=""/>
+                        {this.renderImage(BASE_URL+ "images/glove-shadow.png")}
                     </div>
 
                     {this.props.product[angle].data.map((item,i)=>{
@@ -84,7 +112,14 @@ class Render extends Component {
             )
         })
 
-        return  (<div className={classnames({'wrap-products':!this.props.isthumb,'wrap-thumbs':this.props.isthumb})}>{ProductCustomize}</div>)
+
+       return  (
+
+            <div  ref="product_customize" className={classnames({'wrap-products':!this.props.isthumb,'wrap-thumbs':this.props.isthumb})}>
+                {this.renderSpinner()}
+                {ProductCustomize}
+            </div>
+        )
 
 
 
