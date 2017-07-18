@@ -24,8 +24,11 @@
 
 .ant-layout-header {
 
+  padding: 0;
   background: #090b0c;
   .logo{
+    margin: 0 50px;
+    float: left;
     a{
       color: #ffbf00;
       font-size: 20px;
@@ -35,12 +38,36 @@
       font: italic normal normal 25px/1.4em impact;
       text-transform: uppercase;
       line-height: 62.4px;
-      text-decoration: underline;
       span{
         color: white;
       }
     }
 
+  }
+
+  .ant-menu {
+    .ant-menu-submenu-title:hover { border-bottom: 0 !important; }
+    .ant-menu-vertical{
+      background: white;
+    }
+
+    .ant-menu-sub li{
+      color: #3d3d3d;
+    }
+    li{
+      color:white;
+    }
+    li.ant-menu-item-selected,li:hover,.ant-menu-submenu-title:hover{
+      color:#ffbf00;
+      border-bottom: 2px solid #ffbf00;
+    }
+    .ant-menu-sub li:hover{
+      color: #202020;
+      border-bottom: 1px solid rgba(137, 137, 137, 0.32);
+    }
+    line-height: 62px;
+    background: none;
+    float: left;
   }
 
 

@@ -3,37 +3,46 @@
   #line-intro {
     color: #F9F9F9;
     text-align: left;
-    background-color: #FFFFFF;
-    padding: 80px 0;
-    background-color: #EEA824;
+    padding: 50px 0;
+    background-color: #e63e3e;
     position: relative;
-
+    border-top: 5px solid #ffc517;
     h3 {
-      font-size: 70px;
-      position: absolute;
       margin: 0 auto;
       left: 0;
       right: 0;
-      bottom: -42px;
       z-index: 3;
+      text-align: center;
     }
     .font-i {
       padding-top: 0px;
       font-weight: 500;
       font-style: normal;
-      color: rgb(255, 255, 255);
+      color: white;
       text-decoration: none;
       letter-spacing: 0px;
       word-spacing: 0px;
       font-variant: normal;
-      font: italic normal normal 25px/1.4em impact;
+      font: italic normal normal 70px/1.4em impact;
       text-transform: uppercase;
-      line-height: 42.4px;
+      line-height: 100px;
       text-transform: uppercase;
     }
   }
   #home-intro {
 
+
+    .ant-carousel .slick-dots li button{
+      height: 16px;
+      border: 1px solid #ffc517;
+    }
+
+    .ant-carousel .slick-dots li.slick-active button{
+      background: #ffc517;
+    }
+    .ant-carousel .slick-dots {
+      bottom: -50px;
+    }
     .btn{
       background: #ffc517;
       border: 0;
@@ -51,31 +60,12 @@
       margin: auto;
       bottom: 100px;
     }
-
-    ul {
-      position: relative;
-    }
-    ul li{
-      z-index: 0;
-      position: absolute;
-      visibility: hidden;
-      width: 100%;
-      text-align: center;
-      opacity: 0;
-      transition: visibility 0s, opacity .4s  ease-out;
-    }
-    ul li.active{
-      visibility: visible;
-      opacity: 1;
-      transition: visibility 0s, opacity .4s  ease-in;
-
-    }
-    ul li img{ display: inline-block}
+    img{ display: inline-block}
 
     text-align: center;
     min-height: 700px;
     width: 100%;
-    padding: 60px 0;
+    padding: 60px 0 0 0;
     background: url(/images/home-intro-bg.jpg) no-repeat;
     background-size: 100% 100%;
   }

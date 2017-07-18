@@ -1,11 +1,11 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
-import { Card,Col,Row,Button ,Steps} from 'antd';
+import { Card,Col,Row,Button ,Steps,Carousel } from 'antd';
 
-import {Route} from 'react-router-dom'
+import {Route,Link} from 'react-router-dom'
 import '../stylesheet/_home.scss'
 import classnames from 'classnames'
-import Slider from './include/Slider'
+
 const Step = Steps.Step;
 class HomePage extends Component{
     constructor(props) {
@@ -16,22 +16,22 @@ class HomePage extends Component{
         return (
             <div id="home">
                 <div id="home-intro">
-                    <Slider items={
-                        [
-                            '/images/intro/1.png',
-                            '/images/intro/2.png',
-                            '/images/intro/3.png',
-                        ]
-                    } />
+
+                    <Carousel effect="fade" autoplay>
+                        <div><img src="/images/intro/1.png" alt=""/></div>
+                        <div><img src="/images/intro/2.png" alt=""/></div>
+                        <div><img src="/images/intro/3.png" alt=""/></div>
+                    </Carousel>
+
+                    <Link to="/select_model" className="btn">Customize</Link>
+
                 </div>
 
                 <div id="line-intro">
 
                     <div className="col-md-12 text-center">
-                        <h3 className="font-i">for the love of the game
+                        <h3 className="font-i">Customize Baseball Glove
                         </h3>
-
-
                     </div>
 
 
