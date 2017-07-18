@@ -31,6 +31,7 @@
   }
   #home-intro {
 
+    position: relative;
 
     .ant-carousel .slick-dots li button{
       height: 16px;
@@ -58,7 +59,7 @@
       right: 0;
       width: 200px;
       margin: auto;
-      bottom: 100px;
+      bottom: -21px;
     }
     img{ display: inline-block}
 
