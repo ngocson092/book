@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
-import { Card,Col,Row,Button } from 'antd';
+import { Card,Col,Row,Button,Breadcrumb } from 'antd';
 import classnames from 'classnames'
 import Thumbnail from './include/Thumbnail'
-import {Route} from 'react-router-dom'
+import {Route,Link} from 'react-router-dom'
 import {ANGLES} from  '../actions'
 import '../stylesheet/_choose_model.scss'
 
@@ -17,6 +17,34 @@ class ChooseModel extends Component{
             {
                 title:'g5 / 12',
                 model:'g5'
+            },
+            {
+                title:'X2 / 11',
+                model:'a2000_x2'
+            },
+            {
+                title:'X2 / 11',
+                model:'a2000_x2'
+            },
+            {
+                title:'g5 / 12',
+                model:'g5'
+            },
+            {
+                title:'X2 / 11',
+                model:'a2000_x2'
+            },
+            {
+                title:'X2 / 11',
+                model:'a2000_x2'
+            },
+            {
+                title:'g5 / 12',
+                model:'g5'
+            },
+            {
+                title:'X2 / 11',
+                model:'a2000_x2'
             }
         ],
         model:null
@@ -27,10 +55,7 @@ class ChooseModel extends Component{
 
     render(){
 
-
-
-        const ListModel = this.state.list.map((item,i)=>{
-
+            const ListModel = this.state.list.map((item,i)=>{
 
             let images = ANGLES.map(angle=>`/images/${item.model}-${angle}.png`)
 
@@ -44,7 +69,16 @@ class ChooseModel extends Component{
                         <Thumbnail images={images} />
                         <div className="custom-card">
                             <h3>{item.title} </h3>
-                            <p>kennjdemo.com</p>
+                            <Route render={({history}) => (
+                                <Button
+                                    type="primary" icon="smile-o"
+                                    onClick={() => {
+                                        history.push(`/design/${item.model}`)
+                                    }}
+                                >
+                                    Custom Now
+                                </Button>
+                            )}/>
                         </div>
                     </Card>
                 </Col>
@@ -54,23 +88,18 @@ class ChooseModel extends Component{
 
         return (
             <div className="container">
+                <Row>
+                    <div className="breadcrumb">
+                        <Breadcrumb>
+                            <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
+                            <Breadcrumb.Item>Select Model</Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
+
+                </Row>
+
                 <Row  gutter={16}>
                     {ListModel}
-                </Row>
-                <Row >
-
-                    {!!this.state.model &&
-                        <Route render={({history}) => (
-                            <Button
-                                type="primary" icon="smile-o"
-                                onClick={() => {
-                                    history.push(`/design/${this.state.model}`)
-                                }}
-                            >
-                                Custom Now
-                            </Button>
-                        )}/>
-                    }
                 </Row>
             </div>
 

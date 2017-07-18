@@ -21,6 +21,8 @@ import {connect} from 'react-redux'
 
 import {setActiveAngle} from '../../actions'
 
+import {BASE_URL} from '../../CONFIG'
+
 
 class Render extends Component {
 
@@ -40,7 +42,7 @@ class Render extends Component {
 
     render() {
         const ProductCustomize =  Object.keys(this.props.product).map((angle,i)=>{
-            let src = '/images/'+ this.props.model + '_overlay_'+angle+'_600_ss.png'
+            let src = BASE_URL+ 'images/'+ this.props.model + '_overlay_'+angle+'_600_ss.png'
             return (
                 <div    key={i} onClick={()=>{ if(this.props.isthumb){ this.changeAngle(angle) } }} className={classnames(angle,{'active':this.props.angle_active === angle})}>
 
@@ -48,7 +50,7 @@ class Render extends Component {
                         <img src={src} alt=""/>
                     </div>
                     <div className="glove-shadow">
-                        <img src="/images/glove-shadow.png" alt=""/>
+                        <img src={BASE_URL+ "images/glove-shadow.png"} alt=""/>
                     </div>
 
                     {this.props.product[angle].data.map((item,i)=>{
