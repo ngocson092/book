@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+
+import {Spin } from 'antd'
 /*
 *
 * var arr = []
@@ -42,9 +44,18 @@ class Render extends Component {
     }
 
     renderSpinner() {
-        if (this.state.loading){
+        if (this.state.loading && !this.props.isthumb){
             return (
-                <span className="spinner">loadding</span>
+                /*
+                * only render spin in main product custom
+                * not render in sidebar of thumbs
+                * */
+
+                <Spin
+                    size="large"
+                    tip="Loading..."
+                    className="spin-custom"
+                />
             )
         }
         return null;
@@ -115,10 +126,23 @@ class Render extends Component {
 
        return  (
 
-            <div  ref="product_customize" className={classnames({'wrap-products':!this.props.isthumb,'wrap-thumbs':this.props.isthumb})}>
-                {this.renderSpinner()}
-                {ProductCustomize}
-            </div>
+           <div>
+               <div
+                   ref="product_customize"
+                   className={
+                     classnames({
+                         'wrap-products':!this.props.isthumb,
+                         'wrap-thumbs':this.props.isthumb,
+                         'hidden':this.state.loading
+                     })
+                   }>
+
+                   {ProductCustomize}
+               </div>
+               {this.renderSpinner()}
+           </div>
+
+
         )
 
 
