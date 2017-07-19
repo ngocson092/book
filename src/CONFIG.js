@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://baseball.kennjdemo.com/'
+export const BASE_URL = '/'
