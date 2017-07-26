@@ -11,32 +11,8 @@ class ChooseModel extends Component{
     state = {
         list:[
             {
-                title:'X2 / 11',
-                model:'a2000_x2'
-            },
-            {
-                title:'g5 / 12',
-                model:'g5'
-            },
-            {
-                title:'X2 / 11',
-                model:'a2000_x2'
-            },
-            {
-                title:'X2 / 11',
-                model:'a2000_x2'
-            },
-            {
-                title:'g5 / 12',
-                model:'g5'
-            },
-            {
-                title:'X2 / 11',
-                model:'a2000_x2'
-            },
-            {
-                title:'X2 / 11',
-                model:'a2000_x2'
+                title:'A1',
+                model:'a1'
             },
             {
                 title:'g5 / 12',

@@ -81,7 +81,7 @@ class Render extends Component {
 
     render() {
         const ProductCustomize =  Object.keys(this.props.product).map((angle,i)=>{
-            let src = BASE_URL+ 'images/'+ this.props.model + '_overlay_'+angle+'_600_ss.png'
+            let src = BASE_URL+ 'images/'+ this.props.model + '_overlay_'+angle+'.png'
             return (
                 <div key={i} onClick={()=>{ if(this.props.isthumb){ this.changeAngle(angle) } }} className={classnames(angle,{'active':this.props.angle_active === angle})}>
 
@@ -99,7 +99,7 @@ class Render extends Component {
                                 <div
                                     key={i}
                                     className={classnames("glove-item",item.name)}
-                                    style={{width: !this.props.isthumb ? "600px" : "100px"}}>
+                                    style={{width: !this.props.isthumb ? "800px" : "100px"}}>
 
                                     <svg version="1.1"
                                          xmlns="http://www.w3.org/2000/svg"
