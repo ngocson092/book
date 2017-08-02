@@ -166,6 +166,10 @@ class Design extends Component {
                     value: 'logo_stitching'
                 },
                 {
+                    name: 'Patch Logo Stitching',
+                    value: 'logo_patch_stitching'
+                },
+                {
                     name: 'Body Stitching',
                     value: 'body_stitching'
                 }
