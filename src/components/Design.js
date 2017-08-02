@@ -22,6 +22,7 @@ class Design extends Component {
             leather: 'palm',
             trim: 'binding',
             lacing: 'lace_4',
+            stitching:'body_stitching'
         },
         part_type_active: 'leather',
         product: {}
@@ -158,6 +159,17 @@ class Design extends Component {
                     name: 'Heel',
                     value: 'lace_1'
                 },
+            ],
+            stitching: [
+                {
+                    name: 'Logo Stitching',
+                    value: 'logo_stitching'
+                },
+                {
+                    name: 'Body Stitching',
+                    value: 'body_stitching'
+                }
+
             ]
         }
 
