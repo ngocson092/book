@@ -11,9 +11,10 @@
     margin:auto;
   }
   .glove-container{
-    padding: 100px 0 0 20px;
+    padding: 50px 0 0 20px;
     .glove-shadow{
       margin: 30px 0 0 30px;
+      text-align: center;
     }
 
     .wrap-products{
@@ -29,8 +30,10 @@
 
 
     .wrap-thumbs{
-      width: 200px;
-      padding-right: 100px;
+      padding-top: 100px;
+      width: 100px;
+      padding-right: 10px;
+      margin-right: 50px;
       position: relative;
       float: left;
 
@@ -63,6 +66,7 @@
         }
         .glove-shadow{
           display: none;
+
         }
       }
 
@@ -170,14 +174,23 @@
     .btn-reset{
       margin: 10px;
       background: #ffffff;
-      color: #fab400;
+      color: #292626;
       border: 1px solid #ccc;
     }
   }
 }
 
 @media only screen and (min-width: 1600px){
-  .glove-container{
-    padding-left: 300px !important;
+  #customize{
+    .glove-container{
+      padding-left: 300px;
+      .wrap-thumbs{
+        margin-right: 150px;
+      }
+    }
   }
+
+
+
+
 }

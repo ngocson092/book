@@ -232,8 +232,8 @@ class Design extends Component {
                 </Panel>
             )
         })
-        
-        
+
+
 
         return (
             <div>
@@ -266,7 +266,7 @@ class Design extends Component {
                             className="btn-reset"
                             onClick={()=>{this.setBlankItem()}}
                         >
-                            Reset Blank
+                            Reset To Blank
                         </Button>
 
 
