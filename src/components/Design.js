@@ -159,10 +159,10 @@ class Design extends Component {
                     name: 'Binding',
                     value: 'binding'
                 },
-                {
+                /*{
                     name: 'Welting Shell',
                     value: 'beading_1'
-                },
+                },*/
                 {
                     name: 'Welting Palm',
                     value: 'beading_2'
