@@ -15,13 +15,13 @@ class ChooseModel extends Component{
                 model:'a1'
             },
             {
-                title:'g5 / 12',
-                model:'g5'
+                title:'A1 - Test',
+                model:'a1'
             },
             {
-                title:'X2 / 11',
-                model:'a2000_x2'
-            }
+                title:'A1 - Demo',
+                model:'a1'
+            },
         ],
         model:null
     }

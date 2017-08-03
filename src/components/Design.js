@@ -5,7 +5,7 @@ import {Route} from 'react-router-dom'
 import {TwitterPicker} from 'react-color'
 import {Button, Row, Col, Collapse, Radio} from 'antd'
 import update from 'react-addons-update'
-import {setAngleColor, initAngleColor, setActiveAngle} from '../actions'
+import {setAngleColor,setAnglePartColor, initAngleColor, setActiveAngle,ANGLES} from '../actions'
 import RenderProduct from './Products/Render'
 
 
@@ -14,6 +14,9 @@ const Preload = require('react-preload').Preload
 
 const RadioGroup = Radio.Group
 const Panel = Collapse.Panel
+
+
+
 class Design extends Component {
 
 
@@ -44,34 +47,53 @@ class Design extends Component {
         });
     }
 
+    init_angle = (product) => {
+        let angle_init = {}
+        Object.keys(product).forEach((angle) => {
 
+            angle_init[angle] = {}
+            product[angle].data.forEach(item => {
+                if (typeof angle_init[angle][item.part_type] == 'undefined') {
+                    angle_init[angle][item.part_type] = {}
+                }
+                angle_init[angle][item.part_type][item.name] = '#ffffff'
+            })
+
+        })
+        return angle_init
+    }
     componentWillMount() {
 
-        const init_angle = (product) => {
-            let angle_init = {}
-            Object.keys(product).forEach((angle) => {
-
-                angle_init[angle] = {}
-                product[angle].data.forEach(item => {
-                    if (typeof angle_init[angle][item.part_type] == 'undefined') {
-                        angle_init[angle][item.part_type] = {}
-                    }
-                    angle_init[angle][item.part_type][item.name] = '#ffffff'
-                })
-
-            })
-            return angle_init
-        }
 
         fetch(`/products/${this.props.match.params.model}.json`)
             .then(res => res.json())
             .then(data => {
 
                 this.setState({product: data})
-                this.props.initAngleColor(init_angle(data))
+
+                this.setBlankItem()
+
+                /*
+                * set Default color for item
+                * */
+                ANGLES.map(angle=>{
+                    this.props.setAngleColor(angle,data[angle]['color_default'])
+                })
+
+                /*
+                 * set Default angle for item
+                 * */
                 this.props.setActiveAngle('front')
             })
     }
+
+
+
+
+    setBlankItem = ()=>{
+        this.props.initAngleColor(this.init_angle(this.state.product))
+    }
+
 
 
     handleColorChange = (color) => {
@@ -79,7 +101,7 @@ class Design extends Component {
             part_type_active = this.state.part_type_active,
             part_name_active = this.state.part_type[this.state.part_type_active];
 
-        this.props.setAngleColor(angle_active, part_type_active, part_name_active, color.hex)
+        this.props.setAnglePartColor(angle_active, part_type_active, part_name_active, color.hex)
 
     };
 
@@ -123,10 +145,10 @@ class Design extends Component {
                     name: 'Web',
                     value: 'web'
                 },
-                {
+              /*  {
                     name: 'Wrist',
                     value: 'wrist'
-                },
+                },*/
                 {
                     name: 'Palm',
                     value: 'palm'
@@ -238,6 +260,16 @@ class Design extends Component {
                             {Panels}
                         </Collapse>
 
+                        <Button
+                            type="primary"
+                            icon="bulb"
+                            className="btn-reset"
+                            onClick={()=>{this.setBlankItem()}}
+                        >
+                            Reset Blank
+                        </Button>
+
+
                         <Route render={({history}) => (
                             <Button
                                 className="back"
@@ -272,4 +304,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setAngleColor, initAngleColor, setActiveAngle})(Design)
+export default connect(mapStateToProps, {setAngleColor,setAnglePartColor, initAngleColor, setActiveAngle})(Design)

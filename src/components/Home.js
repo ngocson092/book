@@ -15,9 +15,10 @@ class HomePage extends Component{
                 <div id="home-intro">
 
                     <Carousel effect="fade" autoplay>
-                        <div><img src="/images/intro/1.png" alt=""/></div>
-                        <div><img src="/images/intro/2.png" alt=""/></div>
-                        <div><img src="/images/intro/3.png" alt=""/></div>
+                        <div><img src="/images/a1-side.png" alt=""/></div>
+                        <div><img src="/images/a1-front.png" alt=""/></div>
+                        <div><img src="/images/a1-back.png" alt=""/></div>
+
                     </Carousel>
 
                     <Link to="/select_model" className="btn">Customize</Link>
