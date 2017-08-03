@@ -14,7 +14,7 @@
       {
         "name": "fingers",
         "part_type": "leather",
-        "svg": "M55"
+        "svg": ""
       },
       {
         "name": "binding",
@@ -24,7 +24,7 @@
       {
         "name": "lace_1",
         "part_type": "lacing",
-        "svg": "M558"
+        "svg": ""
       },
       {
         "name": "logo_stitching",
@@ -49,12 +49,12 @@
       {
         "name": "beading_1",
         "part_type": "trim",
-        "svg": "M216"
+        "svg": ""
       },
       {
         "name": "beading_2",
         "part_type": "trim",
-        "svg": "M216"
+        "svg": ""
       }
     ],
     "viewbox": "0  0  800  800",
@@ -96,7 +96,7 @@
       {
         "name": "logo_patch_stitching",
         "part_type": "stitching",
-        "svg": "M214"
+        "svg": ""
       },
       {
         "name": "beading_2",
@@ -121,12 +121,12 @@
       {
         "name": "logo_stitching",
         "part_type": "stitching",
-        "svg": "415.5z"
+        "svg": ""
       },
       {
         "name": "body_stitching",
         "part_type": "stitching",
-        "svg": "M265"
+        "svg": ""
       }
     ],
     "viewbox": "0  0  800  800",
