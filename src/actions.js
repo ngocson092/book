@@ -16,32 +16,3 @@ export function setAnglePartColor (angle,part_type,part_name,color){
         })
     }
 }
-
-export function setAngleColor (angle,color){
-    return dispatch => {
-        dispatch({
-            type: SET_ANGLE_COLOR,
-            data:{angle,color}
-        })
-    }
-}
-
-export function initAngleColor (data){
-    return dispatch => {
-        dispatch({
-            type: INIT_ANGLE_COLOR,
-            data
-        })
-    }
-}
-
-
-export function setActiveAngle (angle){
-    return dispatch => {
-        dispatch({
-            type: SET_ACTIVE_ANGLE,
-            angle
-        })
-    }
-}
-

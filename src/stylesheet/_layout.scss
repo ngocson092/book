@@ -1,88 +1,13 @@
 @import '~antd/dist/antd.css';
-
-/*common*/
-.hidden{opacity: 0 !important;}
-/*common*/
-.breadcrumb{
-  margin-bottom: 30px;
-}
-.overlay{
-  position: relative;
-  &:before{
-    content: '';
-    position: absolute; /* Sit on top of the page content */
-    display: block; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: -1; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
-
-  }
-}
-
-
-
-.ant-layout-header {
-
-  padding: 0;
-  background: #090b0c;
+#header{
   .logo{
-    margin: 0 50px;
-    float: left;
     a{
-      color: #ffbf00;
-      font-size: 20px;
-      text-transform: uppercase;
-      word-spacing: 0px;
-      font-variant: normal;
-      font: italic normal normal 25px/1.4em impact;
-      text-transform: uppercase;
-      line-height: 62.4px;
-      span{
-        color: white;
-      }
+      text-align: center;
+      font-size: 30px;
+      display: block;
+      color: white;
+      text-decoration: none;
     }
-
   }
 
-  .ant-menu {
-    .ant-menu-submenu-title:hover { border-bottom: 0 !important; }
-    .ant-menu-vertical{
-      background: white;
-    }
-
-    .ant-menu-sub li{
-      color: #3d3d3d;
-    }
-    li{
-      color:white;
-    }
-    li.ant-menu-item-selected,li:hover,.ant-menu-submenu-title:hover{
-      color:#ffbf00;
-      border-bottom: 2px solid #ffbf00;
-    }
-    .ant-menu-sub li:hover{
-      color: #202020;
-      border-bottom: 1px solid rgba(137, 137, 137, 0.32);
-    }
-    line-height: 62px;
-    background: none;
-    float: left;
-  }
 }
-.container {
-  max-width: 90%;
-  margin: 50px auto;
-}
-
-.main-design{
-  padding-left: 20px;
-  padding-top: 20px;
-}
-
-
