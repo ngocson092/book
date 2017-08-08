@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import ChooseAddress from './components/Steps/ChooseAddress';
+import Home from './components/Home';
+import Header from './components/common/Header';
 import {Route, Link} from 'react-router-dom'
 import {Layout} from 'antd'
-const {Header, Content} = Layout;
+const { Content} = Layout;
 
 
 class App extends Component {
@@ -14,12 +16,11 @@ class App extends Component {
 
         return (
             <Layout>
-                <Header id="header">
-                    <div className="logo"><Link to={'/'}>Photosesh - Book Now</Link></div>
-                </Header>
+                <Header />
                 <Content id="content">
                     <div>
-                        <Route path="/" component={ChooseAddress} exact={true}/>
+                        <Route path="/" component={Home} exact={true}/>
+                        <Route path="/book-now" component={ChooseAddress}/>
                     </div>
                 </Content>
             </Layout>
