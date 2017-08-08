@@ -30,10 +30,9 @@ const Option = Select.Option;
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 
-function onChange(value, dateString) {
-    console.log('Selected Time: ', value);
-    console.log('Formatted Selected Time: ', dateString);
-}
+
+
+
 
 const Contents = createClass({
     getInitialState() {
@@ -52,15 +51,27 @@ const Contents = createClass({
         }
     },
 
-    setModalVisible(modal_booknow) {
-        this.setState({modal_booknow});
-    },
     onSubmit: function (e) {
         e.preventDefault();
     },
 
     componentDidMount: function () {
-        this.renderAutoComplete();
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position)=> {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                this.renderAutoComplete(pos);
+
+            }, function() {
+
+            });
+        }
+
+
     },
 
     componentDidUpdate(prevProps) {
@@ -70,7 +81,8 @@ const Contents = createClass({
         }
     },
 
-    renderAutoComplete: function () {
+
+    renderAutoComplete: function (location) {
         const {google, map} = this.props;
 
         if (!google || !map) return;
@@ -80,6 +92,7 @@ const Contents = createClass({
         var autocomplete = new google.maps.places.Autocomplete(node);
         autocomplete.bindTo('bounds', map);
 
+
         autocomplete.addListener('place_changed', () => {
             const place = autocomplete.getPlace();
             if (!place.geometry) {
@@ -87,8 +100,10 @@ const Contents = createClass({
             }
 
             if (place.geometry.viewport) {
+
                 map.fitBounds(place.geometry.viewport);
             } else {
+
                 map.setCenter(place.geometry.location);
                 map.setZoom(24);
             }
@@ -99,18 +114,6 @@ const Contents = createClass({
         })
     },
 
-
-    handleDateChange(e) {
-        console.log(1);
-    },
-    handleFromChange(e) {
-        console.log(1);
-    },
-    onBookTypeChange(e) {
-        this.setState({
-            book_type: e.target.value
-        })
-    },
     handleNext(e) {
 
         let data = {
@@ -156,12 +159,14 @@ const Contents = createClass({
         const BookLater = (
             <div className="booklater-duration">
 
+
+
                 <FormItem label="Select Date">
 
 
                     <DatePicker
                         format="YYYY-MM-DD"
-                        placeholder="Select Time"
+                        placeholder="Select Date"
                         defaultValue={this.state.booklater.date}
                         onChange={(date,date_str)=>{
 
@@ -224,7 +229,11 @@ const Contents = createClass({
                         </FormItem>
 
                         <FormItem label="Do you want to Book now?">
-                            <RadioGroup onChange={this.onBookTypeChange} value={this.state.book_type}>
+                            <RadioGroup onChange={(e)=>{
+                                this.setState({
+                                    book_type: e.target.value
+                                })
+                            }} value={this.state.book_type}>
                                 <Radio value={NOW}>Book Now</Radio>
                                 <Radio value={LATER}>Book Later</Radio>
                             </RadioGroup>
