@@ -1,12 +1,11 @@
-import {INIT_ANGLE_COLOR} from '../actions'
+import {SET_INFO_STEP_ONE} from '../actions'
 
 
-export default function design(state = {},action = {}) {
+export default function bookinfo(state = {},action = {}) {
 
     switch (action.type) {
-        case INIT_ANGLE_COLOR:
-            return {...state,angles:action.data}
-
+        case SET_INFO_STEP_ONE:
+            return action.data
         default:
             return state
     }
