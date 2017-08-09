@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
+
+
 import createClass from 'create-react-class'
-import {Row, Col, Button, Input, Radio, Select, Form,TimePicker,DatePicker,Icon} from 'antd';
+import {Row, Col, Button, Input, Radio, Select, Form,DatePicker} from 'antd';
 import moment from 'moment'
 import Map, {Marker, GoogleApiWrapper} from 'google-maps-react'
 import {NOW, LATER, DURATIONS,TIME} from '../../define'
-import {setInfoStepOne} from '../../actions'
+import {setInfoStepOne,setBooktype} from '../../actions'
 
 /* ----------- google map config -------------*/
 const GG_MAP_APIKEY = 'AIzaSyDAqY0FGMvPU9zvmpdP07C1Es17sKOoEZs';
@@ -20,17 +23,15 @@ const RadioGroup = Radio.Group;
 const Contents = createClass({
     getInitialState() {
         return {
+            redirect_to_step_2:false,
             place: null,
             position: null,
-            book_type: NOW,
-            booknow:{
-                duration:'0.5'
-            },
-            booklater:{
+            info:{
+                duration:DURATIONS[0],
                 date:moment(),
-                to:TIME[0],
-                from:TIME[1]
-            },
+                from:TIME[0],
+                to:TIME[1]
+            }
         }
     },
 
@@ -38,16 +39,30 @@ const Contents = createClass({
         e.preventDefault();
     },
 
+
     componentDidMount: function () {
 
+
+        /*
+        *
+        * show current location by client device
+        *
+        * */
+
+
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position)=> {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
+            navigator.geolocation.getCurrentPosition((info_location)=> {
+
+                var position = {
+                    lat: info_location.coords.latitude,
+                    lng: info_location.coords.longitude
                 };
 
-                this.renderAutoComplete(pos);
+                fetch(`http://maps.googleapis.com/maps/api/geocode/json?address=${info_location.coords.latitude},${info_location.coords.longitude}&sensor=true`)
+                    .then(res=>res.json())
+                    .then((data)=>{
+                        this.setState({position,place:data.results[0]['formatted_address']})
+                    })
 
             }, function() {
 
@@ -58,7 +73,7 @@ const Contents = createClass({
     },
 
     componentDidUpdate(prevProps) {
-        const {google, map} = this.props;
+        const {map} = this.props;
         if (map !== prevProps.map) {
             this.renderAutoComplete();
         }
@@ -88,10 +103,11 @@ const Contents = createClass({
             } else {
 
                 map.setCenter(place.geometry.location);
-                map.setZoom(24);
+                map.setZoom(15);
             }
+
             this.setState({
-                place: place,
+                place: place.formatted_address,
                 position: place.geometry.location
             })
         })
@@ -100,24 +116,41 @@ const Contents = createClass({
     handleNext(e) {
 
         let data = {
-            book_type:this.state.book_type,
-            info: this.state['book'+this.state.book_type]
+            book_type:this.props.book_type,
+            info: this.state.info,
+            place:this.state.place
         }
+
+        this.setState({
+            redirect_to_step_2:true
+        })
         this.props.setInfoStepOne(data)
+    },
+    handleChange(data){
+
+        /*
+        * just save to local state for change on local component
+        * when they click on next button then set data to redux
+        * */
+
+        let new_info = {...this.state.info}
+        new_info[Object.keys(data).pop()] = data[Object.keys(data)]
+        this.setState({
+            info: new_info
+        })
     },
 
     render: function () {
         const props = this.props;
-        const {position} = this.state;
 
         const Duration_Options = DURATIONS.map((d, i)=> {
             return (
-                <Option value={d}>{d} hours</Option>
+                <Option key="i" value={d}>{d} hours</Option>
             )
         })
         const Time_Options = TIME.map((d, i)=> {
             return (
-                <Option value={d}>{d}</Option>
+                <Option  key="i" value={d}>{d}</Option>
             )
         })
 
@@ -126,14 +159,8 @@ const Contents = createClass({
             <FormItem label="Estimated Duration for Book Now">
                 <Select
                     style={{width: '100%'}}
-                    onChange={(duration)=>{
-
-                        this.setState({
-                            booknow: {duration}
-                        })
-
-                    }}
-                    defaultValue={'0.5'}
+                    onChange={(duration)=>this.handleChange({duration})}
+                    defaultValue={props.info.duration}
                 >
                     {Duration_Options}
                 </Select>
@@ -141,9 +168,6 @@ const Contents = createClass({
         )
         const BookLater = (
             <div className="booklater-duration">
-
-
-
                 <FormItem label="Select Date">
 
 
@@ -151,15 +175,9 @@ const Contents = createClass({
                         style={{width:'49%'}}
                         format="YYYY-MM-DD"
                         placeholder="Select Date"
-                        defaultValue={this.state.booklater.date}
-                        onChange={(date,date_str)=>{
+                        defaultValue={props.info.date}
+                        onChange={(date)=>this.handleChange({date:date})}
 
-                            const booklater = { ...this.state.booklater };
-                            booklater.date = date;
-                            this.setState({booklater});
-
-
-                        }}
 
                     />
 
@@ -167,41 +185,29 @@ const Contents = createClass({
 
                 <FormItem label="From" className={'from'}>
                     <Select
-                        onChange={(from)=>{
-
-                            const booklater = { ...this.state.booklater };
-                            booklater.from = from;
-                            this.setState({booklater});
-
-                        }}
-
-                        defaultValue={TIME[0]} style={{ width: '100%' }}>
+                        onChange={(from)=>this.handleChange({from})}
+                        defaultValue={props.info.from} style={{ width: '100%' }}>
                         {Time_Options}
                     </Select>
                 </FormItem>
 
                 <FormItem label="To" className={'to'}>
                     <Select
-                        onChange={(to)=>{
-                            const booklater = { ...this.state.booklater };
-                            booklater.to = to;
-                            this.setState({booklater});
-
-                        }}
-                        defaultValue={TIME[1]} style={{ width: '100%' }}>
+                        onChange={(to)=>this.handleChange({to})}
+                        defaultValue={props.info.to} style={{ width: '100%' }}>
                         {Time_Options}
                     </Select>
                 </FormItem>
 
             </div>
-
-
-
         )
 
         return (
             <Row>
-
+                {this.state.redirect_to_step_2 && ( <Redirect to={{
+                    pathname: '/book-now/step2',
+                    state: { from: props.location }
+                }}/>)}
 
                 <Col xs={10} sm={10} md={10} lg={6} xl={6} className={'sidebar'}>
                     <Form layout="vertical" onSubmit={this.onSubmit}>
@@ -214,16 +220,14 @@ const Contents = createClass({
 
                         <FormItem label="Do you want to Book now?">
                             <RadioGroup onChange={(e)=>{
-                                this.setState({
-                                    book_type: e.target.value
-                                })
-                            }} value={this.state.book_type}>
+                                props.setBooktype(e.target.value)
+                            }} value={this.props.book_type}>
                                 <Radio value={NOW}>Book Now</Radio>
                                 <Radio value={LATER}>Book Later</Radio>
                             </RadioGroup>
                         </FormItem>
 
-                        {(this.state.book_type == NOW) ? BookNow : BookLater }
+                        {(props.book_type == NOW) ? BookNow : BookLater }
 
                         <FormItem>
 
@@ -245,7 +249,8 @@ const Contents = createClass({
                              width: '100%'
                          }}
                          center={this.state.position}
-                         centerAroundCurrentLocation={false}>
+                         zoom={16}
+                         centerAroundCurrentLocation={true}>
                         <Marker position={this.state.position}/>
                     </Map>
 
@@ -263,7 +268,9 @@ const MapWrapper = createClass({
 
         return (
             <div className="choose-address">
-                <Map google={google}
+                <Map
+
+                     google={google}
                      className={'map'}
                      visible={false}
 
@@ -281,6 +288,13 @@ const MapWrapper = createClass({
 
 const mapStateToProps = (state)=>{
     return {
+        book_type: state.bookinfo.book_type,
+        info:{
+            duration:state.bookinfo.info.duration,
+            date:state.bookinfo.info.date,
+            to:state.bookinfo.info.to,
+            from:state.bookinfo.info.from
+        }
     }
 }
 
@@ -290,7 +304,7 @@ const ChooseAddress = GoogleApiWrapper({
     version: GG_MAP_VERSION
 })(MapWrapper)
 
-export default connect(mapStateToProps,{setInfoStepOne})(ChooseAddress)
+export default connect(mapStateToProps,{setInfoStepOne,setBooktype})(ChooseAddress)
 
 
 

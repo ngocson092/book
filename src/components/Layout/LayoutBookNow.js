@@ -1,5 +1,5 @@
 import '../../stylesheet/_layout_booknow.scss'
-import React,{Component} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {Layout} from 'antd'
 const { Content,Header} = Layout;
