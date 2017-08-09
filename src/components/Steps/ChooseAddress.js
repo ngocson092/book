@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
+import {Redirect,Link} from 'react-router-dom'
 
 
 import createClass from 'create-react-class'
-import {Row, Col, Button, Input, Radio, Select, Form,DatePicker} from 'antd';
+import {Row, Col, Button, Input, Radio, Select, Form,DatePicker,Layout,Icon} from 'antd';
 import moment from 'moment'
 import Map, {Marker, GoogleApiWrapper} from 'google-maps-react'
 import {NOW, LATER, DURATIONS,TIME} from '../../define'
@@ -16,6 +16,7 @@ const GG_MAP_APIKEY = 'AIzaSyDAqY0FGMvPU9zvmpdP07C1Es17sKOoEZs';
 const GG_MAP_VERSION = '3.27'
 /* ----------- google map config -------------*/
 
+const {Header} = Layout;
 const Option = Select.Option;
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -204,10 +205,7 @@ const Contents = createClass({
 
         return (
             <Row>
-                {this.state.redirect_to_step_2 && ( <Redirect to={{
-                    pathname: '/book-now/step2',
-                    state: { from: props.location }
-                }}/>)}
+                {this.state.redirect_to_step_2 && ( <Redirect to={'/book-now/step2'}/>)}
 
                 <Col xs={10} sm={10} md={10} lg={6} xl={6} className={'sidebar'}>
                     <Form layout="vertical" onSubmit={this.onSubmit}>
@@ -267,7 +265,12 @@ const MapWrapper = createClass({
         const {google} = this.props;
 
         return (
+
             <div className="choose-address">
+                <Header id="header">
+                  <Link className="logo" to={'/'}>Photosesh - Book Now</Link>
+                  <Link className={'btn-right'} to={'/'}><Icon type="home" /> Home</Link>
+                </Header>
                 <Map
 
                      google={google}
