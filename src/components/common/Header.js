@@ -17,10 +17,10 @@ class Header extends Component {
                     <span className="sub"><strong>  QUESTION?</strong> CALL <span className="red">555.111.9999</span></span>
                 </div>
                 <div className="header-bot">
-                    <Link to={'/'}>
-                        <img className="logo logo-dark" alt="Classic Photographers" src="http://classicphotographers.com/wp-2016/wp-content/themes/cp2016_pixon/img/2016_cp_logo.png" />
+                    <Link className="logo" to={'/'}>
+                        Photosesh Logo
                     </Link>
-                    <MainMenu />
+                    <MainMenu className="main-menu" />
                 </div>
             </div>
         );

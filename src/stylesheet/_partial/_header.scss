@@ -3,17 +3,30 @@ body{
   color: #666;
 }
 #header{
-  padding: 10px 20px;
-}
-.header-top{
-  margin-bottom: 20px;
-}
-.header-bot{
-  margin-top: 20px;
-}
-.sub{
-  vertical-align: text-top !important;
-}
-.red{
-  color: red;
+  .header-top{
+    padding: 10px 20px;
+    border-bottom: 1px solid #f1f1f1;
+    i.glyphicon-headphones{
+
+    }
+  }
+
+  .header-bot{
+    padding: 10px 20px;
+
+    .logo{
+      float: left;
+      font-size: 20px;
+      color: #615e5e;
+    }
+    .main-menu{
+      float: right;
+    }
+  }
+  .sub{
+    vertical-align: sub;
+  }
+  .red{
+    color: red;
+  }
 }
