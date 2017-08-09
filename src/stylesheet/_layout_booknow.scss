@@ -1,0 +1,45 @@
+#layout-booknow{
+
+  #header{
+    .logo{
+      a{
+        text-align: center;
+        font-size: 30px;
+        display: block;
+        color: white;
+        text-decoration: none;
+      }
+    }
+
+  }
+
+
+  .choose-address{
+    .sidebar{
+      padding: 20px ;
+      .ant-form-item-label label {
+        font-weight: bold;
+        color: #676e94;
+      }
+      .book-btn{
+        margin-right: 20px;
+      }
+      .start-time{
+        margin-right: 20px;
+      }
+      .booklater-duration{
+
+        overflow: hidden;
+        width: 100%;
+        .from,.to{
+          float: left;
+          width: 49%;
+        }
+        .from{
+          margin-right: 2%;
+        }
+      }
+
+    }
+  }
+}

@@ -8,31 +8,14 @@ import Map, {Marker, GoogleApiWrapper} from 'google-maps-react'
 import {NOW, LATER, DURATIONS,TIME} from '../../define'
 import {setInfoStepOne} from '../../actions'
 
-
-
-/*import style*/
-
-import '../../stylesheet/_chooseaddress.scss'
-
-/*import style*/
-
 /* ----------- google map config -------------*/
 const GG_MAP_APIKEY = 'AIzaSyDAqY0FGMvPU9zvmpdP07C1Es17sKOoEZs';
 const GG_MAP_VERSION = '3.27'
 /* ----------- google map config -------------*/
 
-
-
-
-const timeFormat = 'HH:mm';
-const dateFormat = 'YYYY/MM/DD';
 const Option = Select.Option;
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
-
-
-
-
 
 const Contents = createClass({
     getInitialState() {
@@ -165,6 +148,7 @@ const Contents = createClass({
 
 
                     <DatePicker
+                        style={{width:'49%'}}
                         format="YYYY-MM-DD"
                         placeholder="Select Date"
                         defaultValue={this.state.booklater.date}

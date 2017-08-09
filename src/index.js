@@ -1,4 +1,4 @@
-import './stylesheet/_layout.scss'
+import './stylesheet/_common.scss'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';

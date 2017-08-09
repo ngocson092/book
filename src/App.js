@@ -1,29 +1,23 @@
 import React, {Component} from 'react';
-import ChooseAddress from './components/Steps/ChooseAddress';
-import Home from './components/Home';
-import Header from './components/common/Header';
-import {Route, Link} from 'react-router-dom'
-import {Layout} from 'antd'
-const { Content} = Layout;
+import {Route, Switch} from 'react-router-dom'
+import LayoutMaster from './components/Layout/LayoutMaster'
+import LayoutBookNow from './components/Layout/LayoutBookNow'
+import ChooseAddress from './components/Steps/ChooseAddress'
+import Home from './components/Home'
 
+
+const GenerateRoute = (Layout,Component)=>{
+    return (<Layout><Component/></Layout>)
+}
 
 class App extends Component {
-    state = {
-        current: 'mail',
-    }
-
     render() {
-
         return (
-            <Layout>
-                <Header />
-                <Content id="content">
-                    <div>
-                        <Route path="/" component={Home} exact={true}/>
-                        <Route path="/book-now" component={ChooseAddress}/>
-                    </div>
-                </Content>
-            </Layout>
+            <Switch>
+                {}
+                <Route exact path="/" render={()=> GenerateRoute(LayoutMaster,Home)} />
+                <Route path="/book-now" render={()=> GenerateRoute(LayoutBookNow,ChooseAddress)} />
+            </Switch>
         );
     }
 }

@@ -1,14 +1,14 @@
 /**
  * Created by lamtanphiho on 8/8/2017.
  */
-import '../../stylesheet/menu.scss';
 
 import React, {Component} from 'react';
+import {Route,Link} from 'react-router-dom'
 import { Menu, Icon } from 'antd';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
-class Sider extends React.Component {
+class MainMenu extends React.Component {
     state = {
         current: 'mail',
     }
@@ -19,6 +19,7 @@ class Sider extends React.Component {
         });
     }
     render() {
+
         return (
             <Menu
                 onClick={this.handleClick}
@@ -26,16 +27,13 @@ class Sider extends React.Component {
                 mode="horizontal"
             >
                 <Menu.Item>
-                    <a href="/book-now">WEDDING</a>
+                    <Link to="/wedding" className="btn">WEDDING</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <a href="/book-now">BOOK NOW</a>
-                </Menu.Item>
-                <Menu.Item key="alipay">
-                    <a href="https://ant.design" target="_blank" rel="noopener noreferrer">Navigation Four - Link</a>
+                    <Link to="/book-now" className="btn">BOOK NOW</Link>
                 </Menu.Item>
             </Menu>
         );
     }
 }
-export default Sider;
+export default MainMenu;
