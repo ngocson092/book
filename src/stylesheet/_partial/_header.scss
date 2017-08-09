@@ -4,7 +4,8 @@ body{
 }
 #header{
   .header-top{
-    padding: 10px 20px;
+    padding: 0px 20px;
+    line-height: 40px;
     border-bottom: 1px solid #f1f1f1;
     i.glyphicon-headphones{
 
@@ -12,12 +13,13 @@ body{
   }
 
   .header-bot{
-    padding: 10px 20px;
+    padding: 0px 20px;
 
     .logo{
       float: left;
       font-size: 20px;
       color: #615e5e;
+      line-height: 60px
     }
     .main-menu{
       float: right;
@@ -28,5 +30,8 @@ body{
   }
   .red{
     color: red;
+  }
+  .primary{
+    color: #03A9F4;
   }
 }

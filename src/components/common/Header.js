@@ -14,7 +14,7 @@ class Header extends Component {
             <div id="header">
                 <div className="header-top">
                     <i className="glyphicon-headphones"><Headphone /></i>
-                    <span className="sub"><strong>  QUESTION?</strong> CALL <span className="red">555.111.9999</span></span>
+                    <span className="sub"><strong>  QUESTION?</strong> CALL <span className="primary">555.111.9999</span></span>
                 </div>
                 <div className="header-bot">
                     <Link className="logo" to={'/'}>
