@@ -1,0 +1,15 @@
+
+#layout-booknow .photosesh-type .custom-image-photographer img {
+  display: block;
+  margin: 20px auto;
+}
+.custom-card-photographer{
+  width: 40%;
+  padding: 10px 16px;
+  margin: 10px;
+  float: left;
+}
+.custom-card-photographer-right{
+  @extend .custom-card-photographer;
+  float: right;
+}

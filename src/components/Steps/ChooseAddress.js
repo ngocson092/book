@@ -205,7 +205,7 @@ const Contents = createClass({
 
         return (
             <Row>
-                {this.state.redirect_to_step_2 && ( <Redirect to={'/book-now/step2'}/>)}
+                {this.state.redirect_to_step_2 && ( <Redirect to={'/book-now/photosesh-type'}/>)}
 
                 <Col xs={10} sm={10} md={10} lg={6} xl={6} className={'sidebar'}>
                     <Form layout="vertical" onSubmit={this.onSubmit}>
