@@ -42,7 +42,6 @@ class PhotoseshType extends Component{
             function (error, response, body) {
                 if(!error) {
                     body = JSON.parse(body);
-                    console.log(body)
                     let content = body.data.map((photo, i) => {
                         return (
                             <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>

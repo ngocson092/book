@@ -6,6 +6,42 @@ const {Header} = Layout
 class PhotoseshType extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            content : '',
+            photoseshType: []
+        };
+
+    }
+    componentDidMount = function () {
+        let self = this;
+        let photoseshType = localStorage.getItem("user");
+        photoseshType = JSON.parse(photoseshType).photoseshTypeList;
+
+        self.setState({photoseshType: photoseshType});
+        let content = photoseshType.map((phototype, i) => {
+            const img = "/images/"+ ++i +".jpg";
+            return (
+                <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
+                    <Link to={'/book-now/photosesh-type/detail-light'}>
+                        <Card bodyStyle={{padding: 0}}>
+                            <div className="custom-image">
+                                <img src={img} alt=""/>
+                            </div>
+                            <div className="custom-card">
+                                <h2>{phototype.photoSeshTypeName}</h2>
+                                <p>
+                                    <div>${phototype.photoSeshTypePriceLB} - ${phototype.photoSeshTypePriceUB} / hr</div>
+                                    {phototype.photoSeshTypeOnClickDescription}
+                                </p>
+                            </div>
+
+                        </Card>
+                    </Link>
+
+                </Col>
+            )
+        })
+        self.setState({content: content});
     }
 
     render() {
@@ -19,39 +55,7 @@ class PhotoseshType extends Component{
                     <h2 className="title">Photosesh Type</h2>
 
                     <Row>
-                        <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                            <Link to={'/book-now/photosesh-type/detail-light'}>
-                                <Card  bodyStyle={{ padding: 0 }}>
-                                    <div className="custom-image">
-                                        <img src="/images/1.jpg" alt=""/>
-                                    </div>
-                                    <div className="custom-card">
-                                        <h3>Photosesh Light</h3>
-
-                                        <p>
-                                            <div>$20 - $25 / hr</div>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dolorum facere fuga ipsum numquam sed sunt temporibus ut. Consequuntur distinctio dolores eveniet facilis fugiat id illum numquam qui tenetur voluptatem!
-                                        </p>
-                                    </div>
-                                </Card>
-                            </Link>
-
-                        </Col>
-                    <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                            <Card  bodyStyle={{ padding: 0 }}>
-                                <div className="custom-image">
-                                    <img src="/images/2.jpg" alt=""/>
-                                </div>
-                                <div className="custom-card">
-                                    <h3>Photosesh</h3>
-
-                                    <p>
-                                        <div>$30 - $75 / hr</div>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda dolorum facere fuga ipsum numquam sed sunt temporibus ut. Consequuntur distinctio dolores eveniet facilis fugiat id illum numquam qui tenetur voluptatem!
-                                    </p>
-                                </div>
-                            </Card>
-                        </Col>
+                        {this.state.content}
 
                     </Row>
                 </div>

@@ -126,6 +126,7 @@ const Contents = createClass({
             redirect_to_step_2:true
         })
         this.props.setInfoStepOne(data)
+        localStorage.setItem("booknow", JSON.stringify(data));
     },
     handleChange(data){
 

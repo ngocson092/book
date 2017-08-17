@@ -19,7 +19,6 @@ const store = createStore(
     )
 )
 
-
 ReactDOM.render(
     <LocaleProvider locale={enUS}>
         <BrowserRouter>

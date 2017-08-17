@@ -1,4 +1,4 @@
-import {SET_INFO_STEP_ONE,SET_BOOKTYPE} from '../actions'
+import {SET_INFO_STEP_ONE,SET_BOOKTYPE, SET_EVENT_LIST} from '../actions'
 import {NOW,TIME,DURATIONS} from '../define'
 import moment from 'moment'
 
@@ -20,6 +20,8 @@ export default function bookinfo(state = {},action = {}) {
             new_data.book_type = action.data
             return new_data
         case SET_INFO_STEP_ONE:
+            return action.data
+        case SET_EVENT_LIST:
             return action.data
         default:
             return default_state

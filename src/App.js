@@ -32,7 +32,7 @@ class App extends Component {
         }, function (error, response, body) {
             if(!error){
 
-                body = JSON.parse(body);
+                body = JSON.parse(body);console.log(body)
                 localStorage.setItem("user", JSON.stringify(body.data));
             }
 
