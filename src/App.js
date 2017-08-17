@@ -45,7 +45,7 @@ class App extends Component {
                 <Route exact path="/" render={()=> generateLayout(LayoutMaster,Home)} />
                 <Route exact={true} path="/book-now" render={()=> generateLayout(LayoutBookNow,Step1)} />
                 <Route exact={true} path="/book-now/photosesh-type" render={()=> generateLayout(LayoutBookNow,Step2)} />
-                <Route exact={true} path="/book-now/photosesh-type/detail-light" render={()=> generateLayout(LayoutBookNow,Step3a)} />
+                <Route exact={true} path="/book-now/photosesh-type/detail" render={()=> generateLayout(LayoutBookNow,Step3a)} />
                 <Route exact={true} path="/book-now/need-a-photosesh" render={()=> generateLayout(LayoutBookNow,Step4)} />
                 <Route exact={true} path="/book-now/photographers" render={()=> generateLayout(LayoutBookNow,Step5)} />
             </Switch>

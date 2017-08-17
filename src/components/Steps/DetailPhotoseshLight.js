@@ -9,8 +9,23 @@ const {Header} = Layout
 class PhotoseshType extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            detail: {}
+        };
     }
-
+    componentDidMount = function () {
+        let booknow = localStorage.getItem("booknow");
+        booknow = JSON.parse(booknow);
+        let photoseshType = localStorage.getItem("user");
+        photoseshType = JSON.parse(photoseshType).photoseshTypeList;
+        let detail = photoseshType.filter(x=>{
+            return x.photoSeshTypeName == booknow.info.photoseshType;
+        }).map(type=>{
+            return type;
+        })
+        this.setState({detail: detail[0]})
+        console.log(detail)
+    }
     render() {
         return (
             <div className="photosesh-type">
@@ -54,11 +69,11 @@ class PhotoseshType extends Component{
                                     <img src="/images/9.jpg" alt=""/>
                                 </div>
                                 <div className="custom-card">
-                                    <h3>Photosesh Light</h3>
+                                    <h3>{this.state.detail.photoSeshTypeName}</h3>
 
                                     <p>
-                                        <div>$20 - $25 / hr</div>
-                                        "CURRENTLY IN BETA" iPhoneography is here! Dont't let the word LIGHT confuse you, because the iPhone cam is HEAVILY packed with incredible technology to capture unbelievable images. Get with the times and hire a nearby iPhoneographer with Photosesh LIGHT to capture the fun. IMAGES AIRDROPPED TO YOU INSTANTLY!
+                                        <div>${this.state.detail.photoSeshTypePriceLB} - ${this.state.detail.photoSeshTypePriceUB} / hr</div>
+                                        {this.state.detail.photoSeshTypeOnClickDescription}
                                     </p>
                                 </div>
                             </Card>

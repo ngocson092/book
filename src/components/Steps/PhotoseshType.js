@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Row, Col,Card,Layout,Button,Icon} from 'antd';
 import {connect} from 'react-redux'
-import {Route,Link} from 'react-router-dom'
+import {Redirect,Link} from 'react-router-dom'
 const {Header} = Layout
 class PhotoseshType extends Component{
     constructor(props) {
@@ -11,6 +11,12 @@ class PhotoseshType extends Component{
             photoseshType: []
         };
 
+    }
+    handleNext = function (photoseshType) {
+        let booknow = localStorage.getItem("booknow");
+        booknow = JSON.parse(booknow);
+        booknow.info.photoseshType = photoseshType; console.log()
+        localStorage.setItem("booknow", JSON.stringify(booknow));
     }
     componentDidMount = function () {
         let self = this;
@@ -22,7 +28,7 @@ class PhotoseshType extends Component{
             const img = "/images/"+ ++i +".jpg";
             return (
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
-                    <Link to={'/book-now/photosesh-type/detail-light'}>
+                    <Link to={"/book-now/photosesh-type/detail"}  onClick={()=>this.handleNext(phototype.photoSeshTypeName)}>
                         <Card bodyStyle={{padding: 0}}>
                             <div className="custom-image">
                                 <img src={img} alt=""/>
