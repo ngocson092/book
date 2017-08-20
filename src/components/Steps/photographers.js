@@ -18,19 +18,20 @@ class PhotoseshType extends Component{
         };
     }
     componentDidMount = function () {
-        let self = this;
+        const self = this;
+        let booknow = localStorage.getItem("booknow");
+        booknow = JSON.parse(booknow);
+        console.log(booknow)
         const form = {
-            address     : "Newark, New Jersey, Hoa Kỳ",
-            agentType    : "PhotoSesh",
-            appointmentDuration    : 5,
-            appointmentTime    : "11:30 PM",
-            eventType    : "CASUAL_EVENTS",
-            latitude    : 30.7188105741499,
-            longitude    : 76.8101991653969,
+            address     : booknow.place,
+            agentType    : booknow.info.photoseshType,
+            appointmentDuration    : booknow.info.duration,
+            appointmentTime    : booknow.info.from,
+            eventType    :  booknow.info.duration,
+            latitude    :  booknow.position.lat,
+            longitude    :  booknow.position.lng,
             offset    : 42,
-            osVersion    : "10.3.3",
-            appVersion  : 102,
-            appointmentDate : "2017-08-18"
+            appointmentDate : booknow.info.date,
         }
         let user =  localStorage.getItem("user");
         user = JSON.parse(user);console.log(user)
@@ -40,35 +41,49 @@ class PhotoseshType extends Component{
                 }
             },
             function (error, response, body) {
-                if(!error) {
+                let content;
+                if(!error ) {
                     body = JSON.parse(body);
-                    let content = body.data.map((photo, i) => {
-                        return (
-                            <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
-                                <Link to={'/book-now/photographers'}>
-                                    <Card bodyStyle={{padding: 0}}>
-                                        <div className="custom-image-photographer">
-                                            <img src={photo.profilePicURL.original} alt=""/>
-                                        </div>
-                                        <div className="custom-card-photographer">
-                                            <h2>{photo.name}</h2>
-                                            <Rate allowHalf defaultValue={photo.rating}/>
-                                            <h3>{(new Date(photo.startingDate)).toLocaleDateString('en-US')}
-                                                at {photo.startingTime}</h3>
-                                        </div>
-                                        <div className="custom-card-photographer-right">
-                                            <h2>${photo.agentPrice}/hr</h2>
-                                            <h3>13 min away</h3>
-                                        </div>
-                                    </Card>
-                                </Link>
+                    if (body.statusCode == 200) {
 
-                            </Col>
-                        )
-                    })
+                        content = body.data.map((photo, i) => {
+                            return (
+                                <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
+                                    <Link to={'/book-now/photographers'}>
+                                        <Card bodyStyle={{padding: 0}}>
+                                            <div className="custom-image-photographer">
+                                                <img src={photo.profilePicURL.original} alt=""/>
+                                            </div>
+                                            <div className="custom-card-photographer">
+                                                <h2>{photo.name}</h2>
+                                                <Rate allowHalf defaultValue={photo.rating}/>
+                                                <h3>{(new Date(photo.startingDate)).toLocaleDateString('en-US')}
+                                                    at {photo.startingTime}</h3>
+                                            </div>
+                                            <div className="custom-card-photographer-right">
+                                                <h2>${photo.agentPrice}/hr</h2>
+                                                <h3>13 min away</h3>
+                                            </div>
+                                        </Card>
+                                    </Link>
+
+                                </Col>
+                            )
+                        })
+
+                    }
+                    if (!error && body.statusCode == 400) {
+                        console.log(body)
+                        content = (<Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                            <Card bodyStyle={{padding: 0}}>
+                                <div className="custom-card-photographer-center">
+                                    <h2>{body.message}</h2>
+                                </div>
+                            </Card>
+                        </Col>);
+                    }
                     self.setState({content: content});
                 }
-                else console.log(error)
             });
     }
 
@@ -78,7 +93,7 @@ class PhotoseshType extends Component{
             <div className="photosesh-type">
                 <Header id="header">
                     <Link className="logo" to={'/'}>Photosesh - Book Now</Link>
-                    <Link className={'btn-right'} to={'/book-now/photosesh-type/detail-light'}><Icon type="left" /> Back</Link>
+                    <Link className={'btn-right'} to={'/book-now/photosesh-type/detail'}><Icon type="left" /> Back</Link>
                 </Header>
                 <div className="container">
                     <h2 className="title">Photographers</h2>

@@ -24,7 +24,7 @@ class PhotoseshType extends Component{
             return type;
         })
         this.setState({detail: detail[0]})
-        console.log(detail)
+        // console.log(detail)
     }
     render() {
         return (

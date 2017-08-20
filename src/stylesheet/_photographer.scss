@@ -13,3 +13,8 @@
   @extend .custom-card-photographer;
   float: right;
 }
+.custom-card-photographer-center{
+  @extend .custom-card-photographer;
+  text-align: center;
+  width: 100%;
+}

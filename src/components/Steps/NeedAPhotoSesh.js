@@ -1,6 +1,7 @@
 /**
  * Created by lamtanphiho on 8/9/2017.
  */
+import '../../stylesheet/_needaphotosesh.scss'
 import React,{Component} from 'react'
 import {Row, Col,Card,Layout,Button,Icon} from 'antd';
 import {connect} from 'react-redux'
@@ -10,11 +11,40 @@ const {Header} = Layout;
 class PhotoseshType extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            content : '',
+        };
     }
+    componentDidMount = function () {
+        let User = localStorage.getItem("user");
+        let eventList = JSON.parse(User).eventList;
+        let content = eventList.map((event, i) => {
+            const img = "/images/"+ ++i +".jpg";
+            return (
+                <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
+                    <Link to={"/book-now/photographers"}  onClick={()=>this.handleNext(event.photoSeshTypeName)}>
+                        <Card bodyStyle={{padding: 0}}>
+                            <div className="custom-image">
+                                <img src={event.eventImage.thumb} alt=""/>
+                            </div>
+                            <div className="custom-card">
+                                <h2>{event.eventName}</h2>
+                                <p>
+                                    {event.eventDescription}
+                                </p>
+                            </div>
 
+                        </Card>
+                    </Link>
+
+                </Col>
+            )
+        })
+        this.setState({content: content})
+    }
     render() {
         return (
-            <div className="photosesh-type">
+            <div className="photosesh-type needphotosesh">
                 <Header id="header">
                     <Link className="logo" to={'/'}>Photosesh - Book Now</Link>
                     <Link className={'btn-right'} to={'/book-now/photosesh-type/detail-light'}><Icon type="left" /> Back</Link>
@@ -23,40 +53,7 @@ class PhotoseshType extends Component{
                     <h2 className="title">I Need a PhotoSesh For ...</h2>
 
                     <Row>
-                        <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                            <Link to={'/book-now/photographers'}>
-                                <Card  bodyStyle={{ padding: 0 }}>
-                                    <div className="custom-image">
-                                        <img src="/images/1.jpg" alt=""/>
-                                    </div>
-                                    <div className="custom-card">
-                                        <h3>Casual Events</h3>
-
-                                        <p>
-                                            Book for Birthdays, Showers, Engagements, Anniversaries, Bar/Bat Mitzvans or just random fun! Affordability is now makes sense to hire a photograper to shoot at your casual get togethers. Just enjoy yourself!
-                                        </p>
-                                    </div>
-                                </Card>
-                            </Link>
-
-                        </Col>
-                        <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                            <div onClick={this.getPhotoSesh}>
-                                <Card  bodyStyle={{ padding: 0 }}>
-                                    <div className="custom-image">
-                                        <img src="/images/2.jpg" alt=""/>
-                                    </div>
-                                    <div className="custom-card">
-                                        <h3>Formal Events</h3>
-
-                                        <p>
-                                            Experienced photographers can help capture your treasured momonts at Receptions, Dances, Formals, Weddings etc. Hiring extra shooters at a value can give you more coverage at less cost and not a moment lost.
-                                        </p>
-                                    </div>
-                                </Card>
-                            </div>
-                        </Col>
-
+                        {this.state.content}
                     </Row>
                 </div>
 

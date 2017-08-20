@@ -24,7 +24,7 @@ class App extends Component {
     login = function () {
         request.post(process.env.API_URL+'/user/login', {
             form: {
-                emailId     : "demoapp@gmail.com",
+                emailId     : "demoweb@gmail.com",
                 password    : "123123",
                 deviceType  : "IOS",
                 deviceToken : "1"

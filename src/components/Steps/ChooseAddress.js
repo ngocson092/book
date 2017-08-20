@@ -119,7 +119,8 @@ const Contents = createClass({
         let data = {
             book_type:this.props.book_type,
             info: this.state.info,
-            place:this.state.place
+            place:this.state.place,
+            position:this.state.position,
         }
 
         this.setState({
