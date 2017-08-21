@@ -15,6 +15,12 @@ class PhotoseshType extends Component{
             content : '',
         };
     }
+    handleNext = function (eventType) {
+        let booknow = localStorage.getItem("booknow");
+        booknow = JSON.parse(booknow);
+        booknow.info.eventType = eventType;
+        localStorage.setItem("booknow", JSON.stringify(booknow));
+    }
     componentDidMount = function () {
         let User = localStorage.getItem("user");
         let eventList = JSON.parse(User).eventList;
@@ -22,7 +28,7 @@ class PhotoseshType extends Component{
             const img = "/images/"+ ++i +".jpg";
             return (
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
-                    <Link to={"/book-now/photographers"}  onClick={()=>this.handleNext(event.photoSeshTypeName)}>
+                    <Link to={"/book-now/photographers"}  onClick={()=>this.handleNext(event.eventName)}>
                         <Card bodyStyle={{padding: 0}}>
                             <div className="custom-image">
                                 <img src={event.eventImage.thumb} alt=""/>

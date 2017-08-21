@@ -27,7 +27,7 @@ class PhotoseshType extends Component{
             agentType    : booknow.info.photoseshType,
             appointmentDuration    : booknow.info.duration,
             appointmentTime    : booknow.info.from,
-            eventType    :  booknow.info.duration,
+            eventType    :  booknow.info.eventType,
             latitude    :  booknow.position.lat,
             longitude    :  booknow.position.lng,
             offset    : 42,

@@ -15,7 +15,7 @@ class PhotoseshType extends Component{
     handleNext = function (photoseshType) {
         let booknow = localStorage.getItem("booknow");
         booknow = JSON.parse(booknow);
-        booknow.info.photoseshType = photoseshType; console.log()
+        booknow.info.photoseshType = photoseshType;
         localStorage.setItem("booknow", JSON.stringify(booknow));
     }
     componentDidMount = function () {

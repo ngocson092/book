@@ -29,7 +29,7 @@ class App extends Component {
                 deviceType  : "IOS",
                 deviceToken : "1"
             }
-        }, function (error, response, body) {
+        }, function (error, response, body) {console.log(error)
             if(!error){
 
                 body = JSON.parse(body);console.log(body)
