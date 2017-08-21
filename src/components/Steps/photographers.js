@@ -34,7 +34,7 @@ class PhotoseshType extends Component{
             appointmentDate : booknow.info.date,
         }
         let user =  localStorage.getItem("user");
-        user = JSON.parse(user);console.log(user)
+        user = JSON.parse(user);
             request.get(process.env.API_URL+'/bookingCorner/user/photoSeshNow?'+qs.stringify(form), {
                 headers: {
                     'authorization': user.accessToken
@@ -43,13 +43,14 @@ class PhotoseshType extends Component{
             function (error, response, body) {
                 let content;
                 if(!error ) {
-                    body = JSON.parse(body);
+                    body = JSON.parse(body);console.log(body)
                     if (body.statusCode == 200) {
 
                         content = body.data.map((photo, i) => {
                             return (
+
                                 <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
-                                    <Link to={'/book-now/photographers'}>
+                                    <Link to={'/book-now/booking-review'}>
                                         <Card bodyStyle={{padding: 0}}>
                                             <div className="custom-image-photographer">
                                                 <img src={photo.profilePicURL.original} alt=""/>
@@ -73,7 +74,6 @@ class PhotoseshType extends Component{
 
                     }
                     if (!error && body.statusCode == 400) {
-                        console.log(body)
                         content = (<Col xs={24} sm={24} md={24} lg={24} xl={24}>
                             <Card bodyStyle={{padding: 0}}>
                                 <div className="custom-card-photographer-center">
@@ -93,7 +93,7 @@ class PhotoseshType extends Component{
             <div className="photosesh-type">
                 <Header id="header">
                     <Link className="logo" to={'/'}>Photosesh - Book Now</Link>
-                    <Link className={'btn-right'} to={'/book-now/photosesh-type/detail'}><Icon type="left" /> Back</Link>
+                    <Link className={'btn-right'} to={'/book-now/need-a-photosesh'}><Icon type="left" /> Back</Link>
                 </Header>
                 <div className="container">
                     <h2 className="title">Photographers</h2>

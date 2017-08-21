@@ -1,7 +1,10 @@
-
+#layout-booknow .photosesh-type .custom-image-photographer{
+  min-height: 478px;
+}
 #layout-booknow .photosesh-type .custom-image-photographer img {
   display: block;
-  margin: 20px auto;
+  margin:  auto;
+  max-width: 100%;
 }
 .custom-card-photographer{
   width: 40%;

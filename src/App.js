@@ -7,9 +7,9 @@ import Step2 from './components/Steps/PhotoseshType'
 import Step3a from './components/Steps/DetailPhotoseshLight';
 import Step4 from './components/Steps/NeedAPhotoSesh';
 import Step5 from './components/Steps/photographers';
+import Step6 from './components/Steps/BookingReview';
 import Home from './components/Home'
-const request   = require('request');
-const qs        = require('querystring');
+
 
 
 const generateLayout = (Layout,Component)=>{
@@ -19,26 +19,8 @@ const generateLayout = (Layout,Component)=>{
 class App extends Component {
     constructor(props) {
         super(props);
-        this.login();
     }
-    login = function () {
-        request.post(process.env.API_URL+'/user/login', {
-            form: {
-                emailId     : "demoweb@gmail.com",
-                password    : "123123",
-                deviceType  : "IOS",
-                deviceToken : "1"
-            }
-        }, function (error, response, body) {console.log(error)
-            if(!error){
 
-                body = JSON.parse(body);console.log(body)
-                localStorage.setItem("user", JSON.stringify(body.data));
-            }
-
-        });
-
-    }
     render() {
         return (
             <Switch>
@@ -48,6 +30,7 @@ class App extends Component {
                 <Route exact={true} path="/book-now/photosesh-type/detail" render={()=> generateLayout(LayoutBookNow,Step3a)} />
                 <Route exact={true} path="/book-now/need-a-photosesh" render={()=> generateLayout(LayoutBookNow,Step4)} />
                 <Route exact={true} path="/book-now/photographers" render={()=> generateLayout(LayoutBookNow,Step5)} />
+                <Route exact={true} path="/book-now/booking-review" render={()=> generateLayout(LayoutBookNow,Step6)} />
             </Switch>
         );
     }
