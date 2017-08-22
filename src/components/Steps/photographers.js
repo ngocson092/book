@@ -20,7 +20,7 @@ class PhotoseshType extends Component{
     handleNext = function (photographer) {
         let booknow = localStorage.getItem("booknow");
         booknow = JSON.parse(booknow);
-        booknow.info.photographer = photographer;
+        booknow.info.photographer = photographer;console.log(photographer)
         localStorage.setItem("booknow", JSON.stringify(booknow));
     }
     componentDidMount = function () {
@@ -55,7 +55,7 @@ class PhotoseshType extends Component{
                             return (
 
                                 <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
-                                    <Link to={'/book-now/booking-review'} onClick={()=>this.handleNext(photo)}>
+                                    <Link to={'/book-now/booking-review'} onClick={()=>self.handleNext(photo)}>
                                         <Card bodyStyle={{padding: 0}}>
                                             <div className="custom-image-photographer">
                                                 <img src={photo.profilePicURL.original} alt=""/>

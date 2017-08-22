@@ -19,11 +19,11 @@ class PhotoseshType extends Component{
         localStorage.setItem("booknow", JSON.stringify(booknow));
     }
     componentDidMount = function () {
-        let self = this;
+
         let photoseshType = localStorage.getItem("user");
         photoseshType = JSON.parse(photoseshType).photoseshTypeList;
 
-        self.setState({photoseshType: photoseshType});
+        this.setState({photoseshType: photoseshType});
         let content = photoseshType.map((phototype, i) => {
             const img = "/images/"+ ++i +".jpg";
             return (
@@ -47,7 +47,7 @@ class PhotoseshType extends Component{
                 </Col>
             )
         })
-        self.setState({content: content});
+        this.setState({content: content});
     }
 
     render() {
