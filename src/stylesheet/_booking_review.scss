@@ -1,0 +1,16 @@
+
+.book-review table{
+  margin: auto;
+  text-align: left
+}
+.book-review table tr th, .book-review table tr td{
+  border-bottom: 1px solid #fff;
+}
+.book-review .book-info-title{
+  font-weight: bold;
+  font-size: 14px;
+}
+.book-review .book-info-row{
+  border-bottom: 1px solid;
+  padding: 3px 20px;
+}

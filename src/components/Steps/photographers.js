@@ -17,11 +17,16 @@ class PhotoseshType extends Component{
             content : ''
         };
     }
+    handleNext = function (photographer) {
+        let booknow = localStorage.getItem("booknow");
+        booknow = JSON.parse(booknow);
+        booknow.info.photographer = photographer;
+        localStorage.setItem("booknow", JSON.stringify(booknow));
+    }
     componentDidMount = function () {
         const self = this;
         let booknow = localStorage.getItem("booknow");
         booknow = JSON.parse(booknow);
-        console.log(booknow)
         const form = {
             address     : booknow.place,
             agentType    : booknow.info.photoseshType,
@@ -50,7 +55,7 @@ class PhotoseshType extends Component{
                             return (
 
                                 <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
-                                    <Link to={'/book-now/booking-review'}>
+                                    <Link to={'/book-now/booking-review'} onClick={()=>this.handleNext(photo)}>
                                         <Card bodyStyle={{padding: 0}}>
                                             <div className="custom-image-photographer">
                                                 <img src={photo.profilePicURL.original} alt=""/>
