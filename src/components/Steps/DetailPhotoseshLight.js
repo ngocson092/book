@@ -30,7 +30,7 @@ class PhotoseshType extends Component{
         return (
             <div className="photosesh-type">
                 <Header id="header">
-                    <Link className="logo" to={'/'}>Photosesh - Book Now</Link>
+                    <Link className="logo" to={'/book-now'}>Photosesh - Book Now</Link>
                     <Link className={'btn-right'} to={'/book-now/photosesh-type'}><Icon type="left" /> Back</Link>
                 </Header>
                 <div className="container">

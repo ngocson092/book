@@ -13,16 +13,22 @@ module.exports = {
                     'authorization': user.accessToken
                 },
                 form : {
+                    address : booknow.info.place,
+                    agentIds: [booknow.info.photographer._id],
                     appointmentDate: booknow.info.date,
                     appointmentTime : booknow.info.from,
+                    appointmentEndTime : booknow.info.to,
                     agentType  : booknow.info.photoseshType,
                     eventType   : booknow.info.eventType,
                     longitude: booknow.position.lng,
                     latitude : booknow.position.lat,
                     photoSeshNow  : booknow.book_type == 'now' ? true : false,
-                    offset   : 42,
-                    isReschedule    : true,
+                    offset   : 420,
+                    isReschedule    : false,
                     appointmentDuration    : booknow.info.duration,
+                    previousBookingId    : '',
+                    paymentCardId    : user.defaultCardId,
+                    titleOrDescription: booknow.info.title
                 }
             }
             request(option, function (error, response, body) {

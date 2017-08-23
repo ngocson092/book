@@ -270,7 +270,7 @@ const MapWrapper = createClass({
 
             <div className="choose-address">
                 <Header id="header">
-                  <Link className="logo" to={'/'}>Photosesh - Book Now</Link>
+                  <Link className="logo" to={'/book-now'}>Photosesh - Book Now</Link>
                   <Link className={'btn-right'} to={'/'}><Icon type="home" /> Home</Link>
                 </Header>
                 <Map

@@ -39,6 +39,8 @@ class BookingReview extends Component{
 
             booking.postBooking(this.state.user, booknow).then(result => {
                 console.log(result);
+                result = JSON.parse(result);
+                success(result.message)
             })
         }
     }
@@ -49,7 +51,7 @@ class BookingReview extends Component{
         return (
             <div className="photosesh-type">
                 <Header id="header">
-                    <Link className="logo" to={'/'}>Photosesh - Book Now</Link>
+                    <Link className="logo" to={'/book-now'}>Photosesh - Book Now</Link>
                     <Link className={'btn-right'} to={'/book-now/photographers'}><Icon type="left" /> Back</Link>
                 </Header>
                 <div className="container book-review">
@@ -144,5 +146,12 @@ const warning = function() {
     Modal.warning({
         title: 'Missing Title',
         content: 'Please type a title...',
+    });
+}
+
+const success = function(content) {
+    Modal.success({
+        title: 'Process success !',
+        content: content,
     });
 }

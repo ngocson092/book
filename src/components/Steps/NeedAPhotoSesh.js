@@ -52,8 +52,8 @@ class PhotoseshType extends Component{
         return (
             <div className="photosesh-type needphotosesh">
                 <Header id="header">
-                    <Link className="logo" to={'/'}>Photosesh - Book Now</Link>
-                    <Link className={'btn-right'} to={'/book-now/photosesh-type/detail-light'}><Icon type="left" /> Back</Link>
+                    <Link className="logo" to={'/book-now'}>Photosesh - Book Now</Link>
+                    <Link className={'btn-right'} to={'/book-now/photosesh-type/detail'}><Icon type="left" /> Back</Link>
                 </Header>
                 <div className="container">
                     <h2 className="title">I Need a PhotoSesh For ...</h2>
