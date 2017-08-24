@@ -33,7 +33,7 @@ class LoginPage extends Component {
                 }
                 request.request(option).then(user=>{
                     localStorage.setItem("user", JSON.stringify(user.data))
-                    this.setState({isLogin: true})
+                    window.location.href = '/';
                 });
             }
         });
@@ -43,7 +43,6 @@ class LoginPage extends Component {
         const { getFieldDecorator } = this.props.form;
         return (
         <Row  ref="myRef">
-            {this.state.isLogin && ( <Redirect to={'/'}/>)}
             <Col xs={9} sm={9} md={9} lg={9} xl={9}></Col>
             <Col xs={6} sm={6} md={6} lg={6} xl={6} className="col-login">
                 <Form onSubmit={this.handleSubmit} className="login-form">
