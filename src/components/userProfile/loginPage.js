@@ -4,7 +4,6 @@
 import React, {Component} from 'react';
 import {Row, Col, Form, Icon, Input, Button, Checkbox } from 'antd';
 import {Redirect} from 'react-router-dom'
-import reactAutoMount from 'react-auto-mount';
 const request = require('../../controllers/request')
 const FormItem = Form.Item;
 
