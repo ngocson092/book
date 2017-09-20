@@ -32,7 +32,9 @@ const Contents = createClass({
                 date:moment(),
                 from:TIME[0],
                 to:TIME[1]
-            }
+            },
+            addressRequired : '',
+            isAddress : false,
         }
     },
 
@@ -115,19 +117,24 @@ const Contents = createClass({
     },
 
     handleNext(e) {
+        console.log(this.state.isAddress)
+        if(this.state.isAddress){
+            let data = {
+                book_type:this.props.book_type,
+                info: this.state.info,
+                place:this.state.place,
+                position:this.state.position,
+            }
 
-        let data = {
-            book_type:this.props.book_type,
-            info: this.state.info,
-            place:this.state.place,
-            position:this.state.position,
-        }
-
-        this.setState({
-            redirect_to_step_2:true
+            this.setState({
+                redirect_to_step_2:true
+            })
+            this.props.setInfoStepOne(data)
+            localStorage.setItem("booknow", JSON.stringify(data));
+        } else this.setState({
+            addressRequired: 'address is required !'
         })
-        this.props.setInfoStepOne(data)
-        localStorage.setItem("booknow", JSON.stringify(data));
+
     },
     handleChange(data){
 
@@ -140,6 +147,16 @@ const Contents = createClass({
         new_info[Object.keys(data).pop()] = data[Object.keys(data)]
         this.setState({
             info: new_info
+        })
+    },
+    handleAddressChange(evt){
+        let isAddress = false;
+        if(evt.target.value != '') isAddress = true
+        this.setState({
+            addressRequired: ''
+        })
+        this.setState({
+            isAddress: isAddress
         })
     },
 
@@ -215,7 +232,8 @@ const Contents = createClass({
                             <Input
                                 ref='autocomplete'
                                 placeholder="Enter your location"
-                            />
+                                onBlur={this.handleAddressChange} />
+                            <label className="error">{this.state.addressRequired}</label>
                         </FormItem>
 
                         <FormItem label="Do you want to Book now?">
@@ -255,7 +273,7 @@ const Contents = createClass({
                     </Map>
 
                 </Col>
-
+                <style>{css}</style>
             </Row>
         )
     }
@@ -311,6 +329,10 @@ const ChooseAddress = GoogleApiWrapper({
 
 export default connect(mapStateToProps,{setInfoStepOne,setBooktype})(ChooseAddress)
 
-
+const css = `
+    .error{
+        color: red
+    }
+`
 
 
