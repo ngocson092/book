@@ -12,11 +12,16 @@ class NormalLoginForm extends Component {
         super(props);
         this.state = {}
     }
+
+
     handleSubmit = (e) => {
         e.preventDefault();
+
+        console.log(1);
+
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                const option = {
+         /*       const option = {
                     method : 'POST',
                     url : process.env.API_URL + '/user/login',
                     form : {
@@ -29,7 +34,7 @@ class NormalLoginForm extends Component {
                 request.request(option).then(user=>{
                     localStorage.setItem("user", JSON.stringify(user.data));
                     window.location.reload()
-                })
+                })*/
             }
         });
     }
