@@ -145,6 +145,7 @@ export default class Bookings extends Component{
             title: 'Status',
             dataIndex: 'status',
             key: 'status',
+            width: 100,
             sorter: (a, b) => a.status.length  - b.status.length ,
         },{
             title: 'Action',
@@ -186,7 +187,7 @@ export default class Bookings extends Component{
                             <h1>Bookings</h1>
                         </div>
 
-                        <Table dataSource={dataSource} columns={columns} />
+                        <Table dataSource={dataSource} columns={columns} scroll={{ x: 1300 }}/>
                     </Content>
                 </Layout>
                 <style>{css}</style>
@@ -211,7 +212,7 @@ const css = `
         font-weight: bold;
     }
     .ant-popover.ant-popover-placement-top{
-        left: 92% !important
+        left: 90% !important
     }
     .editable-row-operations a {
         margin-right: 8px;
