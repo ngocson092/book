@@ -109,6 +109,7 @@ export default class Bookings extends Component{
             title: 'Title',
             dataIndex: 'title',
             key: 'title',
+            fixed: 'left',
             render: (text, record, index) => this.renderColumns(this.state.dataSource, index, 'title', text),
         }, {
             title: 'Event type',
@@ -118,16 +119,19 @@ export default class Bookings extends Component{
             title: 'Book date',
             dataIndex: 'book_date',
             key: 'book_date',
+            width: 100,
             render: (text, record, index) => this.renderColumns(this.state.dataSource, index, 'book_date', text),
         },{
             title: 'Start time',
             dataIndex: 'start_time',
             key: 'start_time',
+            width: 100,
             render: (text, record, index) => this.renderColumns(this.state.dataSource, index, 'start_time', text),
         },{
             title: 'End time',
             dataIndex: 'end_time',
             key: 'end_time',
+            width: 100,
             render: (text, record, index) => this.renderColumns(this.state.dataSource, index, 'end_time', text),
         },{
             title: 'Book address',
@@ -137,6 +141,7 @@ export default class Bookings extends Component{
             title: 'Agent name',
             dataIndex: 'agent_name',
             key: 'agent_name',
+            width: 100,
         }, {
             title: 'Agent email',
             dataIndex: 'agent_email',
@@ -152,6 +157,7 @@ export default class Bookings extends Component{
             key: 'operation',
             fixed: 'right',
             width: 100,
+
             render: (text, record, index) => {
                 if(dataSource[index].status =='PENDING'){
                     const { editable } = dataSource[index].title;
