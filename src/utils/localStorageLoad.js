@@ -23,7 +23,6 @@ export default function (store) {
 
 
         }
-
         return;
     } catch (e) {
         // Unable to load or parse stored state, proceed as usual

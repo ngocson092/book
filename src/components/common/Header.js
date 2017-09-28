@@ -8,6 +8,11 @@ import {Layout} from 'antd'
 import Headphone from 'react-icons/lib/ti/headphones'
 
 class Header extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
 
         return (
@@ -20,7 +25,7 @@ class Header extends Component {
                     <Link className="logo" to={'/'}>
                         Photosesh Logo
                     </Link>
-                    <MainMenu className="main-menu" />
+                    <MainMenu className="main-menu" {...this.props}  />
                 </div>
             </div>
         );

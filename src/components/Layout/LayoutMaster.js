@@ -7,7 +7,7 @@ const { Content} = Layout;
 
 const LayoutMaster = ({ children }) => (
     <Layout id="layout-master">
-        <MainHeader />
+        <MainHeader {...children.props} />
         <Content id="content">
             {children}
         </Content>

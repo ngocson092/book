@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Row, Col, Form, Icon, Input, Button, Checkbox,message} from 'antd';
 import {connect} from 'react-redux'
-import {login,setToken} from '../../actions/authActions'
+import {login,setToken,verifyToken} from '../../actions/authActions'
 
 const FormItem = Form.Item;
 
@@ -9,7 +9,8 @@ class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogin: false
+            isLogin: false,
+            loading:false
         }
     }
     goTo(route) {
@@ -22,6 +23,8 @@ class LoginPage extends Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
 
+                this.setState({loading:true})
+
                 login({
                     emailId: values.email,
                     password: values.password,
@@ -29,7 +32,7 @@ class LoginPage extends Component {
                     deviceToken: "1"
                 })
                 .then( (response) =>{
-
+                    this.setState({loading:false})
                     let data = response.data.data;
 
                     let {name ,location ,phoneNumber ,emailId} = data;
@@ -41,15 +44,19 @@ class LoginPage extends Component {
 
                 })
                 .catch( error => {
-                      console.log(error);
+                    this.setState({loading:false})
                     let {response} = error
                     message.error(response.data.message)
-
                 });
-
-
             }
         });
+    }
+
+
+    componentWillMount(){
+        if (localStorage.access_token) {
+            this.goTo('/')
+        }
     }
 
     render() {
@@ -89,7 +96,7 @@ class LoginPage extends Component {
                                 <Checkbox>Remember me</Checkbox>
                             )}
                             <a className="login-form-forgot" href="">Forgot password</a>
-                            <Button type="primary" htmlType="submit" className="login-form-button">
+                            <Button type="primary" loading={this.state.loading} htmlType="submit" className="login-form-button">
                                 Log in
                             </Button>
                             Or <a href="">register now!</a>
@@ -97,7 +104,6 @@ class LoginPage extends Component {
                         <style>{css}</style>
                     </Form>
                 </Col>
-
             </Row>
 
         );

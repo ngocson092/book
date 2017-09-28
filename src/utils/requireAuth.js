@@ -19,38 +19,31 @@ export default function (ComposedComponent) {
         }
 
 
-        componentWillReceiveProps() {
+        componentWillMount(){
 
-            console.log(this.props.isAuthenticated);
+            if (!localStorage.access_token) {
+                this.goTo('/login')
+            }else{
 
-            if (this.props.isAuthenticated) {
-
-                verifyToken().then(res=> {
-
-
-
-
-                    this.setState({loading: false})
+                /*
+                * when already access_token from localstorage
+                * next, check authenticated from verify token (localStoragaLoad.js)
+                *
+                * */
 
 
-                }, ({response})=> {
-
-                    if (response.data.error) {
-                        message.error('You cannot access this page')
-                        this.goTo('/')
-                    }
-
-                })
-
-            } else {
-
-                //this.goTo('/login')
+                if(typeof  this.props.isAuthenticated != 'undefined' && this.props.isAuthenticated){
+                    this.setState({loading:false})
+                }
             }
         }
 
-
+        componentWillReceiveProps(props){
+            if(props.isAuthenticated){
+                this.setState({loading:false})
+            }
+        }
         render() {
-
 
             return (this.state.loading) ?
                 (<div className="loading-wrap">
