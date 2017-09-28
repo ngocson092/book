@@ -15,16 +15,20 @@ class Header extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            current: '0'
+        }
     }
     goTo = (route)=>{this.props.history.replace(route)}
     render() {
         const menu = (
-            <Menu>
+            <Menu  selectedKeys={[this.state.current]}>
 
                 <Menu.Item key="0">
                     <Link to="/my-account">My Account</Link>
                 </Menu.Item>
-                <Menu.Item key="5"
+                <Menu.Divider />
+                <Menu.Item key="1"
                 >
                     <a
                         onClick={() => {
