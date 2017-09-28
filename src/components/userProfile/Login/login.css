@@ -1,0 +1,42 @@
+
+
+:local(.col-login){
+    padding-top: 40px;
+    border-radius: 5px;
+}
+:local(.login_form ){
+    margin: auto;
+    max-width: 350px;
+    padding: 30px 20px;
+    background: #fbfbfb;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px #ddd;
+    margin-top: 50%;
+}
+:local(.login_form h2 ){
+    font-size: 25px;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 30px;
+}
+:local(.login_form h2 span){
+    color: #ff6316;
+}
+:local(.input){
+    font-size:15px;
+}
+:local(.forgot ){
+    float: right;
+}
+:local(.button ){
+    width: 100%;
+}
+:local(.footer ){
+    text-align: center;
+    line-height: 50px;
+}
+
+:local(.footer li ){
+    display: inline-block;
+    margin: 0 5px;
+}
