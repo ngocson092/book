@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Row, Col, Form, Icon, Input, Button, Checkbox,message} from 'antd';
 import {connect} from 'react-redux'
-import {login,setToken,verifyToken} from '../../actions/authActions'
+import {login,setToken} from '../../actions/authActions'
 
 const FormItem = Form.Item;
 
@@ -69,6 +69,9 @@ class LoginPage extends Component {
                      lg={{span: 8, offset: 8}}
                      xl={{span: 8, offset: 8}} className="col-login">
                     <Form onSubmit={this.handleSubmit} className="login-form">
+
+                        <h2><span>Photosesh</span> Login</h2>
+
                         <FormItem>
                             {getFieldDecorator('email', {
                                 rules: [
@@ -124,6 +127,15 @@ export default connect(mapStateToProps, {setToken})(WrappedLoginForm)
 
 
 const css = `
+.login-form h2 {
+    font-size: 25px;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.login-form h2 span{
+    color: #ff6316;
+}
 input.ant-input{
     font-size:15px;
 }
