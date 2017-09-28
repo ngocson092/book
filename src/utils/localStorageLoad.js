@@ -14,10 +14,8 @@ export default function (store) {
                 let user = res.data.data;
                 store.dispatch(setCurrentUser(user));
             },({response})=>{
-
                 localStorage.removeItem('access_token');
-                setAuthorizationToken(false);
-                store.dispatch(setCurrentUser({}));
+                window.location.href = '/'
             })
 
 

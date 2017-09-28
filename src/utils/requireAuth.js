@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {verifyToken} from '../actions/authActions';
 import {message} from 'antd';
+import Loading from '../components/common/Include/Loading'
 
-import {Spin} from 'antd';
 
 
 export default function (ComposedComponent) {
@@ -46,9 +46,7 @@ export default function (ComposedComponent) {
         render() {
 
             return (this.state.loading) ?
-                (<div className="loading-wrap">
-                    <Spin tip="Loading..."/>
-                </div>) :
+                (<Loading/>) :
                 (<ComposedComponent {...this.props} />)
 
         }
