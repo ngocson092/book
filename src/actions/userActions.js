@@ -5,6 +5,10 @@ const API_URL = process.env.API_URL;
 
 export function userSignupRequest(userData) {
 
-    return axios.post(API_URL+'/api/users', userData);
+    return axios({
+        method:'post',
+        url:API_URL+'/user/register',
+        data:userData
+    })
 
 }
