@@ -109,6 +109,7 @@ export default class Bookings extends Component{
             title: 'Title',
             dataIndex: 'title',
             key: 'title',
+            fixed: 'left',
             render: (text, record, index) => this.renderColumns(this.state.dataSource, index, 'title', text),
         }, {
             title: 'Event type',
@@ -118,16 +119,19 @@ export default class Bookings extends Component{
             title: 'Book date',
             dataIndex: 'book_date',
             key: 'book_date',
+            width: 100,
             render: (text, record, index) => this.renderColumns(this.state.dataSource, index, 'book_date', text),
         },{
             title: 'Start time',
             dataIndex: 'start_time',
             key: 'start_time',
+            width: 100,
             render: (text, record, index) => this.renderColumns(this.state.dataSource, index, 'start_time', text),
         },{
             title: 'End time',
             dataIndex: 'end_time',
             key: 'end_time',
+            width: 100,
             render: (text, record, index) => this.renderColumns(this.state.dataSource, index, 'end_time', text),
         },{
             title: 'Book address',
@@ -137,6 +141,7 @@ export default class Bookings extends Component{
             title: 'Agent name',
             dataIndex: 'agent_name',
             key: 'agent_name',
+            width: 100,
         }, {
             title: 'Agent email',
             dataIndex: 'agent_email',
@@ -145,35 +150,37 @@ export default class Bookings extends Component{
             title: 'Status',
             dataIndex: 'status',
             key: 'status',
+            width: 100,
             sorter: (a, b) => a.status.length  - b.status.length ,
         },{
             title: 'Action',
             key: 'operation',
             fixed: 'right',
             width: 100,
-            // render: (a) => {
-            //     if(a.status =='PENDING') return (<Button onClick={()=>this.showEdit(a)}>Edit</Button>)
-            //     else return '';
-            // },
+
             render: (text, record, index) => {
-                const { editable } = dataSource[index].title;
-                return (
-                    <div className="editable-row-operations">
-                        {
-                            editable ?
+                if(dataSource[index].status =='PENDING'){
+                    const { editable } = dataSource[index].title;
+                    return (
+                        <div className="editable-row-operations">
+                            {
+                                editable ?
                                 <span>
-                  <a onClick={() => this.editDone(index, 'save')}>Save</a>
-                  <Popconfirm title="Sure to cancel?" onConfirm={() => this.editDone(index, 'cancel')}>
-                    <a>Cancel</a>
-                  </Popconfirm>
-                </span>
-                                :
+                                    <a onClick={() => this.editDone(index, 'save')}>Save</a>
+                                    <Popconfirm title="Sure to cancel?" onConfirm={() => this.editDone(index, 'cancel')}>
+                                    <a>Cancel</a>
+                                    </Popconfirm>
+                                </span>
+                                            :
                                 <span>
-                  <a onClick={() => this.edit(index)}>Edit</a>
-                </span>
-                        }
-                    </div>
-                );
+                                    <a onClick={() => this.edit(index)}>Edit</a>
+                                </span>
+                            }
+                        </div>
+                    );
+                }
+                else return '';
+
             },
         }];
 
@@ -186,7 +193,7 @@ export default class Bookings extends Component{
                             <h1>Bookings</h1>
                         </div>
 
-                        <Table dataSource={dataSource} columns={columns} />
+                        <Table dataSource={dataSource} columns={columns} scroll={{ x: 1300 }}/>
                     </Content>
                 </Layout>
                 <style>{css}</style>
@@ -211,7 +218,7 @@ const css = `
         font-weight: bold;
     }
     .ant-popover.ant-popover-placement-top{
-        left: 92% !important
+        left: 90% !important
     }
     .editable-row-operations a {
         margin-right: 8px;
