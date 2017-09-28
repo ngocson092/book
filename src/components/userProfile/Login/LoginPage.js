@@ -67,7 +67,7 @@ class LoginPage extends Component {
         return (
             <Row>
                 <Col xs={{span: 24, offset: 0}}
-                     sm={{span: 8, offset: 8}}
+                     sm={{span: 16, offset: 4}}
                      md={{span: 8, offset: 8}}
                      lg={{span: 8, offset: 8}}
                      xl={{span: 8, offset: 8}} className="col-login">

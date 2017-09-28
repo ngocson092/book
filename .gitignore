@@ -24,4 +24,5 @@ yarn-error.log*
 /src/stylesheet/*.css.map
 /src/stylesheet/*.css
 .env
-
+/yarn.lock
+/yarn.lock
