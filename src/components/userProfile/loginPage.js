@@ -1,107 +1,161 @@
-/**
- * Created by lamtanphiho on 8/25/2017.
- */
 import React, {Component} from 'react';
-import {Row, Col, Form, Icon, Input, Button, Checkbox } from 'antd';
-import {Redirect} from 'react-router-dom'
-const request = require('../../controllers/request')
+import {Row, Col, Form, Icon, Input, Button, Checkbox,message} from 'antd';
+import {connect} from 'react-redux'
+import {login,setToken} from '../../actions/authActions'
+
 const FormItem = Form.Item;
 
 class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogin : false
+            isLogin: false,
+            loading:false
         }
     }
-    componentDidMount= function () {
-
+    goTo(route) {
+        this.props.history.replace(`${route}`)
     }
     handleSubmit = (e) => {
         e.preventDefault();
+
+
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                const option = {
-                    method : 'POST',
-                    url : process.env.API_URL + '/user/login',
-                    form : {
-                        emailId     : values.userName,
-                        password    : values.password,
-                        deviceType  : "IOS",
-                        deviceToken : "1"
-                    }
-                }
-                request.request(option).then(user=>{
-                    localStorage.setItem("user", JSON.stringify(user.data))
-                    window.location.href = '/';
+
+                this.setState({loading:true})
+
+                login({
+                    emailId: values.email,
+                    password: values.password,
+                    deviceType: "IOS",
+                    deviceToken: "1"
+                })
+                .then( (response) =>{
+                    this.setState({loading:false})
+                    let data = response.data.data;
+
+                    let {name ,location ,phoneNumber ,emailId} = data;
+                    let user = {name ,location ,phone:phoneNumber ,email:emailId};
+
+                    this.props.setToken(data.accessToken,user)
+                    message.success('Login successful.');
+                    this.goTo('/')
+
+                })
+                .catch( error => {
+                    this.setState({loading:false})
+                    let {response} = error
+                    message.error(response.data.message)
                 });
             }
         });
     }
 
+
+    componentWillMount(){
+        if (localStorage.access_token) {
+            this.goTo('/')
+        }
+    }
+
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const {getFieldDecorator} = this.props.form;
         return (
-        <Row  ref="myRef">
-            <Col xs={9} sm={9} md={9} lg={9} xl={9}></Col>
-            <Col xs={6} sm={6} md={6} lg={6} xl={6} className="col-login">
-                <Form onSubmit={this.handleSubmit} className="login-form">
-                    <FormItem>
-                        {getFieldDecorator('userName', {
-                            rules: [{ required: true, message: 'Please input your username!' }],
-                        })(
-                            <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
-                        )}
-                    </FormItem>
-                    <FormItem>
-                        {getFieldDecorator('password', {
-                            rules: [{ required: true, message: 'Please input your Password!' }],
-                        })(
-                            <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
-                        )}
-                    </FormItem>
-                    <FormItem>
-                        {getFieldDecorator('remember', {
-                            valuePropName: 'checked',
-                            initialValue: true,
-                        })(
-                            <Checkbox>Remember me</Checkbox>
-                        )}
-                        <a className="login-form-forgot" href="">Forgot password</a>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
-                            Log in
-                        </Button>
-                        Or <a href="">register now!</a>
-                    </FormItem>
-                    <style>{css}</style>
-                </Form>
-            </Col>
-            <Col xs={9} sm={9} md={9} lg={9} xl={9}></Col>
-        </Row>
+            <Row>
+                <Col xs={{span: 24, offset: 0}}
+                     sm={{span: 8, offset: 8}}
+                     md={{span: 8, offset: 8}}
+                     lg={{span: 8, offset: 8}}
+                     xl={{span: 8, offset: 8}} className="col-login">
+                    <Form onSubmit={this.handleSubmit} className="login-form">
+
+                        <h2><span>Photosesh</span> Login</h2>
+
+                        <FormItem>
+                            {getFieldDecorator('email', {
+                                rules: [
+                                    {required: true, message: 'Please input your Email!'},
+                                    {type: 'email', message: 'The input is not valid E-mail!'}
+
+                                ],
+                            })(
+                                <Input prefix={<Icon type="user"/>} placeholder="Email"/>
+                            )}
+                        </FormItem>
+                        <FormItem>
+                            {getFieldDecorator('password', {
+                                rules: [{required: true, message: 'Please input your Password!'}],
+                            })(
+                                <Input style={{fontSize: 13}} prefix={<Icon type="lock"/>} type="password"
+                                       placeholder="Password"/>
+                            )}
+                        </FormItem>
+                        <FormItem>
+                            {getFieldDecorator('remember', {
+                                valuePropName: 'checked',
+                                initialValue: true,
+                            })(
+                                <Checkbox>Remember me</Checkbox>
+                            )}
+                            <a className="login-form-forgot" href="">Forgot password</a>
+                            <Button type="primary" loading={this.state.loading} htmlType="submit" className="login-form-button">
+                                Log in
+                            </Button>
+                            Or <a href="">register now!</a>
+                        </FormItem>
+                        <style>{css}</style>
+                    </Form>
+                </Col>
+            </Row>
 
         );
     }
 }
-export default Form.create()(LoginPage);
+
+
+const WrappedLoginForm = Form.create()(LoginPage);
+
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated:state.auth.isAuthenticated
+    }
+}
+export default connect(mapStateToProps, {setToken})(WrappedLoginForm)
+
+
+
 
 const css = `
+.login-form h2 {
+    font-size: 25px;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.login-form h2 span{
+    color: #ff6316;
+}
+input.ant-input{
+    font-size:15px;
+}
 body{
-    background: url(/images/feature-bg.jpg) no-repeat;;
     padding-top: 150px;
 }
 .col-login{
-    background: rgba(226, 164, 71, 0.7);
     padding-top: 40px;
     border-radius: 5px;
-}
-.login-form{
-    margin: auto;
 }
 .ant-modal.modal-login {
     width: 330px !important;
 }
-.login-form {
-  max-width: 300px;
+.login-form { 
+    margin: auto;
+    max-width: 350px;
+    padding: 30px 20px;
+    background: #fbfbfb;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px #ddd;
 }
 .login-form-forgot {
   float: right;

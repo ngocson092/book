@@ -14,6 +14,7 @@ export default class Bookings extends Component{
         this.state = {
             dataSource : []
         };
+        console.log(props)
     }
     componentDidMount = function () {
         let that = this;
