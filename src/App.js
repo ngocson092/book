@@ -10,7 +10,7 @@ import Step3a from './components/Steps/DetailPhotoseshLight';
 import Step4 from './components/Steps/NeedAPhotoSesh';
 import Step5 from './components/Steps/photographers';
 import Step6 from './components/Steps/BookingReview';
-import Home from './components/Home'
+import Home from './components/Home/Home'
 
 
 import requireAuth from './utils/requireAuth'

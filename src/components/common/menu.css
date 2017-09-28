@@ -1,4 +1,4 @@
-.ant-menu {
+:local(.ant_menu){
   line-height: 60px;
   float: right;
 }
