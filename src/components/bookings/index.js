@@ -109,7 +109,6 @@ export default class Bookings extends Component{
             title: 'Title',
             dataIndex: 'title',
             key: 'title',
-            fixed: 'left',
             render: (text, record, index) => this.renderColumns(this.state.dataSource, index, 'title', text),
         }, {
             title: 'Event type',
@@ -141,7 +140,7 @@ export default class Bookings extends Component{
             title: 'Agent name',
             dataIndex: 'agent_name',
             key: 'agent_name',
-            width: 100,
+            width: 120,
         }, {
             title: 'Agent email',
             dataIndex: 'agent_email',
@@ -151,7 +150,7 @@ export default class Bookings extends Component{
             dataIndex: 'status',
             key: 'status',
             width: 100,
-            sorter: (a, b) => a.status.length  - b.status.length ,
+            // sorter: (a, b) => a.status.length  - b.status.length ,
         },{
             title: 'Action',
             key: 'operation',
@@ -193,7 +192,7 @@ export default class Bookings extends Component{
                             <h1>Bookings</h1>
                         </div>
 
-                        <Table dataSource={dataSource} columns={columns} scroll={{ x: 1300 }}/>
+                        <Table dataSource={dataSource} columns={columns} scroll={{ x: 1500 }}/>
                     </Content>
                 </Layout>
                 <style>{css}</style>
@@ -206,15 +205,15 @@ export default class Bookings extends Component{
 const css = `
     .title {
         text-align: center;
-        margin: 130px 0 50px 0;
-        font-size: 30px;
+        margin: 70px 0 30px 0;
+        font-size: 25px;
     }
     .ant-table-wrapper{
         padding: 15px;
     }
     thead.ant-table-thead tr th {
     
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
     }
     .ant-popover.ant-popover-placement-top{
