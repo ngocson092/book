@@ -10,6 +10,7 @@ import Step4 from './components/Steps/NeedAPhotoSesh';
 import Step5 from './components/Steps/photographers';
 import Step6 from './components/Steps/BookingReview';
 import Home from './components/Home'
+import Bookings from './components/bookings/index'
 
 
 
@@ -33,7 +34,7 @@ class App extends Component {
                 <Route exact={true} path="/book-now/need-a-photosesh" render={()=> generateLayout(LayoutBookNow,Step4)} />
                 <Route exact={true} path="/book-now/photographers" render={()=> generateLayout(LayoutBookNow,Step5)} />
                 <Route exact={true} path="/book-now/booking-review" render={()=> generateLayout(LayoutBookNow,Step6)} />
-                {/*<Route exact={true} path="/login" render={()=> generateLayout(LayoutMaster,Login)} />*/}
+                <Route exact={true} path="/bookings" render={()=> generateLayout(LayoutBookNow,Bookings)} />
             </Switch>
         );
     }

@@ -2,21 +2,22 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
 import {Redirect,Link} from 'react-router-dom'
+import Heade from '../bookings/heade';
 
 
 import createClass from 'create-react-class'
-import {Row, Col, Button, Input, Radio, Select, Form,DatePicker,Layout,Icon} from 'antd';
+import {Row, Col, Button, Input, Radio, Select, Form,DatePicker} from 'antd';
 import moment from 'moment'
 import Map, {Marker, GoogleApiWrapper} from 'google-maps-react'
 import {NOW, LATER, DURATIONS,TIME} from '../../define'
 import {setInfoStepOne,setBooktype} from '../../actions'
 
 /* ----------- google map config -------------*/
-const GG_MAP_APIKEY = 'AIzaSyDAqY0FGMvPU9zvmpdP07C1Es17sKOoEZs';
+const GG_MAP_APIKEY = 'AIzaSyCnsWf_o8bCmDAmDC4jx98wi2rjyFaZwok';
 const GG_MAP_VERSION = '3.27'
 /* ----------- google map config -------------*/
 
-const {Header} = Layout;
+
 const Option = Select.Option;
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -63,7 +64,7 @@ const Contents = createClass({
 
                 fetch(`http://maps.googleapis.com/maps/api/geocode/json?address=${info_location.coords.latitude},${info_location.coords.longitude}&sensor=true`)
                     .then(res=>res.json())
-                    .then((data)=>{
+                    .then((data)=>{ console.log(data)
                         this.setState({position,place:data.results[0]['formatted_address']})
                     })
 
@@ -287,10 +288,7 @@ const MapWrapper = createClass({
         return (
 
             <div className="choose-address">
-                <Header id="header">
-                  <Link className="logo" to={'/book-now'}>Photosesh - Book Now</Link>
-                  <Link className={'btn-right'} to={'/'}><Icon type="home" /> Home</Link>
-                </Header>
+                <Heade />
                 <Map
 
                      google={google}

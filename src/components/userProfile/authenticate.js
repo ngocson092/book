@@ -19,7 +19,7 @@ export default class Authenticate extends React.Component {
     componentDidMount = function () {
         let user = localStorage.getItem("user");
         if (user != 'undefined' && user != null) {
-            console.log(user)
+            // console.log(user)
             user = JSON.parse(user);
             request.get('/user/getProfile', {}, {
                 headers: {
@@ -28,7 +28,11 @@ export default class Authenticate extends React.Component {
             }).then(body=>{
                 if (body.statusCode == 200)
                     this.setState({isLogin: true});
-                else console.log(body);
+                else {
+                    console.log(body);
+                    localStorage.clear();
+                    this.showLogin();
+                }
             })
         }
 
