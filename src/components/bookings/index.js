@@ -205,7 +205,7 @@ export default class Bookings extends Component{
 const css = `
     .title {
         text-align: center;
-        margin: 130px 0 50px 0;
+        margin: 70px 0 30px 0;
         font-size: 25px;
     }
     .ant-table-wrapper{
