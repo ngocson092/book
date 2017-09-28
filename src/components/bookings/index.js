@@ -151,29 +151,29 @@ export default class Bookings extends Component{
             key: 'operation',
             fixed: 'right',
             width: 100,
-            // render: (a) => {
-            //     if(a.status =='PENDING') return (<Button onClick={()=>this.showEdit(a)}>Edit</Button>)
-            //     else return '';
-            // },
             render: (text, record, index) => {
-                const { editable } = dataSource[index].title;
-                return (
-                    <div className="editable-row-operations">
-                        {
-                            editable ?
+                if(dataSource[index].status =='PENDING'){
+                    const { editable } = dataSource[index].title;
+                    return (
+                        <div className="editable-row-operations">
+                            {
+                                editable ?
                                 <span>
-                  <a onClick={() => this.editDone(index, 'save')}>Save</a>
-                  <Popconfirm title="Sure to cancel?" onConfirm={() => this.editDone(index, 'cancel')}>
-                    <a>Cancel</a>
-                  </Popconfirm>
-                </span>
-                                :
+                                    <a onClick={() => this.editDone(index, 'save')}>Save</a>
+                                    <Popconfirm title="Sure to cancel?" onConfirm={() => this.editDone(index, 'cancel')}>
+                                    <a>Cancel</a>
+                                    </Popconfirm>
+                                </span>
+                                            :
                                 <span>
-                  <a onClick={() => this.edit(index)}>Edit</a>
-                </span>
-                        }
-                    </div>
-                );
+                                    <a onClick={() => this.edit(index)}>Edit</a>
+                                </span>
+                            }
+                        </div>
+                    );
+                }
+                else return '';
+
             },
         }];
 
