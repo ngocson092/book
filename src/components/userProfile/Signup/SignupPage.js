@@ -2,7 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom';
 import { userSignupRequest } from '../../../actions/userActions';
-import {Form, Input, Tooltip, Icon, Row, Col, Checkbox, Button} from 'antd';
+import { login,setToken } from '../../../actions/authActions';
+import {Form, Input, Row, Col, message, Button} from 'antd';
 
 import style from './signup.css';
 
@@ -20,19 +21,45 @@ class RegistrationForm extends React.Component {
         iconLoading: false,
     };
 
-     handleSubmit = (e) => {
+    login = (data)=>{
+
+        login(data).then(response => {
+
+            this.setState({loading:false})
+
+            let {name ,location ,phoneNumber ,emailId} = response.data.data;
+            let user = {name ,location ,phone:phoneNumber ,email:emailId};
+
+            this.props.setToken(data.accessToken,user)
+            this.goTo('/')
+            message.success(response.data.message)
+        });
+    }
+
+
+    handleSubmit = (e) => {
         e.preventDefault();
 
         this.setState({ loading: true });
         this.props.form.validateFieldsAndScroll((err, values) => {
 
             if(!err){
-                userSignupRequest(values)
+
+                let data = {...values,deviceType:'IOS',deviceToken:'1'};
+                delete data.confirm
+
+                userSignupRequest(data)
                 .then(res=>{
-                    if(res.data.success){
-                        this.goTo('/login')
+                    if(res.data.statusCode == 201){
+
+                        let {password,emailId} = data
+
+                        this.login({password,emailId,deviceType: "IOS",deviceToken: "1"})
                     }
                 },({response})=>{
+
+
+                    message.error(response.data.message)
                     this.setState({ loading: false });
                 })
             }
@@ -111,10 +138,35 @@ class RegistrationForm extends React.Component {
 
                         <FormItem
                             {...formItemLayout}
+                            label="First Name"
+                            hasFeedback
+                        >
+                            {getFieldDecorator('firstName', {
+                                rules: [{ required: true, message: 'Please input your First Name!'}],
+                            })(
+                                <Input />
+                            )}
+                        </FormItem>
+
+                        <FormItem
+                            {...formItemLayout}
+                            label="Last Name"
+                            hasFeedback
+                        >
+                            {getFieldDecorator('lastName', {
+                                rules: [{ required: true, message: 'Please input your Last Name!'}],
+                            })(
+                                <Input />
+                            )}
+                        </FormItem>
+
+
+                        <FormItem
+                            {...formItemLayout}
                             label="E-mail"
                             hasFeedback
                         >
-                            {getFieldDecorator('email', {
+                            {getFieldDecorator('emailId', {
                                 rules: [{
                                     type: 'email', message: 'The input is not valid E-mail!',
                                 }, {
@@ -128,6 +180,20 @@ class RegistrationForm extends React.Component {
                                 <Input />
                             )}
                         </FormItem>
+
+
+                        <FormItem
+                            {...formItemLayout}
+                            label="Phone"
+                            hasFeedback
+                        >
+                            {getFieldDecorator('phoneNumber', {
+                                rules: [{ required: true, message: 'Please input your phone!'}],
+                            })(
+                                <Input />
+                            )}
+                        </FormItem>
+
                         <FormItem
                             {...formItemLayout}
                             label="Password"
@@ -158,35 +224,7 @@ class RegistrationForm extends React.Component {
                                 <Input type="password" onBlur={this.handleConfirmBlur}/>
                             )}
                         </FormItem>
-                        <FormItem
-                            {...formItemLayout}
-                            label={(
-                                <span>
-              Name&nbsp;
-                                    <Tooltip title="What do you want other to call you?">
-                <Icon type="question-circle-o"/>
-              </Tooltip>
-            </span>
-                            )}
-                            hasFeedback
-                        >
-                            {getFieldDecorator('name', {
-                                rules: [{required: true, message: 'Please input your name!', whitespace: true}],
-                            })(
-                                <Input />
-                            )}
-                        </FormItem>
-                        <FormItem {...tailFormItemLayout} style={{marginBottom: 8}}>
-                            {getFieldDecorator('agreement', {
-                                valuePropName: 'checked',
-                                rules: [{
-                                    required: true,
-                                    message: 'Please make sure you have read and check agreement'
-                                }],
-                            })(
-                                <Checkbox>I have read the <a href="">agreement</a></Checkbox>
-                            )}
-                        </FormItem>
+
                         <FormItem {...tailFormItemLayout}>
                             <Button loading={this.state.loading} type="primary" htmlType="submit">Register</Button>
                         </FormItem>
@@ -219,4 +257,4 @@ const mapStateToProps = (state) => {
 
     }
 }
-export default connect(mapStateToProps, {})(WrappedRegistrationForm)
+export default connect(mapStateToProps, {setToken})(WrappedRegistrationForm)

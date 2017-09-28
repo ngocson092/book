@@ -1,6 +1,3 @@
-/**
- * Created by lamtanphiho on 8/8/2017.
- */
 import style from './menu.css'
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
