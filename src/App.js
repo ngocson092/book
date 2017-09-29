@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import LayoutMaster from './components/Layout/LayoutMaster'
 import LayoutBookNow from './components/Layout/LayoutBookNow'
-import LayoutProfile from './components/Layout/LayoutProfile'
+import LayoutEmptyWrapper from './components/Layout/EmptyWrapper'
 import DashboardWrapper from './components/userProfile/Dashboard/DashboardWrapper'
 import Login from './components/userProfile/Login/LoginPage'
 import Signup from './components/userProfile/Signup/SignupPage'
@@ -21,7 +21,7 @@ import requireAuth from './utils/requireAuth'
 
 const LayoutMasterAuthorize = requireAuth(LayoutMaster)
 const LayoutBookNowAuthorize = requireAuth(LayoutBookNow)
-const LayoutProfileAuthorize = requireAuth(LayoutProfile)
+const LayoutEmptyWrapperAuthorize = requireAuth(LayoutEmptyWrapper)
 
 class App extends Component {
     constructor(props) {
@@ -42,7 +42,7 @@ class App extends Component {
                 <Route exact={true} path="/book-now/booking-review" render={(props)=> this.generateLayout(props,LayoutBookNowAuthorize,Step6)} />
 
                 <Route path="/my-account"
-                       render={(props)=> this.generateLayout(props, LayoutProfileAuthorize, DashboardWrapper)}/>
+                       render={(props)=> this.generateLayout(props, LayoutEmptyWrapperAuthorize, DashboardWrapper)}/>
 
                 <Route exact={true} path="/bookings" render={(props)=> this.generateLayout(props,LayoutBookNowAuthorize,Bookings)} />
                 <Redirect to="/"/>

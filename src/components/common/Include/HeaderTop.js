@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Menu, Dropdown, Icon, message} from 'antd';
 import Headphone from 'react-icons/lib/ti/headphones'
 import {logout} from '../../../actions/authActions'
+import PropTypes from 'prop-types';
 import style from './header_top.css';
 
 class HeaderTop extends Component {
@@ -12,6 +13,8 @@ class HeaderTop extends Component {
         super(props);
     }
     goTo = (route)=>{this.props.history.replace(route)}
+
+
     render() {
         const menu = (
             <Menu>
@@ -69,9 +72,11 @@ class HeaderTop extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        fullname:state.auth.user.name.firstName + state.auth.user.name.lastName
-    }
+HeaderTop.propTypes = {
+    logout: PropTypes.func.isRequired,
+    fullname: PropTypes.string.isRequired
 }
-export default connect(mapStateToProps, {logout})(HeaderTop)
+
+
+
+export default HeaderTop
