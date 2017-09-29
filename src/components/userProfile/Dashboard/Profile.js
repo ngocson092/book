@@ -1,10 +1,10 @@
-import style from './profile.css'
-
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Row, Form} from 'antd';
 import {connect} from 'react-redux'
 import { Layout, Menu, Icon } from 'antd';
+import ProfileForm from './Include/EditProfileForm'
+
 const {  Content, Sider } = Layout;
 const FormItem = Form.Item;
 
@@ -22,7 +22,10 @@ class Profile extends Component {
     render() {
 
         return (
-            <div>profile</div>
+            <div>
+                <h2 className="head-title">Edit Profile</h2>
+                <ProfileForm user={this.props.user} />
+            </div>
         );
     }
 }
@@ -31,7 +34,7 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        user:state.auth.user
     }
 }
 export default connect(mapStateToProps, {})(Profile)

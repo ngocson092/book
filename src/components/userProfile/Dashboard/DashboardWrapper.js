@@ -63,7 +63,7 @@ class DashboardWrapper extends Component {
 
                     </Sider>
 
-                    <Layout style={{height:'calc( 100vh  - 41px ) '}}>
+                    <Layout style={{height:'calc( 100vh  - 41px ) ' ,background:'#fbfbfb'}}>
                         <Content style={{ padding: '24px', margin: 0, minHeight: 280 }}>
                             <Route  exact={true}  path={`${this.props.match.url}/`} component={Profile}/>
                             <Route  exact={true}  path={`${this.props.match.url}/profile`} component={Profile}/>

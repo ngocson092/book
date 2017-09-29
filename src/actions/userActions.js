@@ -12,3 +12,14 @@ export function userSignupRequest(userData) {
     })
 
 }
+export function updateProfile(data) {
+
+    const config = {
+        headers: { 'content-type': 'multipart/form-data' }
+    }
+
+    return axios.post(API_URL + '/user/updateProfile',data,config)
+}
+export function changePassword(data) {
+    return axios.put(API_URL + '/users/change-password',data)
+}

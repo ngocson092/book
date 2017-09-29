@@ -1,12 +1,6 @@
-import style from './change_password.css'
-
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {Row, Form} from 'antd';
 import {connect} from 'react-redux'
-import { Layout, Menu, Icon } from 'antd';
-const {  Content, Sider } = Layout;
-const FormItem = Form.Item;
+import ChangePasswordForm from './Include/ChangePasswordForm'
 
 class ChangePassword extends Component {
     constructor(props) {
@@ -20,8 +14,12 @@ class ChangePassword extends Component {
 
 
     render() {
+
         return (
-            <div>change pass</div>
+            <div>
+                <h2 className="head-title">Change Password</h2>
+                <ChangePasswordForm />
+            </div>
         );
     }
 }
