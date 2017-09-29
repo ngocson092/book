@@ -2,3 +2,19 @@
 body{
   color: #666;
 }
+@-webkit-keyframes progressbar {
+  from {
+    width:0
+  }
+  to {
+    width:100%
+  }
+}
+@keyframes progressbar {
+  from {
+    width:0
+  }
+  to {
+    width:100%
+  }
+}

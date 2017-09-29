@@ -1,7 +1,7 @@
 import './stylesheet/_common.scss'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import AppContainer from './AppContainer';
 import {createStore,applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
@@ -24,7 +24,7 @@ ReactDOM.render(
     <LocaleProvider locale={enUS}>
         <BrowserRouter>
             <Provider store={store}>
-                <App/>
+                <AppContainer/>
             </Provider>
         </BrowserRouter>
     </LocaleProvider>
