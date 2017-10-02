@@ -48,7 +48,15 @@ class RegistrationForm extends React.Component {
                 let data = {...values,deviceType:'IOS',deviceToken:'1'};
                 delete data.confirm
 
-                userSignupRequest(data)
+                let form_data = new FormData();
+
+                Object.keys(data).forEach((key)=>{
+                    form_data.append(key,data[key]);
+                })
+
+
+
+                userSignupRequest(form_data)
                 .then(res=>{
                     if(res.data.statusCode == 201){
 
