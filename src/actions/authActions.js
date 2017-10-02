@@ -3,7 +3,7 @@ import axios from 'axios';
 import {SET_CURRENT_USER} from './types';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
 
-const API_URL = process.env.API_URL;
+export const API_URL = process.env.API_URL;
 
 
 export function setCurrentUser(user) {

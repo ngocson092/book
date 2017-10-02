@@ -67,8 +67,12 @@ class EditProfileForm extends Component {
                     let user = filterUserData(data_)
                     this.props.setToken(data_.accessToken,user)
 
+
+                    message.success('Update Profile Successful')
+
                     this.setState({ loading: false });
                 },({response})=>{
+                    message.error('Something was wrong')
                     this.setState({ loading: false });
                 })
             }
