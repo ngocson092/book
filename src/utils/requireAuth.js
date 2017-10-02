@@ -25,6 +25,8 @@ export default function (ComposedComponent) {
                 this.goTo('/login')
             }else{
 
+
+
                 /*
                 * when already access_token from localstorage
                 * next, check authenticated from verify token (localStoragaLoad.js)

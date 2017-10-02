@@ -49,7 +49,8 @@ export default class Bookings extends Component{
                         agent_email : book.agentEmailId,
                         agent_name : book.agentName.firstName + ' ' +  book.agentName.lastName,
                         status: book.appointmentStatus,
-                        key: i
+                        key: i,
+                        _id: book._id
                     }
                 })
 
@@ -82,6 +83,7 @@ export default class Bookings extends Component{
                 dataSource[index][item].status = type;
             }
         });
+        console.log(dataSource[index])
         this.setState({ dataSource }, () => {
             Object.keys(dataSource[index]).forEach((item) => {
                 if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
