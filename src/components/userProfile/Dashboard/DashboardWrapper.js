@@ -33,12 +33,7 @@ class DashboardWrapper extends Component {
             <div id="user-dashboard">
 
 
-                <HeaderTop
-                    logout={this.props.logout}
-                    fullname={this.props.fullname}
-                    history={this.props.history}
-
-                ></HeaderTop>
+                <HeaderTop {...this.props} />
 
 
 
@@ -48,7 +43,7 @@ class DashboardWrapper extends Component {
                         <div className={style.header_user}>
                             <p> {(this.props.avatar == '') ? ( <Avatar className={style.avatar} size="large" icon="user" />) : (<Avatar   className={style.avatar} src={this.props.avatar} />)} </p>
 
-                            <span>{this.props.fullname}</span>
+                            <span style={{fontSize:14}}>{this.props.fullname}</span>
 
                         </div>
 

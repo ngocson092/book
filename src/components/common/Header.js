@@ -10,12 +10,7 @@ class Header extends Component {
 
         return (
             <div id="header">
-                <HeaderTop
-                    logout={this.props.logout}
-                    fullname={this.props.fullname}
-                    history={this.props.history}
-
-                ></HeaderTop>
+                <HeaderTop {...this.props}/>
                 <HeaderBottom></HeaderBottom>
             </div>
         );
@@ -24,7 +19,8 @@ class Header extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-        fullname:state.auth.user.name.firstName + ' ' + state.auth.user.name.lastName
+        fullname:state.auth.user.name.firstName + ' ' + state.auth.user.name.lastName,
+        avatar: (state.auth.user.profilePicURL.thumb != '')?state.auth.user.profilePicURL.thumb:''
     }
 }
 export default connect(mapStateToProps,{logout})(Header)

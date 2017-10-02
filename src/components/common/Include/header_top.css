@@ -6,19 +6,34 @@
 }
 
 :local(.top_right){
+
+    float: right;
+}
+:local(.top_right a){
+    color: #4b4b4b;
+    line-height: 38px;
+    display: inline-block;
+    float: right;
+    font-size: 14px;
+}
+:local(.ant-dropdown-link span){
+    margin-left: 10px;
+    float: right;
+}
+.top_right .ant-avatar{
+    margin-left: 10px;
+    float: right;
+    margin-top: 4px;
+}
+
+:local(.right_dropdown){
+    background: #2892e0;
     float: right;
     padding: 0 10px;
     height: 25px;
     margin-top: 9px;
     line-height: 25px;
     border-radius: 0;
-    background: #2892e0;
-}
-:local(.top_right a){
-    color: white;
-}
-:local(.top_right span){
-    margin-left: 10px;
 }
 :local(.header_top){
     padding: 0px 20px;
