@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {Route,Link} from 'react-router-dom'
 import {Row, Form} from 'antd';
 import {connect} from 'react-redux'
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon,Avatar } from 'antd';
 import Profile from './Profile'
 import ChangePassword from './ChangePassword'
 import HeaderTop from '../../common/Include/HeaderTop'
@@ -27,6 +27,8 @@ class DashboardWrapper extends Component {
 
     render() {
 
+
+
         return (
             <div id="user-dashboard">
 
@@ -44,7 +46,7 @@ class DashboardWrapper extends Component {
                     <Sider width={300} style={{  background: '#fdfdfd', borderRight: '1px solid #f1f1f1' ,height:'calc( 100vh  - 41px ) '}}>
 
                         <div className={style.header_user}>
-                            <p><Icon type="user" /></p>
+                            <p> {(this.props.avatar == '') ? ( <Avatar className={style.avatar} size="large" icon="user" />) : (<Avatar   className={style.avatar} src={this.props.avatar} />)} </p>
 
                             <span>{this.props.fullname}</span>
 
@@ -80,7 +82,8 @@ class DashboardWrapper extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        fullname:state.auth.user.name.firstName + state.auth.user.name.lastName
+        fullname:state.auth.user.name.firstName + ' ' + state.auth.user.name.lastName,
+        avatar: (state.auth.user.profilePicURL.thumb != '')?state.auth.user.profilePicURL.thumb:''
     }
 }
 export default connect(mapStateToProps, {logout})(DashboardWrapper)

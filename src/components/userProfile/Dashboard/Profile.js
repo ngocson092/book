@@ -4,6 +4,7 @@ import {Row, Form} from 'antd';
 import {connect} from 'react-redux'
 import { Layout, Menu, Icon } from 'antd';
 import ProfileForm from './Include/EditProfileForm'
+import {setToken} from '../../../actions/authActions'
 
 const {  Content, Sider } = Layout;
 const FormItem = Form.Item;
@@ -24,7 +25,7 @@ class Profile extends Component {
         return (
             <div>
                 <h2 className="head-title">Edit Profile</h2>
-                <ProfileForm user={this.props.user} />
+                <ProfileForm user={this.props.user} setToken={this.props.setToken} />
             </div>
         );
     }
@@ -37,7 +38,7 @@ const mapStateToProps = (state) => {
         user:state.auth.user
     }
 }
-export default connect(mapStateToProps, {})(Profile)
+export default connect(mapStateToProps, {setToken})(Profile)
 
 
 

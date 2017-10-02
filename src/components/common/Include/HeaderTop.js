@@ -43,7 +43,7 @@ class HeaderTop extends Component {
             <div
                 className={style.right_menu}
             >
-                <Dropdown overlay={menu} trigger={['click']}>
+                <Dropdown overlay={menu} trigger={['click']}  placement="bottomLeft">
                     <a className="ant-dropdown-link" href="#">
                         <span
                             className={style.welcome}>{this.props.fullname}</span>

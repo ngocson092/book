@@ -49,10 +49,9 @@
     color: #f95b0d;
 }
 
+
 .ant-dropdown-menu{
     margin-top: 5px;
-    width: 140px;
-    right: -106px;
     text-align: center;
 }
 .ant-dropdown-menu-item  a{
