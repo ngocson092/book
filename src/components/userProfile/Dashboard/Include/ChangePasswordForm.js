@@ -19,7 +19,7 @@ class ChangePasswordForm extends Component {
 
     checkPassword = (rule, value, callback) => {
         const form = this.props.form;
-        if (value && value !== form.getFieldValue('password')) {
+        if (value && value !== form.getFieldValue('newPassword')) {
             callback('Two passwords that you enter is inconsistent!');
         } else {
             callback();
@@ -42,16 +42,12 @@ class ChangePasswordForm extends Component {
 
                 changePassword(inputs)
                     .then(res=>{
-
-
                         this.props.form.resetFields()
-
                         message.success('Change Password Successful')
-
                         this.setState({ loading: false });
                     },({response})=>{
 
-                        message.error('Password is Invalid Credentials')
+                        message.error('Old Password is Invalid Credentials')
 
                         this.setState({ loading: false });
                     })
@@ -69,7 +65,7 @@ class ChangePasswordForm extends Component {
                     label="Old Password"
                     hasFeedback
                 >
-                    {getFieldDecorator('old_password', {
+                    {getFieldDecorator('oldPassword', {
                         rules: [{
                             required: true, message: 'Please input old password ',
                         }
@@ -83,7 +79,7 @@ class ChangePasswordForm extends Component {
                     label="New Password"
                     hasFeedback
                 >
-                    {getFieldDecorator('password', {
+                    {getFieldDecorator('newPassword', {
                         rules: [{
                             required: true, message: 'Please input New password ',
                         }
@@ -96,7 +92,7 @@ class ChangePasswordForm extends Component {
                     label="Confirm Password"
                     hasFeedback
                 >
-                    {getFieldDecorator('confirm', {
+                    {getFieldDecorator('confirmPassword', {
                         rules: [{
                             required: true, message: 'Please confirm your password!',
                         }, {
