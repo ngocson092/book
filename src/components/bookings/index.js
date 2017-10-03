@@ -77,56 +77,48 @@ export default class Bookings extends Component{
     }
     editDone(index, type) {
         const { dataSource } = this.state;
-
-        // request({
-        //     method: 'PUT',
-        //     url : process.env.API_URL+'/booking/' + dataSource[index]._id,
-        //     headers: {
-        //         'authorization': localStorage.access_token
-        //     },
-        //     form : {
-        //         appointmentScheduledStartTime   : dataSource[index].start_time.value,
-        //         appointmentScheduledEndTime     : dataSource[index].end_time.value,
-        //         appointmentScheduledStartDate   : dataSource[index].book_date.value,
-        //         appointmentScheduledEndDate     : dataSource[index].book_date.value,
-        //         titleOrDescription              : dataSource[index].title.value,
-        //     }
-        // },
-        // function (error, response, body) {
-        //     if(!error){
-        //         body = JSON.parse(body)
-        //         if(body.statusCode == 405) errorModel(body.message)
-        //         else {
-        //             Object.keys(dataSource[index]).forEach((item) => {
-        //                 if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
-        //                     dataSource[index][item].editable = false;
-        //                     dataSource[index][item].status = type;
-        //                 }
-        //             });
-        //             this.setState({ dataSource }, () => {
-        //                 Object.keys(dataSource[index]).forEach((item) => {
-        //                     if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
-        //                         delete dataSource[index][item].status;
-        //                     }
-        //                 });
-        //             });
-        //         }
-        //     }
-        // })
-        Object.keys(dataSource[index]).forEach((item) => {
-            if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
-                dataSource[index][item].editable = false;
-                dataSource[index][item].status = type;
-            }
-        });
-        this.setState({ dataSource }, () => {
+        const promise = [
             Object.keys(dataSource[index]).forEach((item) => {
                 if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
-                    delete dataSource[index][item].status;
+                    dataSource[index][item].editable = false;
+                    dataSource[index][item].status = type;
                 }
-            });
-        });
-        console.log(dataSource[index])
+            }),
+            this.setState({ dataSource }, () => {
+                Object.keys(dataSource[index]).forEach((item) => {
+                    if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
+                        delete dataSource[index][item].status;
+                    }
+                });
+            })
+        ];
+        Promise.all(promise).then(()=>{
+            request({
+                method: 'PUT',
+                url : process.env.API_URL+'/booking/' + dataSource[index]._id,
+                headers: {
+                    'authorization': localStorage.access_token
+                },
+                form : {
+                    appointmentScheduledStartTime   : dataSource[index].start_time.value,
+                    appointmentScheduledEndTime     : dataSource[index].end_time.value,
+                    appointmentScheduledStartDate   : dataSource[index].book_date.value,
+                    appointmentScheduledEndDate     : dataSource[index].book_date.value,
+                    titleOrDescription              : dataSource[index].title.value,
+                }
+            }, function (error, response, body) {
+                if(!error){
+                    body = JSON.parse(body)
+                    if(body.statusCode == 405) errorModel(body.message)
+                    else {
+                        success('Update successfully !!!')
+                    }
+                }
+            })
+        })
+
+
+
 
     }
     renderColumns(data, index, key, text) {
@@ -197,7 +189,8 @@ export default class Bookings extends Component{
             width: 100,
 
             render: (text, record, index) => {
-                if(dataSource[index].status =='PENDING'){
+                // console.log(record)
+                if(record.status =='PENDING'){
                     const { editable } = dataSource[index].title;
                     return (
                         <div className="editable-row-operations">
