@@ -4,9 +4,10 @@ import React, {Component} from 'react';
 import {Route,Link} from 'react-router-dom'
 import {Row, Form} from 'antd';
 import {connect} from 'react-redux'
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon,Avatar } from 'antd';
 import Profile from './Profile'
 import ChangePassword from './ChangePassword'
+import PaymentCredit from './PaymentCredit'
 import HeaderTop from '../../common/Include/HeaderTop'
 import {logout} from '../../../actions/authActions'
 
@@ -27,26 +28,23 @@ class DashboardWrapper extends Component {
 
     render() {
 
+
+
         return (
             <div id="user-dashboard">
 
 
-                <HeaderTop
-                    logout={this.props.logout}
-                    fullname={this.props.fullname}
-                    history={this.props.history}
-
-                ></HeaderTop>
+                <HeaderTop {...this.props} />
 
 
 
                 <Layout>
-                    <Sider width={300} style={{  background: '#fdfdfd', borderRight: '1px solid #f1f1f1' ,height:'calc( 100vh  - 41px ) '}}>
+                    <Sider width={300} style={{  background: 'white', borderRight: '1px solid #f1f1f1' ,height:'calc( 100vh  - 41px ) '}}>
 
                         <div className={style.header_user}>
-                            <p><Icon type="user" /></p>
+                            <p> {(this.props.avatar == '') ? ( <Avatar className={style.avatar}   style={{width:60,height:60}} icon="user" />) : (<Avatar  style={{width:60,height:60}} className={style.avatar} src={this.props.avatar} />)} </p>
 
-                            <span>{this.props.fullname}</span>
+                            <span style={{fontSize:14}}>{this.props.fullname}</span>
 
                         </div>
 
@@ -55,9 +53,11 @@ class DashboardWrapper extends Component {
                             mode="inline"
                             style={{ height: '100%', borderRight: 0 }}
                         >
-                            <Menu.Item key="orders"><Link to="/my-account/profile">Edit Profile</Link></Menu.Item>
-                            <Menu.Item key="change-password"><Link to="/my-account/change-password">Change Password</Link></Menu.Item>
-                            <Menu.Item key="homepage"><Link to="/">HomePage</Link></Menu.Item>
+                            <Menu.Item key="orders"><Link to="/my-account/profile"><Icon type="contacts" /> Edit Profile</Link></Menu.Item>
+                            <Menu.Item key="change-password"><Link to="/my-account/change-password"><Icon type="qrcode" /> Change Password</Link></Menu.Item>
+                            <Menu.Item key="bank-detail"><Link to="/my-account/payment-credits"><Icon type="credit-card" /> Payment & Credits</Link></Menu.Item>
+                            <Menu.Divider />
+                            <Menu.Item key="homepage"><Link to="/"><Icon type="home" /> Back to Home</Link></Menu.Item>
 
                         </Menu>
 
@@ -68,6 +68,7 @@ class DashboardWrapper extends Component {
                             <Route  exact={true}  path={`${this.props.match.url}/`} component={Profile}/>
                             <Route  exact={true}  path={`${this.props.match.url}/profile`} component={Profile}/>
                             <Route  exact={true}  path={`${this.props.match.url}/change-password`} component={ChangePassword}/>
+                            <Route   path={`${this.props.match.url}/payment-credits`} component={PaymentCredit}/>
                         </Content>
                     </Layout>
 
@@ -80,7 +81,8 @@ class DashboardWrapper extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        fullname:state.auth.user.name.firstName + state.auth.user.name.lastName
+        fullname:state.auth.user.name.firstName + ' ' + state.auth.user.name.lastName,
+        avatar: (state.auth.user.profilePicURL.thumb != '')?state.auth.user.profilePicURL.thumb:''
     }
 }
 export default connect(mapStateToProps, {logout})(DashboardWrapper)

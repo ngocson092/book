@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Row, Col, Form, Icon, Input, Button, Checkbox,message} from 'antd';
 import {connect} from 'react-redux'
-import {login,setToken} from '../../../actions/authActions'
+import {login,setToken,filterUserData} from '../../../actions/authActions'
 import style from './login.css'
 
 
@@ -37,9 +37,7 @@ class LoginPage extends Component {
                 .then( (response) =>{
                     this.setState({loading:false})
                     let data = response.data.data;
-
-                    let {name ,location ,phoneNumber ,emailId} = data;
-                    let user = {name ,location ,phone:phoneNumber ,email:emailId};
+                    let user = filterUserData(data);
 
                     this.props.setToken(data.accessToken,user)
                     message.success('Login successful.');

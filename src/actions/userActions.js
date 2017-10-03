@@ -21,5 +21,5 @@ export function updateProfile(data) {
     return axios.post(API_URL + '/user/updateProfile',data,config)
 }
 export function changePassword(data) {
-    return axios.put(API_URL + '/users/change-password',data)
+    return axios.put(API_URL + '/user/changePassword',data)
 }

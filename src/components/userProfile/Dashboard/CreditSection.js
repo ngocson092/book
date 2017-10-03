@@ -1,31 +1,38 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Route,Link} from 'react-router-dom'
 import {Row, Form} from 'antd';
 import {connect} from 'react-redux'
-import { Layout, Menu, Icon } from 'antd';
-import ProfileForm from './Include/EditProfileForm'
-import {setToken} from '../../../actions/authActions'
+import { Layout, Menu, Icon,Button } from 'antd';
+import axios from 'axios';
+import {API_URL} from '../../../actions/authActions'
+import AddCardForm from './Include/AddCardForm'
 
 const {  Content, Sider } = Layout;
 const FormItem = Form.Item;
 
-class Profile extends Component {
+class CreditSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            cards:[]
         }
     }
     goTo(route) {
         this.props.history.replace(`${route}`)
     }
 
+    componentWillMount(){
+
+
+
+
+    }
 
     render() {
 
         return (
             <div>
-                <h2 className="head-title">Edit Profile</h2>
-                <ProfileForm user={this.props.user} setToken={this.props.setToken} />
+                CreditSection
             </div>
         );
     }
@@ -38,7 +45,7 @@ const mapStateToProps = (state) => {
         user:state.auth.user
     }
 }
-export default connect(mapStateToProps, {setToken})(Profile)
+export default connect(mapStateToProps, {})(CreditSection)
 
 
 

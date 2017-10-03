@@ -2,7 +2,7 @@
  * Created by lamtanphiho on 9/26/2017.
  */
 import React,{Component} from 'react'
-import {Layout, Table, Popconfirm} from 'antd';
+import {Layout, Table, Popconfirm, Modal} from 'antd';
 import Heade from '../bookings/heade';
 import EditableCell from './editTableCell';
 const {  Content } = Layout;
@@ -77,13 +77,48 @@ export default class Bookings extends Component{
     }
     editDone(index, type) {
         const { dataSource } = this.state;
+
+        // request({
+        //     method: 'PUT',
+        //     url : process.env.API_URL+'/booking/' + dataSource[index]._id,
+        //     headers: {
+        //         'authorization': localStorage.access_token
+        //     },
+        //     form : {
+        //         appointmentScheduledStartTime   : dataSource[index].start_time.value,
+        //         appointmentScheduledEndTime     : dataSource[index].end_time.value,
+        //         appointmentScheduledStartDate   : dataSource[index].book_date.value,
+        //         appointmentScheduledEndDate     : dataSource[index].book_date.value,
+        //         titleOrDescription              : dataSource[index].title.value,
+        //     }
+        // },
+        // function (error, response, body) {
+        //     if(!error){
+        //         body = JSON.parse(body)
+        //         if(body.statusCode == 405) errorModel(body.message)
+        //         else {
+        //             Object.keys(dataSource[index]).forEach((item) => {
+        //                 if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
+        //                     dataSource[index][item].editable = false;
+        //                     dataSource[index][item].status = type;
+        //                 }
+        //             });
+        //             this.setState({ dataSource }, () => {
+        //                 Object.keys(dataSource[index]).forEach((item) => {
+        //                     if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
+        //                         delete dataSource[index][item].status;
+        //                     }
+        //                 });
+        //             });
+        //         }
+        //     }
+        // })
         Object.keys(dataSource[index]).forEach((item) => {
             if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
                 dataSource[index][item].editable = false;
                 dataSource[index][item].status = type;
             }
         });
-        console.log(dataSource[index])
         this.setState({ dataSource }, () => {
             Object.keys(dataSource[index]).forEach((item) => {
                 if (dataSource[index][item] && typeof dataSource[index][item].editable !== 'undefined') {
@@ -91,6 +126,8 @@ export default class Bookings extends Component{
                 }
             });
         });
+        console.log(dataSource[index])
+
     }
     renderColumns(data, index, key, text) {
         const { editable, status } = data[index][key];
@@ -225,3 +262,17 @@ const css = `
         margin-right: 8px;
     }
 `;
+
+const success = function(content) {
+    Modal.success({
+        title: 'Process success !',
+        content: content,
+    });
+}
+
+const errorModel = function(content) {
+    Modal.error({
+        title: 'Error ',
+        content: content,
+    });
+}

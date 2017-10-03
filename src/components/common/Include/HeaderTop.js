@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {Route, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {Menu, Dropdown, Icon, message} from 'antd';
+import {Menu, Dropdown, Icon, message,Avatar} from 'antd';
 import Headphone from 'react-icons/lib/ti/headphones'
 import {logout} from '../../../actions/authActions'
 import PropTypes from 'prop-types';
 import style from './header_top.css';
-
+import classnames from 'classnames'
 class HeaderTop extends Component {
 
     constructor(props) {
@@ -39,19 +39,12 @@ class HeaderTop extends Component {
 
 
         const userLinks = (
-
-            <div
-                className={style.right_menu}
-            >
-                <Dropdown overlay={menu} trigger={['click']}>
-                    <a className="ant-dropdown-link" href="#">
-                        <span
-                            className={style.welcome}>{this.props.fullname}</span>
-                        <Icon type="down"/>
-                    </a>
-                </Dropdown>
-            </div>
-
+            <Dropdown  className={style.right_dropdown} overlay={menu} trigger={['click']}  placement="bottomLeft">
+                <a className="ant-dropdown-link" href="#">
+                    <span>{this.props.fullname}</span>
+                    <Icon type="down"/>
+                </a>
+            </Dropdown>
         );
 
         return (
@@ -62,8 +55,12 @@ class HeaderTop extends Component {
                     <span className={style.sub}><strong>  QUESTION?</strong> CALL <span
                         className={style.primary}>555.111.9999</span></span>
                 </div>
-                <div className={style.top_right}>
+                <div className={classnames('top_right',style.top_right)}>
+
+                    {(this.props.avatar == '') ? ( <Avatar className={style.avatar} icon="user" />) : (<Avatar   className={style.avatar} src={this.props.avatar} />)}
+
                     {userLinks}
+
                 </div>
             </div>
 
@@ -71,12 +68,6 @@ class HeaderTop extends Component {
         );
     }
 }
-
-HeaderTop.propTypes = {
-    logout: PropTypes.func.isRequired,
-    fullname: PropTypes.string.isRequired
-}
-
 
 
 export default HeaderTop
