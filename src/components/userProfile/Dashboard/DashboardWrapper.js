@@ -39,7 +39,7 @@ class DashboardWrapper extends Component {
 
 
                 <Layout>
-                    <Sider width={300} style={{  background: 'white', borderRight: '1px solid #f1f1f1' ,height:'calc( 100vh  - 41px ) '}}>
+                    <Sider width={300} style={{  background: 'white', borderRight: '1px solid #dedede' ,height:'calc( 100vh  - 41px ) '}}>
 
                         <div className={style.header_user}>
                             <p> {(this.props.avatar == '') ? ( <Avatar className={style.avatar}   style={{width:60,height:60}} icon="user" />) : (<Avatar  style={{width:60,height:60}} className={style.avatar} src={this.props.avatar} />)} </p>
@@ -63,7 +63,7 @@ class DashboardWrapper extends Component {
 
                     </Sider>
 
-                    <Layout style={{height:'calc( 100vh  - 41px ) ' ,background:'#fbfbfb'}}>
+                    <Layout style={{height:'calc( 100vh  - 41px ) ' ,background:'#ffffff'}}>
                         <Content style={{ padding: '24px', margin: 0, minHeight: 280 }}>
                             <Route  exact={true}  path={`${this.props.match.url}/`} component={Profile}/>
                             <Route  exact={true}  path={`${this.props.match.url}/profile`} component={Profile}/>

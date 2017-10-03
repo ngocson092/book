@@ -23,11 +23,13 @@ class CreditSection extends Component {
 
     componentWillMount(){
 
-
+        axios.get(API_URL + '/user/getCredits')
+            .then(res=>{
+                console.log(res.data);
+            })
 
 
     }
-
     render() {
 
         return (

@@ -4,8 +4,9 @@ import {Row, Form,Alert} from 'antd';
 import {connect} from 'react-redux'
 import { Layout, Menu, Icon,Button } from 'antd';
 import axios from 'axios';
+import braintree from 'braintree-web'
 import AddCardForm from './Include/AddCardForm'
-
+import {getPaymentToken} from '../../../actions/paymentActions'
 const {  Content, Sider } = Layout;
 const FormItem = Form.Item;
 
@@ -13,26 +14,30 @@ class AddCardSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cards:[]
+            nounce:''
         }
     }
-    goTo(route) {
-        this.props.history.replace(`${route}`)
-    }
+    componentWillMount(){
 
+        getPaymentToken()
+            .then(res=>{
+                this.setState({
+                    nounce:res.data.data
+                })
+            })
+
+    }
 
 
     render() {
 
         return (
             <div>
-                <AddCardForm></AddCardForm>
+                <AddCardForm token={this.state.nounce}></AddCardForm>
             </div>
         );
     }
 }
-
-
 
 const mapStateToProps = (state) => {
     return {
