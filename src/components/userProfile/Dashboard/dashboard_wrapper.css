@@ -26,3 +26,9 @@
     height: 50px;
     margin-top: 30px;
 }
+#payment-credit li.ant-menu-item-selected.ant-menu-item a{
+    color: white;
+}
+#payment-credit li.ant-menu-item-selected.ant-menu-item {
+    background: #108ee9 !important;
+}

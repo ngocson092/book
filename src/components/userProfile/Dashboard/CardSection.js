@@ -36,9 +36,15 @@ class CardSection extends Component {
             return <li>{card.cardNumber}</li>
         })
 
+        const AlertStyle = {
+            padding: 100,
+            textAlign: 'center',
+            marginBottom: 10
+        }
+
         return (
             <div>
-                {(this.state.cards.length == 0 ) ? (<Alert message="No Cards Found" type="warning" />) : (<ListCard></ListCard>)}
+                {(this.state.cards.length == 0 ) ? (<Alert style={AlertStyle} message="No Cards Found" type="info" />) : (<ListCard></ListCard>)}
 
                 <Button><Link to="/my-account/payment-credits/card/add-new">Add Card</Link></Button>
             </div>

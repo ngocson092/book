@@ -38,7 +38,8 @@
 :local(.header_top){
     padding: 0px 20px;
     line-height: 40px;
-    border-bottom: 1px solid #f1f1f1;
+    border-bottom:1px solid #dedede;
     width: 100%;
     overflow: hidden;
+    background: #f1f1f1;
 }

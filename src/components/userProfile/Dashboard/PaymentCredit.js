@@ -23,15 +23,7 @@ class PaymentCredit extends Component {
         this.props.history.replace(`${route}`)
     }
 
-    componentWillMount(){
 
-        axios.get(API_URL + '/user/getCredits')
-            .then(res=>{
-                console.log(res.data);
-            })
-
-
-    }
     handleClick = (e) => {
         this.setState({
             current: e.key,
@@ -40,29 +32,21 @@ class PaymentCredit extends Component {
 
     render() {
 
-        let style_button = {
-            padding:'10px 80px',
-            margin:10,
-            height:40
-        }
-
+        const wrap_style ={textAlign:'center',marginBottom:20,overflow:'hidden',background: '#efefef',boxShadow:'1px 1px 1px #ccc'}
+        const menu_style ={width:'50%',background:'#f1f1f1'}
         return (
-            <div>
-               <div style={{textAlign:'center',marginBottom:20,overflow:'hidden',background: '#efefef',boxShadow:'1px 1px 1px #ccc'}}>
-
-
+            <div id="payment-credit">
+               <div style={wrap_style}>
                    <Menu
                        onClick={this.handleClick}
                        mode="horizontal"
-                       defaultSelectedKeys={'card'}
-
                        selectedKeys={[this.state.current]}
 
                    >
-                       <Menu.Item key="card">
+                       <Menu.Item key="card" style={menu_style}>
                            <Link to="/my-account/payment-credits/card" className="btn">CARDS</Link>
                        </Menu.Item>
-                       <Menu.Item key="credit">
+                       <Menu.Item key="credit" style={menu_style}>
                            <Link to="/my-account/payment-credits/credits" className="btn">CREDITS</Link>
                        </Menu.Item>
                    </Menu>
