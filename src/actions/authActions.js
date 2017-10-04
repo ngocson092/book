@@ -36,6 +36,10 @@ export function verifyToken() {
 }
 
 
+export function resetPassword(email) {
+    return axios.post(API_URL + '/user/forgetPassword/' + email)
+}
+
 
 export function setToken(token,user) {
     return dispatch => {

@@ -33,7 +33,7 @@ class AddCardSection extends Component {
 
         return (
             <div>
-                <AddCardForm token={this.state.nounce}></AddCardForm>
+                <AddCardForm {...this.props} token={this.state.nounce}></AddCardForm>
             </div>
         );
     }

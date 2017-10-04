@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Row, Col, Form, Icon, Input, Button, Checkbox,message} from 'antd';
-import {connect} from 'react-redux'
-import {login,setToken,filterUserData} from '../../../actions/authActions'
+import {resetPassword} from '../../../actions/authActions'
 import style from './login.css'
 
 
 const FormItem = Form.Item;
 
-class LoginPage extends Component {
+class ForgotPassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,19 +27,10 @@ class LoginPage extends Component {
 
                 this.setState({loading:true})
 
-                login({
-                    emailId: values.email,
-                    password: values.password,
-                    deviceType: "IOS",
-                    deviceToken: "1"
-                })
+                resetPassword(values.email)
                 .then( (response) =>{
                     this.setState({loading:false})
-                    let data = response.data.data;
-                    let user = filterUserData(data);
-
-                    this.props.setToken(data.accessToken,user)
-                    message.success('Login successful.');
+                    message.success('reset have been successfull, please check your email');
                     this.goTo('/')
 
                 })
@@ -72,7 +62,7 @@ class LoginPage extends Component {
 
 
                     <Form onSubmit={this.handleSubmit} className={style.login_form}>
-                        <h2><span>Photosesh</span> Login</h2>
+                        <h2><span>Forgot</span> Your Password?</h2>
                         <FormItem>
                             {getFieldDecorator('email', {
                                 rules: [
@@ -84,23 +74,10 @@ class LoginPage extends Component {
                                 <Input className={style.input} prefix={<Icon type="user"/>} placeholder="Email"/>
                             )}
                         </FormItem>
+
                         <FormItem>
-                            {getFieldDecorator('password', {
-                                rules: [{required: true, message: 'Please input your Password!'}],
-                            })(
-                                <Input  className={style.input} prefix={<Icon type="lock"/>} type="password"
-                                       placeholder="Password"/>
-                            )}
-                        </FormItem>
-                        <FormItem>
-                            {getFieldDecorator('remember', {
-                                valuePropName: 'checked',
-                                initialValue: true,
-                            })(
-                                <Checkbox>Remember me</Checkbox>
-                            )}
                             <Button type="primary" loading={this.state.loading} htmlType="submit" className={style.button}>
-                                Log in
+                                Send
                             </Button>
 
                         </FormItem>
@@ -108,7 +85,7 @@ class LoginPage extends Component {
                     <ul className={style.footer}>
                         <li><Link to="/signup">Create Account</Link></li>
                         |
-                        <li><Link to="/forgot">Forgot password</Link></li>
+                        <li><Link to="login">Login</Link></li>
                     </ul>
                 </Col>
             </Row>
@@ -118,14 +95,8 @@ class LoginPage extends Component {
 }
 
 
-const WrappedLoginForm = Form.create()(LoginPage);
+export default Form.create()(ForgotPassword)
 
-const mapStateToProps = (state) => {
-    return {
-        isAuthenticated:state.auth.isAuthenticated
-    }
-}
-export default connect(mapStateToProps, {setToken})(WrappedLoginForm)
 
 
 

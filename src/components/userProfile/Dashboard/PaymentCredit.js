@@ -51,9 +51,10 @@ class PaymentCredit extends Component {
                        </Menu.Item>
                    </Menu>
                </div>
+
                 <Route  exact={true}  path={`${this.props.match.url}/`} component={CardSection}/>
                 <Route  exact={true}  path={`${this.props.match.url}/card`} component={CardSection}/>
-                <Route  exact={true}  path={`${this.props.match.url}/card/add-new`} component={AddCardSection}/>
+                <Route  exact={true}  path={`${this.props.match.url}/card/add-new`} render={(props)=>(<AddCardSection {...props}/>)}/>
                 <Route  exact={true}  path={`${this.props.match.url}/credits`} component={CreditSection}/>
             </div>
         );

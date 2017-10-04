@@ -16,6 +16,7 @@
     border: 1px solid #ddd;
 }
 
+
 :local(.header_user span.ant-avatar){
     line-height: 40px;
     font-size: 14px;
@@ -32,3 +33,7 @@
 #payment-credit li.ant-menu-item-selected.ant-menu-item {
     background: #108ee9 !important;
 }
+#user-dashboard .ant-layout-sider span.ant-avatar i{
+     font-size: 30px;
+     line-height: 60px;
+ }

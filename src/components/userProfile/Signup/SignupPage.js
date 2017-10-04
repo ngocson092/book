@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom';
 import { userSignupRequest } from '../../../actions/userActions';
-import { login,setToken } from '../../../actions/authActions';
+import { login,setToken,filterUserData } from '../../../actions/authActions';
 import {Form, Input, Row, Col, message, Button} from 'antd';
 
 import style from './signup.css';
@@ -27,8 +27,9 @@ class RegistrationForm extends React.Component {
 
             this.setState({loading:false})
 
-            let {name ,location ,phoneNumber ,emailId} = response.data.data;
-            let user = {name ,location ,phone:phoneNumber ,email:emailId};
+            let data = response.data.data;
+            let user = filterUserData(data);
+
 
             this.props.setToken(data.accessToken,user)
             this.goTo('/')
