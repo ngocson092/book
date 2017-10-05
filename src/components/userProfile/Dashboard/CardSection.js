@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Route, Link} from 'react-router-dom'
 import {Row, Form, Alert, Spin, Tag} from 'antd';
 import {connect} from 'react-redux'
-import {Layout, Menu, Icon, Button, Table,Switch} from 'antd';
+import {Layout, Menu, Tooltip, Button, Table,Switch} from 'antd';
 import classnames from  'classnames'
 
 import {getCards,setCardDefault} from '../../../actions/paymentActions'
@@ -80,13 +80,21 @@ class CardSection extends Component {
                 }];
 
             let data_cards = this.props.cards.map((card, index) => {
+
                 return {
                     key: card._id,
                     no: index + 1,
                     card_type: card.cardType,
                     last_four_digits: '*************' + card.lastFourDigits,
                     active: (card.isActive) ? (<Tag color="#87d068">actived</Tag>) : (<Tag>Inactive</Tag>),
-                    card_default: (<Switch className={classnames({default_card:card.isDefault})} defaultChecked={card.isDefault} onChange={(value)=>{this.setCardDefault(card._id)}} />),
+                    card_default: (
+                        <Tooltip placement="top" title={'set this card to Default'}>
+                            <Switch
+                                className={classnames({default_card:card.isDefault})}
+                                defaultChecked={card.isDefault}
+                                onChange={()=>{this.setCardDefault(card._id)}} />
+                        </Tooltip>
+                    ),
                     addedAt: moment(card.addedAt).format('LLL')
                 }
             })
@@ -126,7 +134,7 @@ class CardSection extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.auth.user,
-        cards:state.card
+        cards:state.payment.cards
     }
 }
 export default connect(mapStateToProps, {getCards,setCardDefault})(CardSection)

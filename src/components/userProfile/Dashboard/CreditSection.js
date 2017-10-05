@@ -1,15 +1,9 @@
 import React, {Component} from 'react';
 import {Route,Link} from 'react-router-dom'
-import {Row, Form} from 'antd';
 import {connect} from 'react-redux'
-import { Layout, Menu, Icon,Button } from 'antd';
-import axios from 'axios';
-import {API_URL} from '../../../actions/authActions'
-import AddCardForm from './Include/AddCardForm'
-
-const {  Content, Sider } = Layout;
-const FormItem = Form.Item;
-
+import {getCredits} from '../../../actions/paymentActions'
+import helper from '../../../utils/helper'
+import FormAddCredit from './Include/AddCreditForm'
 class CreditSection extends Component {
     constructor(props) {
         super(props);
@@ -22,19 +16,31 @@ class CreditSection extends Component {
     }
 
     componentWillMount(){
-
-        axios.get(API_URL + '/user/getCredits')
-            .then(res=>{
-                console.log(res.data);
-            })
-
-
+        this.props.getCredits()
     }
     render() {
 
         return (
             <div>
-                CreditSection
+
+                <div
+                    style={{
+                        textAlign:'center',
+                        background:'#f9f9f9',
+                        padding:'50px',
+                        fontSize:'16px',
+                        textTransform:'uppercase',
+                    }}
+                >
+                    PhotoSesh Credits : <strong>{helper.formatMoney(this.props.credits,"$")}</strong>
+                </div>
+
+                <div>
+
+                    <FormAddCredit />
+
+                </div>
+
             </div>
         );
     }
@@ -44,10 +50,11 @@ class CreditSection extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user:state.auth.user
+        user:state.auth.user,
+        credits:state.payment.credits
     }
 }
-export default connect(mapStateToProps, {})(CreditSection)
+export default connect(mapStateToProps, {getCredits})(CreditSection)
 
 
 
