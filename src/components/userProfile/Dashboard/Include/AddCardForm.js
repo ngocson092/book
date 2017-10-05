@@ -62,9 +62,6 @@ class AddCardForm extends Component {
         this.props.history.replace(`${route}`)
     }
 
-    handleSubmit1 = (e) => {
-        console.log(11,this.props.history);
-    }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((err, inputs) => {
@@ -129,7 +126,7 @@ class AddCardForm extends Component {
                         {this.state.error.map(error=>(<div style={style_error}>{error.message}</div>))}
                     </div>
                 )}
-                <a onClick={()=>{this.handleSubmit1()}}>test</a>
+
                 <Form
                     style={{maxWidth:300,margin:'auto'}}
                     onSubmit={this.handleSubmit}>

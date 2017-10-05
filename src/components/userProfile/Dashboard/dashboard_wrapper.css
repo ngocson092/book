@@ -37,3 +37,21 @@
      font-size: 30px;
      line-height: 60px;
  }
+
+.loading_card .spin_loading_card{
+    display: block !important;
+}
+.loading_card{position: relative}
+.loading_card:before{
+    content:'';
+    position: absolute;
+    top:0;
+    width: 100%;
+    height:100%;
+    background: rgba(255,255,255,0.5);
+    z-index: 10;
+}
+
+.default_card{
+    pointer-events: none;
+}

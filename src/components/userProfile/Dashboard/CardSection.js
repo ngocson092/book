@@ -1,48 +1,50 @@
 import React, {Component} from 'react';
-import {Route,Link} from 'react-router-dom'
-import {Row, Form,Alert,Spin,Tag} from 'antd';
+import {Route, Link} from 'react-router-dom'
+import {Row, Form, Alert, Spin, Tag} from 'antd';
 import {connect} from 'react-redux'
-import { Layout, Menu, Icon,Button,Table  } from 'antd';
-import {getCards} from '../../../actions/paymentActions'
+import {Layout, Menu, Icon, Button, Table,Switch} from 'antd';
+import classnames from  'classnames'
 
-const {  Content, Sider } = Layout;
-const FormItem = Form.Item;
+import {getCards,setCardDefault} from '../../../actions/paymentActions'
+import moment from 'moment';
 
 class CardSection extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cards:[],
-            loading:false
+            cards: [],
+            loading: false,
+            set_card_default_loading: false,
         }
     }
+
+    setCardDefault = (card_id)=>{
+
+
+            this.setState({set_card_default_loading:true})
+
+            this.props.setCardDefault(card_id)
+
+
+    }
+
     goTo(route) {
         this.props.history.replace(`${route}`)
     }
 
-    componentWillMount(){
+    componentWillMount() {
 
-        this.setState({loading:true})
+        this.setState({loading: true})
 
-        getCards().then(res=>{
-
-            if(res.data.data){
-                this.setState({loading:false})
-                let cards = res.data.data.allCards
-                this.setState({cards})
-            }
-
-
-        })
-
+        this.props.getCards()
 
     }
+    componentWillReceiveProps(props){
+        this.setState({loading: false,set_card_default_loading:false})
+    }
+
 
     render() {
-
-        const ListCard = this.state.cards.map(card=>{
-            return <li>{card.cardNumber}</li>
-        })
 
         const AlertStyle = {
             padding: 100,
@@ -50,41 +52,46 @@ class CardSection extends Component {
             marginBottom: 10
         }
 
-        const CardList = ()=>{
+        const CardList = () => {
             const columns = [{
                 title: 'No',
                 dataIndex: 'no',
-               // render: text => <a href="#">{text}</a>,
-            }, {
-                title: 'Card Type',
-                dataIndex: 'card_type',
-            }, {
-                title: 'Active',
-                dataIndex: 'active',
-            },{
-                title: 'Last Four Digits',
-                dataIndex: 'last_four_digits',
-            }, {
-                title: 'Card Default',
-                dataIndex: 'card_default',
-            }, {
-                title: 'Added At',
-                dataIndex: 'addedAt',
-            }];
+                // render: text => <a href="#">{text}</a>,
+                }, {
+                    title: 'Card Type',
+                    dataIndex: 'card_type',
+                }
 
-            let data_cards = this.state.cards.map((card,index)=>{
+                ,
+                {
+                    title: 'Card Number',
+                    dataIndex: 'last_four_digits',
+                }
+                , {
+                    title: 'Added At',
+                    dataIndex: 'addedAt',
+                }, {
+                    title: 'Card Default',
+                    dataIndex: 'card_default',
+                },
+                {
+                    title: 'Active',
+                    dataIndex: 'active',
+                }];
+
+            let data_cards = this.props.cards.map((card, index) => {
                 return {
-                    key: index,
+                    key: card._id,
                     no: index + 1,
                     card_type: card.cardType,
-                    last_four_digits: card.lastFourDigits,
+                    last_four_digits: '*************' + card.lastFourDigits,
                     active: (card.isActive) ? (<Tag color="#87d068">actived</Tag>) : (<Tag>Inactive</Tag>),
-                    card_default: (card.isDefault) ? (<Tag color="#87d068">yes</Tag>) : (<Tag>no</Tag>),
-                    addedAt: card.addedAt
+                    card_default: (<Switch className={classnames({default_card:card.isDefault})} defaultChecked={card.isDefault} onChange={(value)=>{this.setCardDefault(card._id)}} />),
+                    addedAt: moment(card.addedAt).format('LLL')
                 }
             })
 
-            return  <Table  columns={columns} dataSource={data_cards} />
+            return <Table columns={columns} dataSource={data_cards}/>
 
         }
 
@@ -92,16 +99,17 @@ class CardSection extends Component {
         return (
             <div>
 
-                {(this.state.loading)&& (
+                {(this.state.loading) && (
                     <div style={{
                         textAlign: "center",
                         padding: "60px 0"
-                    }}> <Spin></Spin> </div>
+                    }}><Spin></Spin></div>
                 )}
-
                 {
-                    (!this.state.loading)&& (
-                        (this.state.cards.length == 0 ) ? (<Alert style={AlertStyle} message="No Cards Found" type="info" />) : (<CardList></CardList>)
+                    (!this.state.loading) && (
+                        (this.props.cards.length == 0 ) ? (
+                                <Alert style={AlertStyle} message="No Cards Found" type="info"/>) : (
+                                <div  className={classnames({loading_card:this.state.set_card_default_loading})}><CardList/><Spin className="spin_loading_card" style={{display:'none'}} /></div>)
                     )
                 }
 
@@ -115,13 +123,13 @@ class CardSection extends Component {
 }
 
 
-
 const mapStateToProps = (state) => {
     return {
-        user:state.auth.user
+        user: state.auth.user,
+        cards:state.card
     }
 }
-export default connect(mapStateToProps, {})(CardSection)
+export default connect(mapStateToProps, {getCards,setCardDefault})(CardSection)
 
 
 
