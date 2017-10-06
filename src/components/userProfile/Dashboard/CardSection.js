@@ -49,7 +49,9 @@ class CardSection extends Component {
         const AlertStyle = {
             padding: 100,
             textAlign: 'center',
-            marginBottom: 10
+            marginBottom: 10,
+            background:"#ffffff",
+            border:"1px solid #ddd"
         }
 
         const CardList = () => {

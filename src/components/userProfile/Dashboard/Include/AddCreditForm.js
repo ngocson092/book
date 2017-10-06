@@ -61,7 +61,10 @@ class AddCreditForm extends Component {
 
         let style_wrapper_error = {
             padding: 20,
-            border:'1px solid #f3f3f3'}
+            border:'1px solid #f3f3f3',
+            background:"#ffffff"
+
+        }
         let style_error = {
             background:'rgba(206, 17, 38, 0.05)',
             border:'1px solid #ccc',

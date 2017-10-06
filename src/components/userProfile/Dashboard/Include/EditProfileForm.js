@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Form,Input,Button,Upload,message,Icon,Spin} from 'antd';
+import {Form,Input,Button,Upload,message,Icon,Spin,Card} from 'antd';
 import {updateProfile} from '../../../../actions/userActions'
 import {filterUserData} from '../../../../actions/authActions'
 import PropTypes from 'prop-types';
@@ -101,119 +101,122 @@ class EditProfileForm extends Component {
         return (
             <Form style={{maxWidth:500}} onSubmit={this.handleSubmit}>
 
-                <p style={{
-                    padding: '6px 10px',
-                    background: " rgb(239, 239, 239)",
-                    marginBottom: 10,
-                    borderRadius: 3,
-                    border: '1px solid #dcd6d6'
-                }}>Email : {this.props.user.email}</p>
+                <Card>
+                    <p style={{
+                        padding: '6px 10px',
+                        background: " rgb(239, 239, 239)",
+                        marginBottom: 10,
+                        borderRadius: 3,
+                        border: '1px solid #dcd6d6'
+                    }}>Email : {this.props.user.email}</p>
 
-                <FormItem
-                    label="First Name"
-                    hasFeedback
-                >
-                    {getFieldDecorator('firstName', {
-                        rules: [{
-                            required: true, message: 'First Name is not empty',
-                        },
-                        ],
-                        initialValue: this.props.user.name.firstName
-                    })(
-                        <Input type="text"/>
-                    )}
-                </FormItem>
-                <FormItem
-                    label="Last Name"
-                    hasFeedback
-                >
-                    {getFieldDecorator('lastName', {
-                        rules: [{
-                            required: true, message: 'Last Name is not empty',
-                        }
-                        ],
-                        initialValue: this.props.user.name.lastName
-                    })(
-                        <Input type="text"/>
-                    )}
-                </FormItem>
-
-                <FormItem
-                    label="Phone"
-                    hasFeedback
-                >
-                    {getFieldDecorator('phoneNumber', {
-                        rules: [],
-                        initialValue: (this.props.user.phone != '') ? this.props.user.phone : ''
-                    })(
-                        <Input type="text"/>
-                    )}
-                </FormItem>
-
-                <FormItem
-                    label="Avatar"
-                    hasFeedback
-                >
-                    <Upload
-                        className={'avatar-uploader'}
-
-                        style={{
-                            width: 150,
-                            height: 150,
-                            display: "block",
-                            border: "1px dashed #d9d9d9",
-                            borderRadius: 6,
-                            cursor: "pointer",
-                            position:'relative'
-                        }}
-
-                        name="avatar"
-                        showUploadList={false}
-                        action="//jsonplaceholder.typicode.com/posts/"
-                        beforeUpload={beforeUpload}
-                        onChange={this.handleChangeAvatar}
+                    <FormItem
+                        label="First Name"
+                        hasFeedback
                     >
-                        {(this.state.avatar_loading)? (<Spin style={{
+                        {getFieldDecorator('firstName', {
+                            rules: [{
+                                required: true, message: 'First Name is not empty',
+                            },
+                            ],
+                            initialValue: this.props.user.name.firstName
+                        })(
+                            <Input type="text"/>
+                        )}
+                    </FormItem>
+                    <FormItem
+                        label="Last Name"
+                        hasFeedback
+                    >
+                        {getFieldDecorator('lastName', {
+                            rules: [{
+                                required: true, message: 'Last Name is not empty',
+                            }
+                            ],
+                            initialValue: this.props.user.name.lastName
+                        })(
+                            <Input type="text"/>
+                        )}
+                    </FormItem>
 
-                            position: 'absolute',
-                            background: 'white',
-                            width: 32,
-                            height: 30,
-                            borderRadius:' 50%',
-                            paddingTop: 4,
-                            display: 'block',
-                            left: 'calc(50% - 15px)',
-                            marginTop:' calc(50% - 15px)',
+                    <FormItem
+                        label="Phone"
+                        hasFeedback
+                    >
+                        {getFieldDecorator('phoneNumber', {
+                            rules: [],
+                            initialValue: (this.props.user.phone != '') ? this.props.user.phone : ''
+                        })(
+                            <Input type="text"/>
+                        )}
+                    </FormItem>
 
-                        }} size="small" />) : ''}
+                    <FormItem
+                        label="Avatar"
+                        hasFeedback
+                    >
+                        <Upload
+                            className={'avatar-uploader'}
 
-                        {
-                            (imageUrl) ?
-                                <img src={imageUrl} alt="" className="avatar"    style={{
-                                    width: 150,
-                                    height: 150
-                                }} /> :
-                                <Icon type="plus" className="avatar-uploader-trigger"    style={{
-                                    width: 150,
-                                    height: 150,
-                                    display: "table-cell",
-                                    verticalAlign: "middle",
-                                    fontSize: 28,
-                                    color: "#999"
-                                }} />
-                        }
-                    </Upload>
-                </FormItem>
+                            style={{
+                                width: 150,
+                                height: 150,
+                                display: "block",
+                                border: "1px dashed #d9d9d9",
+                                borderRadius: 6,
+                                cursor: "pointer",
+                                position:'relative'
+                            }}
 
-                <Button
-                    type="primary"
-                    htmlType="submit"
+                            name="avatar"
+                            showUploadList={false}
+                            action="//jsonplaceholder.typicode.com/posts/"
+                            beforeUpload={beforeUpload}
+                            onChange={this.handleChangeAvatar}
+                        >
+                            {(this.state.avatar_loading)? (<Spin style={{
 
-                    icon="save"
-                    loading={this.state.loading}
-                >
-                    Save
-                </Button>
+                                position: 'absolute',
+                                background: 'white',
+                                width: 32,
+                                height: 30,
+                                borderRadius:' 50%',
+                                paddingTop: 4,
+                                display: 'block',
+                                left: 'calc(50% - 15px)',
+                                marginTop:' calc(50% - 15px)',
+
+                            }} size="small" />) : ''}
+
+                            {
+                                (imageUrl) ?
+                                    <img src={imageUrl} alt="" className="avatar"    style={{
+                                        width: 150,
+                                        height: 150
+                                    }} /> :
+                                    <Icon type="plus" className="avatar-uploader-trigger"    style={{
+                                        width: 150,
+                                        height: 150,
+                                        display: "table-cell",
+                                        verticalAlign: "middle",
+                                        fontSize: 28,
+                                        color: "#999"
+                                    }} />
+                            }
+                        </Upload>
+                    </FormItem>
+
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+
+                        icon="save"
+                        loading={this.state.loading}
+                    >
+                        Save
+                    </Button>
+                </Card>
+
 
 
             </Form>

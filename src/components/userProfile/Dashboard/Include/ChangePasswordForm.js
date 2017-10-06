@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Form,Input,Button,message} from 'antd';
+import {Form,Input,Button,message,Card} from 'antd';
 import {changePassword} from '../../../../actions/userActions'
 
 
@@ -61,57 +61,60 @@ class ChangePasswordForm extends Component {
         return (
             <Form style={{maxWidth:500,marginTop:30}} onSubmit={this.handleChangePassword}>
 
-                <FormItem
-                    label="Old Password"
-                    hasFeedback
-                >
-                    {getFieldDecorator('oldPassword', {
-                        rules: [{
-                            required: true, message: 'Please input old password ',
-                        }
-                        ]
-                    })(
-                        <Input type="password"/>
-                    )}
-                </FormItem>
+                <Card>
+                    <FormItem
+                        label="Old Password"
+                        hasFeedback
+                    >
+                        {getFieldDecorator('oldPassword', {
+                            rules: [{
+                                required: true, message: 'Please input old password ',
+                            }
+                            ]
+                        })(
+                            <Input type="password"/>
+                        )}
+                    </FormItem>
 
-                <FormItem
-                    label="New Password"
-                    hasFeedback
-                >
-                    {getFieldDecorator('newPassword', {
-                        rules: [{
-                            required: true, message: 'Please input New password ',
-                        }
-                        ]
-                    })(
-                        <Input type="password"/>
-                    )}
-                </FormItem>
-                <FormItem
-                    label="Confirm Password"
-                    hasFeedback
-                >
-                    {getFieldDecorator('confirmPassword', {
-                        rules: [{
-                            required: true, message: 'Please confirm your password!',
-                        }, {
-                            validator: this.checkPassword,
-                        }],
-                    })(
-                        <Input type="password" onBlur={this.handleConfirmBlur}/>
-                    )}
-                </FormItem>
+                    <FormItem
+                        label="New Password"
+                        hasFeedback
+                    >
+                        {getFieldDecorator('newPassword', {
+                            rules: [{
+                                required: true, message: 'Please input New password ',
+                            }
+                            ]
+                        })(
+                            <Input type="password"/>
+                        )}
+                    </FormItem>
+                    <FormItem
+                        label="Confirm Password"
+                        hasFeedback
+                    >
+                        {getFieldDecorator('confirmPassword', {
+                            rules: [{
+                                required: true, message: 'Please confirm your password!',
+                            }, {
+                                validator: this.checkPassword,
+                            }],
+                        })(
+                            <Input type="password" onBlur={this.handleConfirmBlur}/>
+                        )}
+                    </FormItem>
 
-                <Button
-                    type="primary"
-                    htmlType="submit"
+                    <Button
+                        type="primary"
+                        htmlType="submit"
 
-                    icon="save"
-                    loading={this.state.loading}
-                >
-                    Change Password
-                </Button>
+                        icon="save"
+                        loading={this.state.loading}
+                    >
+                        Change Password
+                    </Button>
+                </Card>
+
 
 
             </Form>
