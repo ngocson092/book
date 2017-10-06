@@ -2,3 +2,13 @@ export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const SET_CARDS = 'SET_CARDS';
 export const SET_CARD_DEFAULT = 'SET_CARD_DEFAULT';
 export const SET_CREDIT = 'SET_CREDIT';
+
+
+/*booking*/
+
+export const  SET_INFO_STEP_ONE ='SET_INFO_STEP_ONE';
+export const  SET_BOOKTYPE ='SET_BOOKTYPE';
+export const  SET_EVENT_LIST ='SET_EVENT_LIST';
+export const  SET_PHOTOSESH_TYPE_NAME ='SET_PHOTOSESH_TYPE_NAME';
+export const  SET_PHOTOSESH_EVENT_TYPE ='SET_PHOTOSESH_EVENT_TYPE';
+export const  SET_DATA_BOOKING ='SET_DATA_BOOKING';

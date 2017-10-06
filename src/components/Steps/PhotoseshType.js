@@ -2,6 +2,9 @@ import React,{Component} from 'react'
 import {Row, Col,Card,Layout,Button,Icon} from 'antd';
 import {connect} from 'react-redux'
 import {Redirect,Link} from 'react-router-dom'
+
+import {setDataBooking} from '../../actions/bookActions'
+
 const {Header} = Layout
 class PhotoseshType extends Component{
     constructor(props) {
@@ -12,19 +15,18 @@ class PhotoseshType extends Component{
         };
 
     }
-    handleNext = function (photoseshType) {
-        let booknow = localStorage.getItem("booknow");
-        booknow = JSON.parse(booknow);
-        booknow.info.photoseshType = photoseshType;
-        localStorage.setItem("booknow", JSON.stringify(booknow));
+
+
+    handleNext(photosesh_type_name) {
+        let new_book_data = {...this.props.bookinfo}
+        new_book_data.info.photosesh_type_name = photosesh_type_name
+        this.props.setDataBooking(new_book_data)
     }
-    componentDidMount = function () {
 
-        let photoseshType = localStorage.getItem("user");
-        photoseshType = JSON.parse(photoseshType).photoseshTypeList;
+    render() {
 
-        this.setState({photoseshType: photoseshType});
-        let content = photoseshType.map((phototype, i) => {
+        const ListPhotoseshType = this.props.photoseshTypeList.map((phototype, i)=>{
+
             const img = "/images/"+ ++i +".jpg";
             return (
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
@@ -46,11 +48,9 @@ class PhotoseshType extends Component{
 
                 </Col>
             )
-        })
-        this.setState({content: content});
-    }
 
-    render() {
+        })
+
         return (
             <div className="photosesh-type">
                 <Header id="header">
@@ -61,7 +61,8 @@ class PhotoseshType extends Component{
                     <h2 className="title">Photosesh Type</h2>
 
                     <Row>
-                        {this.state.content}
+
+                        {ListPhotoseshType}
 
                     </Row>
                 </div>
@@ -72,4 +73,15 @@ class PhotoseshType extends Component{
 
 }
 
-export default PhotoseshType
+const mapStateToProps = (state)=>{
+
+    return {
+
+        bookinfo:state.bookinfo,
+
+        photoseshTypeList:state.auth.user.photoseshTypeList
+    }
+
+}
+
+export default connect(mapStateToProps,{setDataBooking})(PhotoseshType)

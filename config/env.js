@@ -78,6 +78,8 @@ function getClientEnvironment(publicUrl) {
                 PUBLIC_URL: publicUrl,
                 // API_URL:"http://localhost:8181/api/v1"
                 API_URL: process.env.API_URL,
+                GG_MAP_APIKEY : process.env.GG_MAP_APIKEY,
+                GG_MAP_VERSION : process.env.GG_MAP_VERSION
 
             }
         );

@@ -10,11 +10,12 @@ import {Row, Col, Button, Input, Radio, Select, Form,DatePicker} from 'antd';
 import moment from 'moment'
 import Map, {Marker, GoogleApiWrapper} from 'google-maps-react'
 import {NOW, LATER, DURATIONS,TIME} from '../../define'
-import {setInfoStepOne,setBooktype} from '../../actions'
+import {setDataBooking,setBooktype} from '../../actions/bookActions'
 
 /* ----------- google map config -------------*/
-const GG_MAP_APIKEY = 'AIzaSyCnsWf_o8bCmDAmDC4jx98wi2rjyFaZwok';
-const GG_MAP_VERSION = '3.27'
+const GG_MAP_APIKEY = process.env.GG_MAP_APIKEY;
+const GG_MAP_VERSION = process.env.GG_MAP_VERSION
+
 /* ----------- google map config -------------*/
 
 
@@ -42,39 +43,12 @@ const Contents = createClass({
     onSubmit: function (e) {
         e.preventDefault();
     },
-
-
-    componentDidMount: function () {
-
-
-        /*
-        *
-        * show current location by client device
-        *
-        * */
-
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((info_location)=> {
-
-                var position = {
-                    lat: info_location.coords.latitude,
-                    lng: info_location.coords.longitude
-                };
-
-                fetch(`http://maps.googleapis.com/maps/api/geocode/json?address=${info_location.coords.latitude},${info_location.coords.longitude}&sensor=true`)
-                    .then(res=>res.json())
-                    .then((data)=>{ console.log(data)
-                        this.setState({position,place:data.results[0]['formatted_address']})
-                    })
-
-            }, function() {
-
-            });
-        }
+    onAddressChange: function (e) {
+        e.preventDefault();
 
 
     },
+
 
     componentDidUpdate(prevProps) {
         const {map} = this.props;
@@ -83,6 +57,45 @@ const Contents = createClass({
         }
     },
 
+    fetchLocation(lat,lng){
+
+        fetch(`http://maps.googleapis.com/maps/api/geocode/json?address=${lat},${lng}&sensor=true`)
+            .then(res=>res.json())
+            .then((data)=>{
+                setTimeout(()=>{
+                    this.setState({position:{lat,lng},place:data.results[0]['formatted_address']})
+                },1000)
+            })
+    },
+
+    componentWillMount(){
+        if(typeof this.props.info.position.lat != 'undefined' ){
+
+            let {duration,date,to,from}  = this.props.info
+
+            this.setState({duration,date,to,from})
+
+            this.fetchLocation(this.props.info.position.lat,this.props.info.position.lng)
+        }else{
+
+            /*
+             *
+             * show current location by client device
+             *
+             * */
+
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((info_location)=> {
+
+                    this.fetchLocation(info_location.coords.latitude,info_location.coords.longitude)
+
+                }, function() {
+
+                });
+            }
+        }
+    },
 
     renderAutoComplete: function (location) {
         const {google, map} = this.props;
@@ -112,37 +125,35 @@ const Contents = createClass({
 
             this.setState({
                 place: place.formatted_address,
-                position: place.geometry.location
+                position: {lat:place.geometry.location.lat(),lng:place.geometry.location.lng(),}
             })
         })
     },
 
     handleNext(e) {
-        console.log(this.state.isAddress)
-        if(this.state.isAddress){
+
+        if(this.props.place != ''){
+
+            let {place} = this.state
+            let new_info = {...this.state.info,place,position:this.state.position}
+
             let data = {
                 book_type:this.props.book_type,
-                info: this.state.info,
-                place:this.state.place,
-                position:this.state.position,
+                info: new_info
             }
 
             this.setState({
                 redirect_to_step_2:true
             })
-            this.props.setInfoStepOne(data)
-            localStorage.setItem("booknow", JSON.stringify(data));
+
+            this.props.setDataBooking(data)
+
         } else this.setState({
             addressRequired: 'address is required !'
         })
 
     },
     handleChange(data){
-
-        /*
-        * just save to local state for change on local component
-        * when they click on next button then set data to redux
-        * */
 
         let new_info = {...this.state.info}
         new_info[Object.keys(data).pop()] = data[Object.keys(data)]
@@ -196,10 +207,8 @@ const Contents = createClass({
                         style={{width:'49%'}}
                         format="YYYY-MM-DD"
                         placeholder="Select Date"
-                        defaultValue={props.info.date}
+                        defaultValue={moment(props.info.date)}
                         onChange={(date)=>this.handleChange({date:date})}
-
-
                     />
 
                 </FormItem>
@@ -231,6 +240,7 @@ const Contents = createClass({
                     <Form layout="vertical" onSubmit={this.onSubmit}>
                         <FormItem label="Your Address">
                             <Input
+                                defaultValue={this.props.info.place}
                                 ref='autocomplete'
                                 placeholder="Enter your location"
                                 onBlur={this.handleAddressChange} />
@@ -240,7 +250,7 @@ const Contents = createClass({
                         <FormItem label="Do you want to Book now?">
                             <RadioGroup onChange={(e)=>{
                                 props.setBooktype(e.target.value)
-                            }} value={this.props.book_type}>
+                            }} defaultValue={props.book_type}>
                                 <Radio value={NOW}>Book Now</Radio>
                                 <Radio value={LATER}>Book Later</Radio>
                             </RadioGroup>
@@ -262,6 +272,7 @@ const Contents = createClass({
                 <Col xs={14} sm={14} md={14} lg={18} xl={18}>
 
                     <Map {...props}
+                         clickableIcons={false}
                          containerStyle={{
                              position: 'relative',
                              height: 'calc(100vh - 80px)',
@@ -290,7 +301,7 @@ const MapWrapper = createClass({
             <div className="choose-address">
                 <Heade />
                 <Map
-
+                    clickableIcons={false}
                      google={google}
                      className={'map'}
                      visible={false}
@@ -310,12 +321,7 @@ const MapWrapper = createClass({
 const mapStateToProps = (state)=>{
     return {
         book_type: state.bookinfo.book_type,
-        info:{
-            duration:state.bookinfo.info.duration,
-            date:state.bookinfo.info.date,
-            to:state.bookinfo.info.to,
-            from:state.bookinfo.info.from
-        }
+        info:state.bookinfo.info
     }
 }
 
@@ -325,7 +331,7 @@ const ChooseAddress = GoogleApiWrapper({
     version: GG_MAP_VERSION
 })(MapWrapper)
 
-export default connect(mapStateToProps,{setInfoStepOne,setBooktype})(ChooseAddress)
+export default connect(mapStateToProps,{setDataBooking,setBooktype})(ChooseAddress)
 
 const css = `
     .error{

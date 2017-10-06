@@ -6,26 +6,11 @@ import {Row, Col,Card,Layout,Button,Icon} from 'antd';
 import {connect} from 'react-redux'
 import {Route,Link} from 'react-router-dom'
 const {Header} = Layout
-class PhotoseshType extends Component{
+class DetailPhotoseshLight extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            detail: {}
-        };
     }
-    componentDidMount = function () {
-        let booknow = localStorage.getItem("booknow");
-        booknow = JSON.parse(booknow);
-        let photoseshType = localStorage.getItem("user");
-        photoseshType = JSON.parse(photoseshType).photoseshTypeList;
-        let detail = photoseshType.filter(x=>{
-            return x.photoSeshTypeName == booknow.info.photoseshType;
-        }).map(type=>{
-            return type;
-        })
-        this.setState({detail: detail[0]})
-        // console.log(detail)
-    }
+
     render() {
         return (
             <div className="photosesh-type">
@@ -69,11 +54,11 @@ class PhotoseshType extends Component{
                                     <img src="/images/9.jpg" alt=""/>
                                 </div>
                                 <div className="custom-card">
-                                    <h3>{this.state.detail.photoSeshTypeName}</h3>
+                                    <h3>{this.props.type_detail.photoSeshTypeName}</h3>
 
                                     <p>
-                                        <div>${this.state.detail.photoSeshTypePriceLB} - ${this.state.detail.photoSeshTypePriceUB} / hr</div>
-                                        {this.state.detail.photoSeshTypeOnClickDescription}
+                                        <div>${this.props.type_detail.photoSeshTypePriceLB} - ${this.props.type_detail.photoSeshTypePriceUB} / hr</div>
+                                        {this.props.type_detail.photoSeshTypeOnClickDescription}
                                     </p>
                                 </div>
                             </Card>
@@ -98,5 +83,9 @@ class PhotoseshType extends Component{
     }
 
 }
-
-export default PhotoseshType
+const mapStateToProps = (state)=>{
+    return {
+        type_detail:state.auth.user.photoseshTypeList.filter(type=> type.photoSeshTypeName == state.bookinfo.info.photosesh_type_name).shift()
+    }
+}
+export default connect(mapStateToProps,{})(DetailPhotoseshLight)

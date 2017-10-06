@@ -11,13 +11,15 @@ import rootReducers from './rootReducer'
 import { LocaleProvider } from 'antd';
 import localStorageLoad from './utils/localStorageLoad'
 import enUS from 'antd/lib/locale-provider/en_US';
+import bookMiddleware from './middlewares/bookMiddleware'
 
 const store = createStore(
     rootReducers,
     composeWithDevTools(
-        applyMiddleware(thunk)
+        applyMiddleware(bookMiddleware, thunk)
     )
 )
+
 localStorageLoad(store);
 
 ReactDOM.render(
@@ -27,8 +29,7 @@ ReactDOM.render(
                 <AppContainer/>
             </Provider>
         </BrowserRouter>
-    </LocaleProvider>
-    ,
+    </LocaleProvider>,
     document.getElementById('root')
 );
 

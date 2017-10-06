@@ -1,6 +1,8 @@
 import {setCurrentUser,verifyToken} from '../actions/authActions'
+import {prepareTypeDataBooking} from '../actions/bookActions'
 import setAuthorizationToken from '../utils/setAuthorizationToken'
 
+import * as crypt from './crypt'
 
 export default function (store) {
     try {
@@ -18,9 +20,14 @@ export default function (store) {
                 window.location.href = '/'
             })
 
-
-
         }
+
+
+        if (localStorage.bookinfo) {
+            let data_booking = JSON.parse(crypt.decode(localStorage.bookinfo))
+            store.dispatch(prepareTypeDataBooking(data_booking));
+        }
+
         return;
     } catch (e) {
         // Unable to load or parse stored state, proceed as usual

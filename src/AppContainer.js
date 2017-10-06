@@ -1,6 +1,6 @@
 import App from './App';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router-dom'
 
 function mapStateToProps(state) {
     return {};
