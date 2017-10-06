@@ -6,9 +6,9 @@ import React, {Component} from 'react'
 import {Row, Col, Card, Layout, Button, Icon, Rate} from 'antd';
 import {connect} from 'react-redux'
 import {Route, Link} from 'react-router-dom'
-
-import {bookNow} from '../../actions/bookActions'
-
+import {NOW, LATER, DURATIONS,TIME} from '../../define'
+import {getBookingCornerbookNow,getBookingCornerBookLater} from '../../actions/bookActions'
+import moment from 'moment'
 const {Header} = Layout;
 
 
@@ -26,24 +26,35 @@ class Photographer extends Component {
 
     componentDidMount() {
 
-        let {duration, date, from, photosesh_type_name, photosesh_event_type, photographer, place, position} = this.props.bookinfo.info
-        let {lat, lng} = position
+        let {duration, date, from,to,photosesh_type_name, photosesh_event_type, place, position,book_type} = this.props.bookinfo.info
+        let {lat, lng} = position;
 
-        const form = {
-            agentType: uri photosesh_type_name,
-            appointmentDuration: uri duration,
-            appointmentTime: uri from,
-            eventType: uri photosesh_event_type,
-            latitude: uri lat,
-            longitude: uri lng,
-            offset: uri 42,
-            appointmentDate: uri date,
+        let appointmentEndTime = to;
+        let appointmentTime = (book_type == NOW) ? moment().add(45, 'minutes').format('LT') : from;
+        let appointmentDate = (book_type == NOW)? moment().format('YYYY-MM-DD'):moment(date).format('YYYY-MM-DD');
+
+        let baseForm = {
+            address:place,
+            agentType: photosesh_type_name,
+            eventType: photosesh_event_type,
+            latitude: lat,
+            longitude: lng,
+            offset: 420,
         }
 
-        this.props.bookNow(form).then(res=> {
-            console.log(res.data);
-        })
+        if(book_type == NOW) {
 
+            let form = {...baseForm, appointmentDuration: duration, appointmentTime, appointmentDate}
+            getBookingCornerbookNow(form).then(res=> {
+                console.log(res.data);
+            })
+        }else{
+
+            let form = {...baseForm,appointmentTime, appointmentDate,appointmentEndTime}
+            getBookingCornerBookLater(form).then(res=> {
+                console.log(res.data);
+            })
+        }
 
     }
 
@@ -147,4 +158,4 @@ const mapStateToProps = (state)=> {
     }
 
 }
-export default connect(mapStateToProps, {bookNow})(Photographer)
+export default connect(mapStateToProps, {})(Photographer)

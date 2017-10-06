@@ -1,6 +1,6 @@
 import {SET_INFO_STEP_ONE,SET_BOOKTYPE,SET_EVENT_LIST,SET_PHOTOSESH_TYPE_NAME,SET_PHOTOSESH_EVENT_TYPE,SET_DATA_BOOKING} from './types'
 import axios from 'axios'
-
+import qs from 'querystring'
 const API_URL = process.env.API_URL
 
 export function setDataBooking (data){
@@ -19,11 +19,12 @@ export function prepareTypeDataBooking(data) {
     }
 }
 
-export function bookNow(data) {
+export function getBookingCornerbookNow(data) {
+   return axios.get(API_URL + '/bookingCorner/user/photoSeshNow?' + qs.stringify(data))
+}
 
-   return axios.get(API_URL + '/bookingCorner/user/photoSeshNow',{
-        params:data
-   })
+export function getBookingCornerBookLater(data) {
+   return axios.get(API_URL + '/bookingCorner/user/photoSeshLater?' + qs.stringify(data))
 }
 
 
