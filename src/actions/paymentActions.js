@@ -10,6 +10,7 @@ export function getPaymentToken() {
             params:  {accessToken:axios.defaults.headers.common['authorization']}
         })
 }
+
 export function getCards() {
 
     return dispatch => {

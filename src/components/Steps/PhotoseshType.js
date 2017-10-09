@@ -40,10 +40,10 @@ class PhotoseshType extends Component {
                         </div>
                         <div className={style['custom-card']}>
                             <h2>{phototype.photoSeshTypeName}</h2>
-                            <p>
+                            <div>
                                 <div>${phototype.photoSeshTypePriceLB} - ${phototype.photoSeshTypePriceUB} / hr</div>
                                 {phototype.photoSeshTypeOnClickDescription}
-                            </p>
+                            </div>
                         </div>
                     </Card>
                 </Col>

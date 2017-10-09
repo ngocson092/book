@@ -21,6 +21,9 @@ class BookingReview extends Component {
         };
     }
 
+    selectCard = (e) => {
+        e.preventDefault();  }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -163,7 +166,7 @@ class BookingReview extends Component {
                                     <Row className={style.row}>
                                         <Col xs={24} sm={24} md={24} lg={24} xl={24}>
 
-                                            <Button  onClick={this.state.loading}  className={style['btn-submit']} type="primary">
+                                            <Button  onClick={this.selectCard}  className={style['btn-submit']} type="primary">
                                                 Select Another Card
                                             </Button>
 

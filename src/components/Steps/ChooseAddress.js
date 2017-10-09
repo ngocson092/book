@@ -27,8 +27,8 @@ const RadioGroup = Radio.Group;
 const Contents = createClass({
     getInitialState() {
         return {
-            place: null,
-            position: null,
+            place: '',
+            position: {},
             info:{
                 duration:DURATIONS[0],
                 date:moment(),
@@ -46,6 +46,7 @@ const Contents = createClass({
 
 
     componentDidUpdate(prevProps) {
+
         const {map} = this.props;
         if (map !== prevProps.map) {
             this.renderAutoComplete();
@@ -70,32 +71,8 @@ const Contents = createClass({
 
     componentDidMount(){
 
-        if(typeof this.props.info.position != 'undefined' && this.props.info.position && typeof this.props.info.position.lat != 'undefined' ){
 
 
-            let {duration,date,to,from}  = this.props.info
-            this.setState({duration,date,to,from})
-            this.fetchLocation(this.props.info.position.lat,this.props.info.position.lng)
-
-        }else{
-
-            /*
-             *
-             * show current location by client device
-             *
-             * */
-
-
-            if (navigator.geolocation) {
-
-                navigator.geolocation.getCurrentPosition((info_location)=> {
-                    this.fetchLocation(info_location.coords.latitude,info_location.coords.longitude)
-
-                }, function() {
-
-                });
-            }
-        }
     },
 
     renderAutoComplete: function (location) {
@@ -171,6 +148,32 @@ const Contents = createClass({
         })
     },
 
+    componentWillReceiveProps: function(nextProps) {
+        if(typeof nextProps.info.position != 'undefined' && nextProps.info.position && typeof nextProps.info.position.lat != 'undefined' ){
+
+            let {duration,date,to,from}  = nextProps.info
+            this.setState({duration,date,to,from})
+            this.fetchLocation(nextProps.info.position.lat,nextProps.info.position.lng)
+
+        }else{
+
+            /*
+             *
+             * show current location by client device
+             *
+             * */
+
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition((info_location)=> {
+                    this.fetchLocation(info_location.coords.latitude,info_location.coords.longitude)
+
+                }, function() {
+
+                });
+            }
+        }
+    },
     render: function () {
         const props = this.props;
 
@@ -231,6 +234,10 @@ const Contents = createClass({
             </div>
         )
 
+
+        console.log((this.props.info.place != '') ? this.props.info.place : this.state.place);
+
+
         return (
             <Row>
 
@@ -263,7 +270,10 @@ const Contents = createClass({
                                 style={{width: '100%',
                                     borderRadius: 0}}
                                 type="primary"
-                                    onClick={this.handleNext}
+
+                                disabled={this.state.place == '' || this.state.position.lat == '' || this.state.position.lng == ''}
+
+                                onClick={this.handleNext}
                             >
                                 Next
                             </Button>

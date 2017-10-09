@@ -35,12 +35,12 @@ class DetailPhotoseshLight extends Component {
                         <Col xs={12} sm={12} md={12} lg={12} xl={12}  style={{padding:10}}>
                             <Card bodyStyle={{padding: 15,height: 481}}>
                                 <h3 style={{fontSize:30,lineHeight: '60px',fontWeight: 100,textAlign:'center'}}>{cleanSlug(this.props.type_detail.photoSeshTypeName)}</h3>
-                                <p style={{fontSize:14}}>
+                                <div style={{fontSize:14}}>
                                     <div style={{    marginBottom: 15,color: '#e94410',textAlign:'center'}}>${this.props.type_detail.photoSeshTypePriceLB} -
                                         ${this.props.type_detail.photoSeshTypePriceUB} / hr
                                     </div>
                                     {this.props.type_detail.photoSeshTypeOnClickDescription}
-                                </p>
+                                </div>
                                 <h2
                                 style={{
                                     fontSize: 20,
