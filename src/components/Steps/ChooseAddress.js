@@ -58,21 +58,24 @@ const Contents = createClass({
             .then(res=>res.json())
             .then((data)=>{
                 setTimeout(()=>{
-                    this.setState({position:{lat,lng},place:data.results[0]['formatted_address']})
+
+                    if(data.status == 'OK'){
+                        this.setState({position:{lat,lng},place:data.results[0]['formatted_address']})
+                    }
+
+
                 },1000)
             })
     },
 
     componentDidMount(){
 
-        if(typeof this.props.info.position != 'undefined' && this.props.info.position){
+        if(typeof this.props.info.position != 'undefined' && this.props.info.position && typeof this.props.info.position.lat != 'undefined' ){
+
 
             let {duration,date,to,from}  = this.props.info
             this.setState({duration,date,to,from})
-
-            if(this.props.info.position.lat !=''){
-                this.fetchLocation(this.props.info.position.lat,this.props.info.position.lng)
-            }
+            this.fetchLocation(this.props.info.position.lat,this.props.info.position.lng)
 
         }else{
 
@@ -84,8 +87,8 @@ const Contents = createClass({
 
 
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((info_location)=> {
 
+                navigator.geolocation.getCurrentPosition((info_location)=> {
                     this.fetchLocation(info_location.coords.latitude,info_location.coords.longitude)
 
                 }, function() {
