@@ -63,15 +63,17 @@ const Contents = createClass({
             })
     },
 
-    componentWillMount(){
+    componentDidMount(){
 
-        if(typeof this.props.info.position.lat != 'undefined' ){
+        if(typeof this.props.info.position != 'undefined' && this.props.info.position){
 
             let {duration,date,to,from}  = this.props.info
-
             this.setState({duration,date,to,from})
 
-            this.fetchLocation(this.props.info.position.lat,this.props.info.position.lng)
+            if(this.props.info.position.lat !=''){
+                this.fetchLocation(this.props.info.position.lat,this.props.info.position.lng)
+            }
+
         }else{
 
             /*

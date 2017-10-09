@@ -108,7 +108,7 @@ class Photographer extends Component {
                 <ul className="menu_simple">
                     <li>List Photographers</li>
                     |
-                    <li><Link to={'/book/type-photosesh'}> Back </Link></li>
+                    <li><Link to={'/book/photosesh-type'}> Back </Link></li>
                     |
                     <li><Link to={'/book/'}>Pick Another Address </Link></li>
                     |
@@ -120,18 +120,21 @@ class Photographer extends Component {
                 </h2>
 
                 <Row>
-                    {this.state.loading && (<div style={{textAlign: 'center'}}><Spin/></div>) }
 
-
-                    {this.state.message != '' && (  <Alert style={{
-                        textAlign: 'center',
-                        padding: 100,
-                        fontSize: 15
-                    }} message={this.state.message} type="info"/>) }
 
                     <Col xs={{span: 24, offset: 0}} sm={{span: 16, offset: 4}} md={{span: 12, offset: 6}}
                          lg={{span: 8, offset: 8}} xl={{span: 8, offset: 8}}
                         >
+
+
+                        {this.state.loading && (<div style={{textAlign: 'center'}}><Spin/></div>) }
+
+
+                        {this.state.message != '' && (  <Alert style={{
+                            textAlign: 'center',
+                            padding: '100px 10px',
+                            fontSize: 15
+                        }} message={this.state.message} type="info"/>) }
 
                         { (this.state.photographers.length > 0) && this.state.photographers.map((photo, i) => {
                                 return (
