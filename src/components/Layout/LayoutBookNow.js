@@ -1,15 +1,9 @@
-import '../../stylesheet/_layout_booknow.scss'
 import React from 'react'
-import {Redirect} from 'react-router-dom'
-import {Layout} from 'antd'
-const { Content,Header} = Layout;
+import '../../stylesheet/_layout_booknow.scss'
 const LayoutBooknow = ({ children }) => (
-    <Layout id="layout-booknow">
-        <Content id="content">
-            {children}
-        </Content>
-    </Layout>
+    <section id="layout-booknow">
+        {children}
+    </section>
 );
-
 
 export default LayoutBooknow

@@ -27,6 +27,10 @@ export function getBookingCornerBookLater(data) {
    return axios.get(API_URL + '/bookingCorner/user/photoSeshLater?' + qs.stringify(data))
 }
 
+export function postBooking(data) {
+   return axios.post(API_URL + '/bookingCorner/bookAppointmentRequestMultiple',data)
+}
+
 
 export function setBooktype (booktype){
     return dispatch => {

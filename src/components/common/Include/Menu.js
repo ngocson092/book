@@ -14,7 +14,7 @@ class MainMenu extends React.Component {
                     <Link to="/wedding" className="btn">WEDDING</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to="/book-now" className="btn">BOOK NOW</Link>
+                    <Link to="/book" className="btn">BOOK NOW</Link>
                 </Menu.Item>
             </Menu>
         );

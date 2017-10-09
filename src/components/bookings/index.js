@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react'
 import {Layout, Table, Popconfirm, Modal} from 'antd';
-import Heade from '../bookings/heade';
+import Heade from '../bookings/header';
 import EditableCell from './editTableCell';
 const {  Content } = Layout;
 const request   = require('request');

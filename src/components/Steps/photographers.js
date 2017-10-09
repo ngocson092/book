@@ -1,14 +1,12 @@
-/**
- * Created by lamtanphiho on 8/13/2017.
- */
 import '../../stylesheet/_photographer.scss'
 import React, {Component} from 'react'
-import {Row, Col, Card, Layout, Button, Icon, Rate} from 'antd';
+import {Row, Col, Card, Layout, Rate, Icon, Spin, Alert} from 'antd';
 import {connect} from 'react-redux'
 import {Route, Link} from 'react-router-dom'
-import {NOW, LATER, DURATIONS,TIME} from '../../define'
-import {getBookingCornerbookNow,getBookingCornerBookLater} from '../../actions/bookActions'
+import {NOW} from '../../define'
+import {getBookingCornerbookNow, getBookingCornerBookLater, setDataBooking} from '../../actions/bookActions'
 import moment from 'moment'
+import style from './photographers.css'
 const {Header} = Layout;
 
 
@@ -16,133 +14,150 @@ class Photographer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            content: ''
+            message: '',
+            loading: false,
+            photographers: []
         };
     }
 
-    handleNext(photographer) {
-        this.props.setPhotographer(photographer)
+    goTo(route) {
+        this.props.history.replace(route)
     }
 
-    componentDidMount() {
+    handleNext(photographer) {
+        let info = {...this.props.bookinfo.info, photographer}
+        this.props.setDataBooking({...this.props.bookinfo, info})
+        this.goTo('/book/booking-review')
 
-        let {duration, date, from,to,photosesh_type_name, photosesh_event_type, place, position,book_type} = this.props.bookinfo.info
+    }
+
+    getPhotographers() {
+
+        let getTimeForBookNow = ()=> {
+            const PREPARE_TIME = 15;
+            let now = moment().add(PREPARE_TIME, 'minutes'),
+                hourAfterAdd = parseInt(now.format('h')),
+                newMinute = '00 ';
+            if (parseInt(now.format('m')) > 30) {
+                hourAfterAdd += 1;
+            } else {
+                newMinute = '30 ';
+            }
+            /*
+             *  if now : 11:45 PM => 12:30 PM
+             *  time for book must be hour:00 or hour:30
+             *
+             * */
+
+            hourAfterAdd = ('0' + hourAfterAdd).slice(-2)
+            // add prefix 0 before number less than 10
+
+            return hourAfterAdd + ':' + newMinute + now.format('A')
+        }
+
+        let {duration, date, from, to, photosesh_type_name, photosesh_event_type, place, position} = this.props.bookinfo.info
         let {lat, lng} = position;
-
+        let {book_type} = this.props.bookinfo
         let appointmentEndTime = to;
-        let appointmentTime = (book_type == NOW) ? moment().add(45, 'minutes').format('LT') : from;
-        let appointmentDate = (book_type == NOW)? moment().format('YYYY-MM-DD'):moment(date).format('YYYY-MM-DD');
+        let appointmentTime = (book_type == NOW) ? getTimeForBookNow() : from;
+        let appointmentDate = (book_type == NOW) ? moment().format('YYYY-MM-DD') : moment(date).format('YYYY-MM-DD');
+
 
         let baseForm = {
-            address:place,
+            address: place,
             agentType: photosesh_type_name,
-            eventType: photosesh_event_type,
+            eventType: photosesh_event_type.toUpperCase(),
             latitude: lat,
             longitude: lng,
             offset: 420,
         }
 
-        if(book_type == NOW) {
-
+        if (book_type == NOW) {
             let form = {...baseForm, appointmentDuration: duration, appointmentTime, appointmentDate}
-            getBookingCornerbookNow(form).then(res=> {
-                console.log(res.data);
-            })
-        }else{
+            return getBookingCornerbookNow(form);
 
-            let form = {...baseForm,appointmentTime, appointmentDate,appointmentEndTime}
-            getBookingCornerBookLater(form).then(res=> {
-                console.log(res.data);
-            })
+        } else {
+
+            let form = {...baseForm, appointmentTime, appointmentDate, appointmentEndTime}
+            return getBookingCornerBookLater(form)
+
         }
-
     }
 
+    componentDidMount() {
 
+        this.setState({loading: true})
 
+        this.getPhotographers().then(res=> {
 
+            let photographers = res.data.data
+            this.setState({loading: false, photographers})
+        }).catch(({response})=> {
+            let error = response.data;
 
+            this.setState({message: error.message, loading: false})
+        })
 
-
-
-
-    co1mponentDidMount = function () {
-        /*const self = this;
-         let booknow = localStorage.getItem("booknow");
-         booknow = JSON.parse(booknow);
-
-         let user =  localStorage.getItem("user");
-         user = JSON.parse(user);
-
-
-
-         request.get(process.env.API_URL+'/bookingCorner/user/photoSeshNow?'+qs.stringify(form), {
-         headers: {
-         'authorization': user.accessToken
-         }
-         },
-         function (error, response, body) {
-         let content;
-         if(!error ) {
-         body = JSON.parse(body);console.log(body)
-         if (body.statusCode == 200) {
-
-         content = body.data.map((photo, i) => {
-         return (
-
-         <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
-         <Link to={'/book-now/booking-review'} onClick={()=>self.handleNext(photo)}>
-         <Card bodyStyle={{padding: 0}}>
-         <div className="custom-image-photographer">
-         <img src={photo.profilePicURL.original} alt=""/>
-         </div>
-         <div className="custom-card-photographer">
-         <h2>{photo.name}</h2>
-         <Rate allowHalf defaultValue={photo.rating}/>
-         <h3>{(new Date(photo.startingDate)).toLocaleDateString('en-US')}
-         at {photo.startingTime}</h3>
-         </div>
-         <div className="custom-card-photographer-right">
-         <h2>${photo.agentPrice}/hr</h2>
-         <h3>13 min away</h3>
-         </div>
-         </Card>
-         </Link>
-
-         </Col>
-         )
-         })
-
-         }
-         if (!error && body.statusCode == 400) {
-         content = (<Col xs={24} sm={24} md={24} lg={24} xl={24}>
-         <Card bodyStyle={{padding: 0}}>
-         <div className="custom-card-photographer-center">
-         <h2>{body.message}</h2>
-         </div>
-         </Card>
-         </Col>);
-         }
-         self.setState({content: content});
-         }
-         });*/
     }
 
     render() {
 
+
         return (
             <div className="photosesh-type">
-                <Header id="header">
-                    <Link className="logo" to={'/book-now'}>Photosesh - Book Now</Link>
-                    <Link className={'btn-right'} to={'/book-now/need-a-photosesh'}><Icon type="left"/> Back</Link>
-                </Header>
-                <div className="container">
-                    <h2 className="title">Photographers</h2>
+                <ul className="menu_simple">
+                    <li>List Photographers</li>
+                    |
+                    <li><Link to={'/book/type-photosesh'}> Back </Link></li>
+                    |
+                    <li><Link to={'/book/'}>Pick Another Address </Link></li>
+                    |
+                    <li><Link to={'/'}>Home Page</Link></li>
+                </ul>
 
-                    <Row>
+                <h2 className="head-title-center">
+                    List Photographers
+                </h2>
 
-                    </Row>
-                </div>
+                <Row>
+                    {this.state.loading && (<div style={{textAlign: 'center'}}><Spin/></div>) }
+
+
+                    {this.state.message != '' && (  <Alert style={{
+                        textAlign: 'center',
+                        padding: 100,
+                        fontSize: 15
+                    }} message={this.state.message} type="info"/>) }
+
+                    <Col xs={{span: 24, offset: 0}} sm={{span: 16, offset: 4}} md={{span: 12, offset: 6}}
+                         lg={{span: 8, offset: 8}} xl={{span: 8, offset: 8}}
+                        >
+
+                        { (this.state.photographers.length > 0) && this.state.photographers.map((photo, i) => {
+                                return (
+
+
+                                    <Card bodyStyle={{padding: 0}} onClick={()=>this.handleNext(photo)}  key={i}>
+                                        <div className={style.thumbnail}>
+                                            <img src={photo.profilePicURL.original} alt=""/>
+                                        </div>
+
+                                        <div className={style.right_info}>
+                                            <h2>{photo.name}</h2>
+                                            <Rate allowHalf defaultValue={photo.rating}/>
+                                            <h3>{(new Date(photo.startingDate)).toLocaleDateString('en-US')}
+                                                at {photo.startingTime}</h3>
+
+                                            <h2>${photo.agentPrice}/hr</h2>
+                                            <h3>13 min away</h3>
+                                        </div>
+                                    </Card>
+
+                                )
+                            })
+                        }
+                    </Col>
+                </Row>
 
             </div>
         )
@@ -151,11 +166,11 @@ class Photographer extends Component {
     }
 
 }
-const mapStateToProps = (state)=> {
 
+const mapStateToProps = (state)=> {
     return {
         bookinfo: state.bookinfo
     }
-
 }
-export default connect(mapStateToProps, {})(Photographer)
+
+export default connect(mapStateToProps, {setDataBooking})(Photographer)

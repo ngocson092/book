@@ -1,0 +1,31 @@
+:local(.photosesh-type){
+
+
+}
+:local(.ant-card){
+  margin: 10px;
+  cursor: pointer;
+}
+:local(.container){
+  max-width: 1000px;
+  margin: auto;
+}
+:local(.custom-image img){
+  display: block;
+  width: 100%;
+}
+:local(.custom-card p){
+  color: #999;
+}
+:local(.custom-card){
+  padding: 10px 16px;
+  margin: 10px
+}
+:local(.custom-detail-light){
+  text-align: center;
+  padding-bottom: 20px;
+}
+:local(h2){
+  color: brown;
+}
+

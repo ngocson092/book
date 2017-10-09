@@ -49,7 +49,7 @@ class HeaderTop extends Component {
 
         return (
 
-            <div className={style.header_top}>
+            <div className={style.header_top} style={this.props.style}>
                 <div className={style.top_left}>
                     <i className="glyphicon-headphones"><Headphone /></i>
                     <span className={style.sub}><strong>  QUESTION?</strong> CALL <span

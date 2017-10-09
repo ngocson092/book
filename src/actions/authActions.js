@@ -22,8 +22,8 @@ export function logout() {
 
 
 export function filterUserData(data) {
-    let {name ,location ,phoneNumber ,emailId,profilePicURL,photoseshTypeList,EventList} = data;
-    return {name ,location ,phone:phoneNumber ,email:emailId,profilePicURL,photoseshTypeList,EventList}
+    let {name ,location ,phoneNumber ,emailId,profilePicURL,photoseshTypeList,eventList} = data;
+    return {name ,location ,phone:phoneNumber ,email:emailId,profilePicURL,photoseshTypeList,eventList}
 }
 
 export function login(data) {

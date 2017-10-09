@@ -25,19 +25,22 @@ class NeedPhotosesh extends Component{
     render() {
         return (
             <div className="photosesh-type needphotosesh">
-                <Header id="header">
-                    <Link className="logo" to={'/book-now'}>Photosesh - Book Now</Link>
-                    <Link className={'btn-right'} to={'/book-now/photosesh-type/detail'}><Icon type="left" /> Back</Link>
-                </Header>
+
                 <div className="container">
-                    <h2 className="title">I Need a PhotoSesh For ...</h2>
+                    <ul className="menu_simple">
+                        <li><Link to={'/book/'}>Select Another address</Link></li> |
+                        <li><Link to={'/book/photosesh-type/detail'}>Detail</Link></li> |
+                        <li><Link to={'/'}>HomePage</Link></li>
+                    </ul>
+                    <h2 className="head-title-center">I Need a PhotoSesh For ...</h2>
+
 
                     <Row>
-                        {this.props.EventList.map((event, i) => {
+                        {this.props.eventList.map((event, i) => {
                             const img = "/images/"+ ++i +".jpg";
                             return (
                                 <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
-                                    <Link to={"/book-now/photographers"}  onClick={()=>this.handleNext(event.eventName)}>
+                                    <Link to={"/book/photographers"}  onClick={()=>this.handleNext(event.eventName)}>
                                         <Card bodyStyle={{padding: 0}}>
                                             <div className="custom-image">
                                                 <img src={event.eventImage.thumb} alt=""/>
@@ -69,7 +72,7 @@ const mapStateToProps = (state)=>{
 
     return {
         bookinfo:state.bookinfo,
-        EventList:state.auth.user.EventList
+        eventList:state.auth.user.eventList
     }
 
 }

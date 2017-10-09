@@ -15,7 +15,7 @@ export default class Bookings extends Component{
 
         return (
             <Header id="header">
-                <Link className="logo" to={'/book-now'}>Photosesh - Book Now</Link>
+                <Link className="logo" to={'/book'}>Photosesh - Book Now</Link>
                 <Link className={'menu'} to={'/bookings'}>  Bookings</Link>
 
                 <Link className={'menu'} to={'/'}><Icon type="home" />

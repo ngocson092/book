@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
 import {Redirect,Link} from 'react-router-dom'
-import Heade from '../bookings/heade';
+import {Icon} from  'antd'
+import Header from '../bookings/header';
 
 
 import createClass from 'create-react-class'
@@ -26,7 +27,6 @@ const RadioGroup = Radio.Group;
 const Contents = createClass({
     getInitialState() {
         return {
-            redirect_to_step_2:false,
             place: null,
             position: null,
             info:{
@@ -40,13 +40,8 @@ const Contents = createClass({
         }
     },
 
-    onSubmit: function (e) {
-        e.preventDefault();
-    },
-    onAddressChange: function (e) {
-        e.preventDefault();
-
-
+    goTo(route) {
+        this.props.history.replace(`${route}`)
     },
 
 
@@ -69,6 +64,7 @@ const Contents = createClass({
     },
 
     componentWillMount(){
+
         if(typeof this.props.info.position.lat != 'undefined' ){
 
             let {duration,date,to,from}  = this.props.info
@@ -142,9 +138,7 @@ const Contents = createClass({
                 info: new_info
             }
 
-            this.setState({
-                redirect_to_step_2:true
-            })
+            this.goTo('/book/photosesh-type')
 
             this.props.setDataBooking(data)
 
@@ -234,7 +228,7 @@ const Contents = createClass({
 
         return (
             <Row>
-                {this.state.redirect_to_step_2 && ( <Redirect to={'/book-now/photosesh-type'}/>)}
+
 
                 <Col xs={10} sm={10} md={10} lg={6} xl={6} className={'sidebar'}>
                     <Form layout="vertical" onSubmit={this.onSubmit}>
@@ -260,7 +254,10 @@ const Contents = createClass({
 
                         <FormItem>
 
-                            <Button type="primary"
+                            <Button
+                                style={{width: '100%',
+                                    borderRadius: 0}}
+                                type="primary"
                                     onClick={this.handleNext}
                             >
                                 Next
@@ -268,6 +265,15 @@ const Contents = createClass({
 
                         </FormItem>
                     </Form>
+
+                    <ul className="menu_simple">
+                        <li>Book Photosesh</li> |
+                        <li><Link to={'/'}> Home Page</Link></li> |
+                        <li><Link to={'/my-account'}>My Account</Link></li>
+
+                    </ul>
+
+
                 </Col>
                 <Col xs={14} sm={14} md={14} lg={18} xl={18}>
 
@@ -299,13 +305,11 @@ const MapWrapper = createClass({
         return (
 
             <div className="choose-address">
-                <Heade />
                 <Map
-                    clickableIcons={false}
+                     clickableIcons={false}
                      google={google}
                      className={'map'}
                      visible={false}
-
                      containerStyle={{
                          height: 'initial'
                      }}

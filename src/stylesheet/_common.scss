@@ -2,14 +2,35 @@
 body{
   color: #666;
 }
+img{max-width: 100%}
 h2.head-title{
   font-size: 25px;
   font-weight: 100;
   margin-bottom:20px;
-
-
 }
 
+h2.head-title-center{
+  font-size: 25px;
+  font-weight: 100;
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+
+.fullheight-with-top {
+  height: calc(100vh - 40px);
+}
+.menu_simple {
+  text-align: center;
+  line-height: 50px;
+  li{
+    display: inline-block;
+    margin: 0 5px;
+  }
+}
+.container{
+  max-width: 1000px;
+  margin: 0 auto;
+}
 @-webkit-keyframes progressbar {
   from {
     width:0
@@ -26,3 +47,6 @@ h2.head-title{
     width:100%
   }
 }
+
+
+
