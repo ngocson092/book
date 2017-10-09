@@ -19,7 +19,6 @@ const GG_MAP_VERSION = process.env.GG_MAP_VERSION
 
 /* ----------- google map config -------------*/
 
-
 const Option = Select.Option;
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -233,10 +232,6 @@ const Contents = createClass({
 
             </div>
         )
-
-
-        console.log((this.props.info.place != '') ? this.props.info.place : this.state.place);
-
 
         return (
             <Row>

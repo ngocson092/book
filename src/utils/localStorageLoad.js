@@ -14,7 +14,7 @@ export default function (store) {
             verifyToken()
             .then(res=>{
                 let user = res.data.data;
-                store.dispatch(setCurrentUser(user));
+                 store.dispatch(setCurrentUser(user));
             },({response})=>{
                 localStorage.removeItem('access_token');
                 window.location.href = '/'
