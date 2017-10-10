@@ -6,7 +6,7 @@ import React,{Component} from 'react'
 import {Row, Col,Card,Layout,Button,Icon} from 'antd';
 import {connect} from 'react-redux'
 import {Route,Link} from 'react-router-dom'
-
+import {cleanSlug} from  '../../utils/helper'
 import {setDataBooking} from '../../actions/bookActions'
 const {Header} = Layout;
 
@@ -46,7 +46,7 @@ class NeedPhotosesh extends Component{
                                                 <img src={event.eventImage.thumb} alt=""/>
                                             </div>
                                             <div className="custom-card">
-                                                <h2>{event.eventName}</h2>
+                                                <h2 className="title">{cleanSlug(event.eventName)}</h2>
                                                 <p>
                                                     {event.eventDescription}
                                                 </p>

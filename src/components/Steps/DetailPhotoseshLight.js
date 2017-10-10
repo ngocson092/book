@@ -34,7 +34,9 @@ class DetailPhotoseshLight extends Component {
 
                         <Col xs={12} sm={12} md={12} lg={12} xl={12}  style={{padding:10}}>
                             <Card bodyStyle={{padding: 15,height: 481}}>
-                                <h3 style={{fontSize:30,lineHeight: '60px',fontWeight: 100,textAlign:'center'}}>{cleanSlug(this.props.type_detail.photoSeshTypeName)}</h3>
+                                <h2
+                                    className="title"
+                                    style={{fontSize:30,lineHeight: '60px',fontWeight: 100,textAlign:'center'}}>{cleanSlug(this.props.type_detail.photoSeshTypeName)}</h2>
                                 <div style={{fontSize:14}}>
                                     <div style={{    marginBottom: 15,color: '#e94410',textAlign:'center'}}>${this.props.type_detail.photoSeshTypePriceLB} -
                                         ${this.props.type_detail.photoSeshTypePriceUB} / hr
@@ -42,12 +44,12 @@ class DetailPhotoseshLight extends Component {
                                     {this.props.type_detail.photoSeshTypeOnClickDescription}
                                 </div>
                                 <h2
+                                className="title"
                                 style={{
                                     fontSize: 20,
                                     textAlign: 'center',
                                     margin: '20px 0',
                                     color: '#4b4b4b',
-                                    textTransform: 'uppercase',
                                     fontWeight: 100
                                 }}
 

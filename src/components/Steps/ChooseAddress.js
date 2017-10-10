@@ -291,7 +291,7 @@ const Contents = createClass({
                          clickableIcons={false}
                          containerStyle={{
                              position: 'relative',
-                             height: 'calc(100vh - 80px)',
+                             height: 'calc(100vh - 40px)',
                              width: '100%'
                          }}
                          center={this.state.position}

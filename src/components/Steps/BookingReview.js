@@ -1,15 +1,13 @@
 import style  from  './book.css'
 import React, {Component} from 'react'
+import moment from 'moment'
 import {Row, Col, Card, Layout, Button, Icon, Rate, Input, Form, Modal} from 'antd';
 import {Route, Link} from 'react-router-dom'
 import {NOW} from '../../define'
 import {postBooking} from '../../actions/bookActions'
 import {connect} from 'react-redux'
-import moment from 'moment'
 import {getCards} from '../../actions/paymentActions'
 import {cleanSlug} from '../../utils/helper'
-const {Header} = Layout;
-const booking = require('../../controllers/booking');
 
 const FormItem = Form.Item;
 class BookingReview extends Component {
@@ -22,7 +20,10 @@ class BookingReview extends Component {
     }
 
     selectCard = (e) => {
-        e.preventDefault();  }
+        e.preventDefault();
+
+
+    }
 
     handleSubmit = (e) => {
         e.preventDefault();

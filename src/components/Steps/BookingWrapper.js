@@ -26,7 +26,7 @@ class BookingWrapper extends Component {
         return (
             <div id="booking-wrapper">
                 <HeaderTop style={{background:'#fff'}} {...this.props} />
-                <Layout style={{height:'calc( 100vh  - 41px ) ' ,background:'#f7f7f7'}}>
+                <Layout style={{height:'calc( 100vh) ' ,background:'#f7f7f7'}}>
                     <Content style={{ padding: 0, margin: 0, minHeight: 280 }}>
                         <Route  exact={true}  path={`${this.props.match.url}/`} component={Step1} />
                         <Route  exact={true}  path={`${this.props.match.url}/photosesh-type`} component={Step2}/>

@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Redirect, Link} from 'react-router-dom'
 import style from './photosesh_type.css'
 import {setDataBooking} from '../../actions/bookActions'
-
+import {cleanSlug} from  '../../utils/helper'
 const {Header} = Layout
 class PhotoseshType extends Component {
     constructor(props) {
@@ -39,7 +39,7 @@ class PhotoseshType extends Component {
                             <img src={img} alt=""/>
                         </div>
                         <div className={style['custom-card']}>
-                            <h2>{phototype.photoSeshTypeName}</h2>
+                            <h2 className="title">{cleanSlug(phototype.photoSeshTypeName)}</h2>
                             <div>
                                 <div>${phototype.photoSeshTypePriceLB} - ${phototype.photoSeshTypePriceUB} / hr</div>
                                 {phototype.photoSeshTypeOnClickDescription}
