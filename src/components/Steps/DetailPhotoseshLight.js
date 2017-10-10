@@ -54,7 +54,10 @@ class DetailPhotoseshLight extends Component {
                                 }}
 
                                 >Less cost, not a moment lost!</h2>
-                                <Link className="btn-middle" to={'/book/need-a-photosesh'}> NEXT </Link>
+
+                                <Button type="primary" className="btn-submit" ><Link  to={'/book/need-a-photosesh'}> NEXT </Link></Button>
+
+
                             </Card>
 
                         </Col>

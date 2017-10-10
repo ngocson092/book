@@ -266,6 +266,7 @@ const Contents = createClass({
                                     borderRadius: 0}}
                                 type="primary"
 
+                                className={'btn-submit'}
                                 disabled={this.state.place == '' || this.state.position.lat == '' || this.state.position.lng == ''}
 
                                 onClick={this.handleNext}

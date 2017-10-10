@@ -2,6 +2,12 @@
 body{
   color: #666;
 }
+a,h2{
+  color: #e9550f;
+}
+a:hover{
+  color:#d04b0d
+}
 img{max-width: 100%}
 h2.title-medium{
   font-size: 15px;
@@ -42,6 +48,31 @@ h2.head-title-center{
   max-width: 1000px;
   margin: 0 auto;
 }
+
+
+.btn-submit:hover{
+  color: #fff;
+  background-color: #e95410;
+  border-color: #a7400c;
+}
+.btn-submit{
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  height: 40px;
+  border-radius: 0px;
+  font-size: 15px;
+  color: #fff;
+  background-color: #e95410;
+  border-color: #a7400c;
+}
+.ant-carousel .slick-dots li button{
+  height: 12px !important;
+}
+
+
+
 @-webkit-keyframes progressbar {
   from {
     width:0

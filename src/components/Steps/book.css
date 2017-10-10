@@ -40,12 +40,3 @@
   background: rgb(244, 245, 245);
   padding: 10px;
 }
-:local(.btn-submit){
-  text-align: center;
-  margin-top: 20px;
-  width: 100%;
-  padding: 10px;
-  height: 40px;
-  border-radius: 0px;
-  font-size: 15px;
-}

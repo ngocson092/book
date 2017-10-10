@@ -14,8 +14,8 @@ class BookingReview extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading:false,
-            has_card_default:true
+            loading: false,
+            has_card_default: true
         };
     }
 
@@ -28,7 +28,7 @@ class BookingReview extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-            if(!err){
+            if (!err) {
                 let {title} = values;
 
                 let form = {
@@ -50,10 +50,10 @@ class BookingReview extends Component {
                     titleOrDescription: title
                 }
 
-                this.setState({loading:true})
+                this.setState({loading: true})
                 postBooking(form).then(res=> {
                     let data = res.data.data
-                    if(res.status == 200){
+                    if (res.status == 200) {
                         let message = data.message
                     }
                 })
@@ -63,7 +63,7 @@ class BookingReview extends Component {
         })
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.getCards()
     }
 
@@ -75,10 +75,8 @@ class BookingReview extends Component {
         const Title = (this.props.bookinfo.book_type == NOW) ? "Book Now" : "Book Later"
 
 
-
-
         return (
-            <div className={style['full-height']}  style={{paddingTop:30}}>
+            <div className={style['full-height']} style={{paddingTop: 30}}>
                 <div className="book-review">
 
                     <Row className={style.row}>
@@ -88,7 +86,7 @@ class BookingReview extends Component {
                              md={{span: 12, offset: 6}}
                              lg={{span: 10, offset: 7}}
                              xl={{span: 8, offset: 9}}>
-                            <Card className={style['ant-card']} >
+                            <Card className={style['ant-card']}>
                                 <h2 className={style['title']}>Booking Review</h2>
                                 <Form onSubmit={this.handleSubmit}>
                                     <Row className={style.row}>
@@ -116,7 +114,7 @@ class BookingReview extends Component {
                                         </Col>
                                     </Row>
 
-                                    
+
                                     <Row className={style.row}>
                                         <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                             <label className="book-info-title">Photographer Type</label>
@@ -128,7 +126,7 @@ class BookingReview extends Component {
                                         </Col>
                                     </Row>
 
-                                    
+
                                     <Row className={style.row}>
                                         <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                             <label className="book-info-title">Service Location</label>
@@ -138,7 +136,7 @@ class BookingReview extends Component {
                                         </Col>
                                     </Row>
 
-                                    
+
                                     <Row className={style.row}>
                                         <Col xs={24} sm={10} md={10} lg={10} xl={10}>
                                             <label className="book-info-title">Scheduled For</label>
@@ -148,34 +146,64 @@ class BookingReview extends Component {
                                         </Col>
                                     </Row>
 
-                                    
+
                                     <Row className={style.row}>
                                         <Col xs={24} sm={24} md={24} lg={24} xl={24} className={style.footer}>
 
                                             <h4 className="book-info-title">Photographers Requested : </h4>
 
-                                            <div style={{width:'100%',overflow: 'hidden'}}>
-                                                <span style={{float:'left'}}>{bookinfo.info.photographer.name}</span>
-                                                <span style={{float:'right'}}>${bookinfo.info.photographer.agentPrice}/hr</span>
+                                            <div style={{width: '100%', overflow: 'hidden'}}>
+                                                <span style={{float: 'left'}}>{bookinfo.info.photographer.name}</span>
+                                                <span style={{float: 'right'}}>${bookinfo.info.photographer.agentPrice}/hr</span>
                                             </div>
                                             <div className={style['custom-card-booking-review']}>
-                                                <Rate style={{float:'left'}} allowHalf defaultValue={bookinfo.info.photographer.rating}/>
-                                                <span style={{float:'right'}}> {moment(bookinfo.info.date).format("MMMM Do YYYY ")}
+                                                <Rate style={{float: 'left'}} allowHalf
+                                                      defaultValue={bookinfo.info.photographer.rating}/>
+                                                <span
+                                                    style={{float: 'right'}}> {moment(bookinfo.info.date).format("MMMM Do YYYY ")}
                                                     at {bookinfo.info.photographer.startingTime}</span>
                                             </div>
 
                                         </Col>
                                     </Row>
+
+
+                                    {this.props.has_card && (
+                                        <Row>
+                                            <Col xs={24} sm={24} md={24} lg={24} xl={24}>
+                                                <div style={{
+                                                    padding: '20px 10px',
+                                                    background: '#cecece',
+                                                    textAlign: 'center',
+                                                    fontSize: 18,
+                                                    color: '#444140',
+                                                    border: '1px solid #84878a',
+
+                                                }}>Card : ************ { this.props.card_default.lastFourDigits}
+                                                    ({ this.props.card_default.cardType})
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    )}
+
+
                                     <Row className={style.row}>
                                         <Col xs={24} sm={24} md={24} lg={24} xl={24}>
 
-                                            <Button  onClick={this.selectCard}  className={style['btn-submit']} type="primary">
+                                            <Button
+                                                style={{
+                                                    background: 'none',
+                                                    color: '#4b4b4b'
+                                                }}
+                                                onClick={this.selectCard} className={'btn-submit'}
+                                                    type="primary">
                                                 Select Another Card
                                             </Button>
 
                                             <br/>
 
-                                            <Button disabled={this.state.has_card_default} loading={this.state.loading} htmlType="submit" className={style['btn-submit']} type="primary">
+                                            <Button disabled={!this.props.has_card} loading={this.state.loading}
+                                                    htmlType="submit" className={'btn-submit'} type="primary">
                                                 Book Photosesh
                                             </Button>
 
@@ -185,10 +213,14 @@ class BookingReview extends Component {
                                 </Form>
                             </Card>
 
+
                             <ul className="menu_simple">
-                                <li>Booking review </li>|
-                                <li><Link to={'/book/photographers'}>Photographers </Link></li>|
-                                <li><Link to={'/book/'}>Pick Another Address </Link></li>|
+                                <li>Booking review</li>
+                                |
+                                <li><Link to={'/book/photographers'}>Photographers </Link></li>
+                                |
+                                <li><Link to={'/book/'}>Pick Another Address </Link></li>
+                                |
                                 <li><Link to={'/'}>Home Page</Link></li>
                             </ul>
                         </Col>
@@ -204,7 +236,9 @@ class BookingReview extends Component {
 const mapStateToProps = (state)=> {
     return {
         bookinfo: state.bookinfo,
-        payment: state.payment
+        payment: state.payment,
+        has_card: state.payment.cards.length > 0,
+        card_default: state.payment.cards.filter(card=> card.isDefault).pop()
     }
 }
 const WrappedBookingReview = Form.create()(BookingReview);
