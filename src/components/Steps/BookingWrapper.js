@@ -10,6 +10,7 @@ import Step3a from './DetailPhotoseshLight';
 import Step4 from './NeedAPhotoSesh';
 import Step5 from './photographers';
 import Step6 from './BookingReview';
+import Success from './Success';
 import {logout} from '../../actions/authActions'
 
 const {  Content } = Layout;
@@ -34,6 +35,7 @@ class BookingWrapper extends Component {
                         <Route  exact={true}  path={`${this.props.match.url}/need-a-photosesh`} component={Step4}/>
                         <Route  exact={true}  path={`${this.props.match.url}/photographers`} component={Step5}/>
                         <Route  exact={true}  path={`${this.props.match.url}/booking-review`} component={Step6}/>
+                        <Route  exact={true}  path={`${this.props.match.url}/success`} component={Success}/>
                     </Content>
                 </Layout>
             </div>

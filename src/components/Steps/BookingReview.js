@@ -36,7 +36,9 @@ class BookingReview extends Component {
 
     }
 
-
+    goTo(route){
+        this.props.history.replace(route)
+    }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -78,6 +80,8 @@ class BookingReview extends Component {
                     if (res.status == 200) {
                         let message = data.message
                     }
+                    this.setState({loading: false})
+                    this.goTo('/book/success')
                 })
             }
 
