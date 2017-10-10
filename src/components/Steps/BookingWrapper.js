@@ -10,6 +10,7 @@ import Step3a from './DetailPhotoseshLight';
 import Step4 from './NeedAPhotoSesh';
 import Step5 from './photographers';
 import Step6 from './BookingReview';
+import {logout} from '../../actions/authActions'
 
 const {  Content } = Layout;
 
@@ -46,7 +47,7 @@ const mapStateToProps = (state) => {
         avatar: (state.auth.user.profilePicURL.thumb != '')?state.auth.user.profilePicURL.thumb:''
     }
 }
-export default connect(mapStateToProps, {})(BookingWrapper)
+export default connect(mapStateToProps, {logout})(BookingWrapper)
 
 
 

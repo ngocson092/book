@@ -41,11 +41,11 @@ class RegistrationForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        this.setState({ loading: true });
+
         this.props.form.validateFieldsAndScroll((err, values) => {
 
             if(!err){
-
+                this.setState({ loading: true });
                 let data = {...values,deviceType:'IOS',deviceToken:'1'};
                 delete data.confirm
 
@@ -233,6 +233,32 @@ class RegistrationForm extends React.Component {
                                 <Input type="password" onBlur={this.handleConfirmBlur}/>
                             )}
                         </FormItem>
+
+                        <FormItem
+                            {...formItemLayout}
+                            label="Referral Code"
+                            hasFeedback
+                        >
+                            {getFieldDecorator('referralCode', {
+                                rules: [],
+                            })(
+                                <Input />
+                            )}
+                        </FormItem>
+
+                        <FormItem
+                            {...formItemLayout}
+                            label="Enterprise Code"
+                            hasFeedback
+                        >
+                            {getFieldDecorator('enterpriseCode', {
+                                rules: [],
+                            })(
+                                <Input />
+                            )}
+                        </FormItem>
+
+
 
                         <FormItem {...tailFormItemLayout}>
                             <Button loading={this.state.loading} type="primary" htmlType="submit">Register</Button>
