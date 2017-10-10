@@ -112,7 +112,7 @@ class BookingReview extends Component {
                                         </Col>
 
                                         <Col xs={24} sm={14} md={14} lg={14} xl={14}>
-                                            {cleanSlug(bookinfo.info.photosesh_event_type)}
+                                            <h2 className="title-medium">{cleanSlug(bookinfo.info.photosesh_event_type)}</h2>
                                         </Col>
                                     </Row>
 
@@ -122,7 +122,9 @@ class BookingReview extends Component {
                                             <label className="book-info-title">Photographer Type</label>
                                         </Col>
                                         <Col xs={24} sm={14} md={14} lg={14} xl={14}>
-                                            {cleanSlug(bookinfo.info.photosesh_type_name)}
+                                            <h2 className="title-medium">
+                                                {cleanSlug(bookinfo.info.photosesh_type_name)}
+                                            </h2>
                                         </Col>
                                     </Row>
 

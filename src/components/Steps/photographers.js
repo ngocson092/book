@@ -102,17 +102,16 @@ class Photographer extends Component {
 
     render() {
 
-
         return (
             <div className="photosesh-type">
                 <ul className="menu_simple">
                     <li>List Photographers</li>
                     |
-                    <li><Link to={'/book/photosesh-type'}> Back </Link></li>
+                    <li><Link to={'/book/need-a-photosesh'}> Back </Link></li>
                     |
-                    <li><Link to={'/book/'}>Pick Another Address </Link></li>
+                    <li><Link to={'/book/photosesh-type'}>Photosesh Type</Link></li>
                     |
-                    <li><Link to={'/'}>Home Page</Link></li>
+                    <li><Link to={'/book/'}>Select Another address</Link></li>
                 </ul>
 
                 <h2 className="head-title-center">

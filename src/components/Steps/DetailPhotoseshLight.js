@@ -15,7 +15,7 @@ class DetailPhotoseshLight extends Component {
                 <div className="container">
                     <ul className="menu_simple">
                         <li>{cleanSlug(this.props.type_detail.photoSeshTypeName)} |</li>
-                        <li><Link to={'/book/photosesh-type'}>Select Photosesh Type</Link></li>
+                        <li><Link to={'/book/photosesh-type'}>Back</Link></li>
                         |
                         <li><Link to={'/book/'}>Pick Another Address</Link></li>
                         |

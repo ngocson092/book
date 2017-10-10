@@ -28,9 +28,11 @@ class NeedPhotosesh extends Component{
 
                 <div className="container">
                     <ul className="menu_simple">
-                        <li><Link to={'/book/'}>Select Another address</Link></li> |
-                        <li><Link to={'/book/photosesh-type/detail'}>Detail</Link></li> |
-                        <li><Link to={'/'}>HomePage</Link></li>
+
+                        <li>Event Type</li> |
+                        <li><Link to={'/book/photosesh-type/detail'}>Back</Link></li> |
+                        <li><Link to={'/book/photosesh-type'}>Photosesh Type</Link></li> |
+                        <li><Link to={'/book/'}>Select Another address</Link></li>
                     </ul>
                     <h2 className="head-title-center">I Need a PhotoSesh For ...</h2>
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Row, Col, Card, Layout, Button, Icon} from 'antd';
+import {Row, Col, Card, Layout, Button} from 'antd';
 import {connect} from 'react-redux'
 import {Redirect, Link} from 'react-router-dom'
 import style from './photosesh_type.css'
