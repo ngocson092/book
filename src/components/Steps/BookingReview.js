@@ -1,34 +1,56 @@
 import style  from  './book.css'
 import React, {Component} from 'react'
 import moment from 'moment'
-import {Row, Col, Card, Layout, Button, Icon, Rate, Input, Form, Modal} from 'antd';
+import {Row, Col, Card, Alert, Button, Icon, Rate, Input, Form, Modal,Checkbox} from 'antd';
 import {Route, Link} from 'react-router-dom'
 import {NOW} from '../../define'
 import {postBooking} from '../../actions/bookActions'
 import {connect} from 'react-redux'
-import {getCards} from '../../actions/paymentActions'
+import {getCards,setCardDefault} from '../../actions/paymentActions'
 import {cleanSlug} from '../../utils/helper'
-
+import SelectCard from './Include/SelectCard'
 const FormItem = Form.Item;
 class BookingReview extends Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: false,
-            has_card_default: true
+            has_card_default: true,
+            visibleModalCard:false,
+            checked_set_card_default:false
         };
     }
 
-    selectCard = (e) => {
+
+
+    popupSelectCard = (e) => {
         e.preventDefault();
 
+        this.setState({visibleModalCard:true})
+    }
+
+    hideModal = (e) => {
+        e.preventDefault();
+
+        this.setState({visibleModalCard:false})
 
     }
+
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+
+
+                if(this.state.checked_set_card_default){
+
+                    if(this.props.payment.cards.filter(card=>(card._id == this.props.card_booking._id) && card.isDefault ).length == 0 )
+                    {
+                        this.props.setCardDefault(this.props.card_booking._id)
+                    }
+                }
+
                 let {title} = values;
 
                 let form = {
@@ -65,6 +87,7 @@ class BookingReview extends Component {
 
     componentWillMount() {
         this.props.getCards()
+
     }
 
 
@@ -179,8 +202,13 @@ class BookingReview extends Component {
                                                     color: '#444140',
                                                     border: '1px solid #84878a',
 
-                                                }}>Card : ************ { this.props.card_default.lastFourDigits}
-                                                    ({ this.props.card_default.cardType})
+                                                }}>Card : ************ { this.props.card_booking.lastFourDigits}
+                                                    ({ this.props.card_booking.cardType})
+                                                </div>
+
+                                                <div>
+
+                                                    <Checkbox onChange={(e)=>{ this.setState({checked_set_card_default:e.target.checked});}} defaultChecked={false}>Set Card Default</Checkbox>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -195,7 +223,7 @@ class BookingReview extends Component {
                                                     background: 'none',
                                                     color: '#4b4b4b'
                                                 }}
-                                                onClick={this.selectCard} className={'btn-submit'}
+                                                onClick={this.popupSelectCard} className={'btn-submit'}
                                                     type="primary">
                                                 Select Another Card
                                             </Button>
@@ -213,6 +241,17 @@ class BookingReview extends Component {
                                 </Form>
                             </Card>
 
+
+                            <Modal
+                                title="Select Card"
+                                visible={this.state.visibleModalCard}
+                                onOk={this.hideModal}
+                                onCancel={this.hideModal}
+                                width={900}
+                                footer={( <div style={{overflow:'hidden'}}> <Button style={{float:'left'}} onClick={()=>{this.setState({visibleModalCard:false})}} type={'primary'}> Done </Button> </div>)}
+                            >
+                                <SelectCard cardBooking={this.props.card_booking} cards={this.props.payment.cards} />
+                            </Modal>
 
                             <ul className="menu_simple">
                                 <li>Booking review</li>
@@ -238,8 +277,8 @@ const mapStateToProps = (state)=> {
         bookinfo: state.bookinfo,
         payment: state.payment,
         has_card: state.payment.cards.length > 0,
-        card_default: state.payment.cards.filter(card=> card.isDefault).pop()
+        card_booking: state.payment.card_booking
     }
 }
 const WrappedBookingReview = Form.create()(BookingReview);
-export default connect(mapStateToProps, {getCards})(WrappedBookingReview)
+export default connect(mapStateToProps, {getCards,setCardDefault})(WrappedBookingReview)

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {SET_CARDS,SET_CARD_DEFAULT,SET_CREDIT} from './types'
+import {SET_CARDS,SET_CARD_DEFAULT,SET_CREDIT,SET_CARD_BOOKING} from './types'
 
 const API_URL = process.env.API_URL;
 
@@ -24,11 +24,35 @@ export function getCards() {
                     type:SET_CARDS,
                     data:cards
                 });
+
+
+                if(cards.length > 0){
+                    let card_booking = cards.filter(card=>card.isDefault).pop()
+                    dispatch({
+                        type:SET_CARD_BOOKING,
+                        data:card_booking
+                    });
+                }
+
+
             }
         })
     }
 
 }
+
+
+export function setCardBooking(card) {
+
+    return dispatch => {
+        dispatch({
+            type:SET_CARD_BOOKING,
+            data:card
+        });
+    }
+
+}
+
 export function getCredits() {
 
     return dispatch => {

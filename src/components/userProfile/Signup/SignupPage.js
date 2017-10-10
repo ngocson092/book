@@ -51,6 +51,7 @@ class RegistrationForm extends React.Component {
 
                 let form_data = new FormData();
 
+                console.log(data);
                 Object.keys(data).forEach((key)=>{
                     form_data.append(key,data[key]);
                 })
@@ -241,6 +242,7 @@ class RegistrationForm extends React.Component {
                         >
                             {getFieldDecorator('referralCode', {
                                 rules: [],
+                                initialValue: ''
                             })(
                                 <Input />
                             )}
@@ -253,6 +255,7 @@ class RegistrationForm extends React.Component {
                         >
                             {getFieldDecorator('enterpriseCode', {
                                 rules: [],
+                                initialValue: ''
                             })(
                                 <Input />
                             )}
