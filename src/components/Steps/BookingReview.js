@@ -70,7 +70,7 @@ class BookingReview extends Component {
                     isReschedule: false,
                     appointmentDuration: this.props.bookinfo.info.duration,
                     previousBookingId: '',
-                    paymentCardId: this.props.payment.defaultCardId,
+                    paymentCardId: this.props.card_booking._id,
                     titleOrDescription: title
                 }
 

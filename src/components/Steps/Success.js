@@ -22,11 +22,12 @@ class Success extends Component {
                         <Icon style={{color:'dark-green'}} type="check-circle" />
                     </div>
 
-                    <h2 className="head-title-center">Successful Booking</h2>
+                    <h2 className="head-title-center">Booking Successful </h2>
                     <div style={{textAlign:'center',marginBottom:100}}>
-                        Thanks you for Booking in Photosesh, please check your bookings <br/>
+                        Your Booking has been successful, Thanks you for Booking in Photosesh
+                        please check <Link to={'/bookings'}>your bookings</Link> <br/>
 
-                        <Button style={{marginTop:30,width:150,marginRight:10}} type={'primary'}> <Link style={{color:'#ffffff'}} to="/my-account/">Bookings</Link> </Button>
+                        <Button style={{marginTop:30,width:150,marginRight:10}} type={'primary'}> <Link style={{color:'#ffffff'}} to="/bookings">Bookings</Link> </Button>
                         <Button style={{marginTop:30,width:150}} type={'primary'}> <Link style={{color:'#ffffff',marginTop:30,width:150}} to="/">Home Page</Link> </Button>
                     </div>
 
