@@ -16,8 +16,10 @@ class Bookings extends Component{
         this.state = {};
     }
     componentWillMount (){
+
         this.props.getBookings()
     }
+
 
     render() {
         return (
@@ -37,7 +39,6 @@ class Bookings extends Component{
 
 const mapStateToProps = (state)=>{
     return {
-        bookings:state.bookings.data,
         show_mode:state.bookings.show_mode
     }
 }

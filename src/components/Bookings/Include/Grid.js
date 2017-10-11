@@ -2,7 +2,7 @@ import style from './grid.css'
 
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
-import {Layout, Row, Col,Icon,Card,Badge} from 'antd';
+import {Layout,Spin, Row, Col,Icon,Card,Badge} from 'antd';
 import {setShowMode,setFilterStatus} from '../../../actions/manageBookingsAction'
 import {connect} from 'react-redux';
 import classnames from 'classnames'
@@ -45,6 +45,9 @@ class Grid extends Component{
                         <Link to={'/'} className={style.item_btn}>Advanced</Link>
                     </Card>
                 </Col>
+
+
+                {(this.props.bookings.length == 0) ? ( <div style={{textAlign:'center',padding:'100px 0'}}> <Spin /></div>):'' }
 
                 {this.props.bookings.map (booking=> {
 
