@@ -34,11 +34,10 @@ class Success extends Component {
                 </Card>
 
                 <ul className="menu_simple">
-                    <li><Link to={'/book'}>Book </Link></li>
-                    |
-                    <li><Link to={'/my-account/'}>My Account </Link></li>
-                    |
-                    <li><Link to={'/'}>Home Page</Link></li>
+                    <li><Link to={'/'}>My Bookings </Link></li> |
+                    <li><Link to={'/book'}>Continue Booking </Link></li>
+
+
                 </ul>
 
             </div>

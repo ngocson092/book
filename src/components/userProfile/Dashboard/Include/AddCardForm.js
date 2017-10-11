@@ -79,7 +79,7 @@ class AddCardForm extends Component {
                     addCard(nounce).then(res=>{
                         message.success(res.data.message)
                         this.props.form.resetFields()
-                        this.goTo('/my-account/payment-credits/card/')
+                        this.goTo('/settings/payment-credits/card/')
 
                         this.setState({loading:false})
                     })

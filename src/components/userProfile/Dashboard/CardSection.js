@@ -123,7 +123,7 @@ class CardSection extends Component {
                     )
                 }
 
-                <Button><Link to="/my-account/payment-credits/card/add-new">Add Card</Link></Button>
+                <Button><Link to="/settings/payment-credits/card/add-new">Add Card</Link></Button>
             </div>
 
 

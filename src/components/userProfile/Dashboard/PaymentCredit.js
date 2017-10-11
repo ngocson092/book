@@ -44,10 +44,10 @@ class PaymentCredit extends Component {
 
                    >
                        <Menu.Item key="card" style={menu_style}>
-                           <Link to="/my-account/payment-credits/card" className="btn">CARDS</Link>
+                           <Link to="/settings/payment-credits/card" className="btn">CARDS</Link>
                        </Menu.Item>
                        <Menu.Item key="credit" style={menu_style}>
-                           <Link to="/my-account/payment-credits/credits" className="btn">CREDITS</Link>
+                           <Link to="/settings/payment-credits/credits" className="btn">CREDITS</Link>
                        </Menu.Item>
                    </Menu>
                </div>

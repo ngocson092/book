@@ -1,0 +1,43 @@
+:local(.header) {
+    margin-bottom: 20px;
+}
+:local(.btn_view_mode) {
+    padding: 5px 60px 5px 40px;
+    cursor: pointer;
+    margin-top: 5px;
+    display: inline-block;
+    color: #4b4b4b;
+    position: relative;
+}
+:local(.btn_view_mode > i) {
+    position: absolute; left: 15px;
+    top:9px;
+}
+:local(.active){
+    color: #0f65a9;
+    background: #f6f8f9;
+}
+
+:local(.list_status_right){
+
+    padding-top:20px;
+    float: right;
+
+}
+:local(.list_status_right li){
+    display: inline-block;
+    float: left;
+    padding: 5px 40px;
+}
+
+
+:local(.list_status_right li a){
+    font-size: 14px;
+    color: #4b4b4b;
+    text-transform: uppercase;
+}
+
+:local(.list_status_right li a.active_status){
+    color: #0f65a9 ;
+    font-weight: bold;
+}

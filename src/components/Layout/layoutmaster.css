@@ -1,3 +1,6 @@
 :local(.layout_master){
     background: #ffffff !important;
 }
+:local(.breadcrumbs){
+    margin-bottom: 20px;
+}

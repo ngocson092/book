@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
 import {Redirect,Link} from 'react-router-dom'
 import {Icon} from  'antd'
-import Header from '../bookings/header';
-
 
 import createClass from 'create-react-class'
 import {Row, Col, Button, Input, Radio, Select, Form,DatePicker} from 'antd';
@@ -279,8 +277,8 @@ const Contents = createClass({
 
                     <ul className="menu_simple">
                         <li>Book Photosesh</li> |
-                        <li><Link to={'/'}> Home Page</Link></li> |
-                        <li><Link to={'/my-account'}>My Account</Link></li>
+                        <li><Link to={'/'}> Home Page</Link></li>
+
 
                     </ul>
 

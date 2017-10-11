@@ -1,23 +1,24 @@
-/**
- * Created by lamtanphiho on 9/26/2017.
- */
 import React,{Component} from 'react'
 import {Layout, Table, Popconfirm, Modal} from 'antd';
-import Heade from '../bookings/header';
 import EditableCell from './editTableCell';
+import {getBookings} from '../../actions/manageBookingsAction'
+import {connect} from 'react-redux';
+
 const {  Content } = Layout;
 const request   = require('request');
 const dateFormat    = require('dateformat');
 
-export default class Bookings extends Component{
+class Bookings extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-            dataSource : [],
-        };
+        this.state = {};
     }
+    componentWillMount (){
+        this.props.getBookings()
+    }
+
     componentDidMount = function () {
-        let that = this;
+       /* let that = this;
         request.get(process.env.API_URL + '/booking/user/getAllAppointments?offset=420', {
             headers: {
                 'authorization': localStorage.access_token
@@ -59,7 +60,7 @@ export default class Bookings extends Component{
                 })
             }
 
-        })
+        })*/
     }
     handleChange(key, index, value) {
         const { dataSource } = this.state;
@@ -216,17 +217,10 @@ export default class Bookings extends Component{
         }];
 
         return (
-            <div className="choose-address">
-                <Layout>
-                    <Heade />
-                    <Content>
-                        <div className="title">
-                            <h1>Bookings</h1>
-                        </div>
+            <div className="bookings-wrapper">
 
-                        <Table dataSource={dataSource} columns={columns} scroll={{ x: 1500 }}/>
-                    </Content>
-                </Layout>
+                <Table dataSource={dataSource} columns={columns} scroll={{ x: 1500 }}/>
+
                 <style>{css}</style>
             </div>
 
@@ -269,3 +263,13 @@ const errorModel = function(content) {
         content: content,
     });
 }
+
+const mapStateToProps = (state)=>{
+    return {
+
+    }
+}
+
+
+export default connect(mapStateToProps,{getBookings})(Bookings)
+

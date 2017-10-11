@@ -20,7 +20,7 @@ class HeaderTop extends Component {
             <Menu>
 
                 <Menu.Item key="0">
-                    <Link to="/my-account">My Account</Link>
+                    <Link to="/settings">Settings</Link>
                 </Menu.Item>
                 <Menu.Divider />
                 <Menu.Item key="1"

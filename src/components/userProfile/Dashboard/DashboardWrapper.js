@@ -53,9 +53,9 @@ class DashboardWrapper extends Component {
                             mode="inline"
                             style={{ height: '100%', borderRight: 0 }}
                         >
-                            <Menu.Item key="orders"><Link to="/my-account/profile"><Icon type="contacts" /> Edit Profile</Link></Menu.Item>
-                            <Menu.Item key="change-password"><Link to="/my-account/change-password"><Icon type="qrcode" /> Change Password</Link></Menu.Item>
-                            <Menu.Item key="bank-detail"><Link to="/my-account/payment-credits"><Icon type="credit-card" /> Payment & Credits</Link></Menu.Item>
+                            <Menu.Item key="orders"><Link to="/settings/profile"><Icon type="contacts" /> Edit Profile</Link></Menu.Item>
+                            <Menu.Item key="change-password"><Link to="/settings/change-password"><Icon type="qrcode" /> Change Password</Link></Menu.Item>
+                            <Menu.Item key="bank-detail"><Link to="/settings/payment-credits"><Icon type="credit-card" /> Payment & Credits</Link></Menu.Item>
                             <Menu.Divider />
                             <Menu.Item key="homepage"><Link to="/"><Icon type="home" /> Back to Home</Link></Menu.Item>
 
