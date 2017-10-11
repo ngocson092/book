@@ -47,9 +47,9 @@ class Grid extends Component{
                 </Col>
 
 
-                {(this.props.bookings.length == 0) ? ( <div style={{textAlign:'center',padding:'100px 0'}}> <Spin /></div>):'' }
+                {(this.props.projects.length == 0) ? ( <div style={{textAlign:'center',padding:'100px 0'}}> <Spin /></div>):'' }
 
-                {this.props.bookings.map (booking=> {
+                {this.props.projects.map (booking=> {
 
                     let {titleOrDescription,agentName,eventType,appointmentAddress,agentPrice,appointmentStatus,appointmentEndTime,appointmentDate,appointmentStartTime} = booking
 
@@ -104,9 +104,9 @@ class Grid extends Component{
 
 const mapStateToProps = (state)=>{
 
-    let active_status = state.bookings.active_status
+    let active_status = state.projects.active_status
     return {
-        bookings :  (active_status == STATUS['ALL']) ? state.bookings.data : state.bookings.data.filter(booking=> booking.appointmentStatus == active_status )
+        projects :  (active_status == STATUS['ALL']) ? state.projects.data : state.projects.data.filter(booking=> booking.appointmentStatus == active_status )
     }
 }
 

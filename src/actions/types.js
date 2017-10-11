@@ -15,6 +15,6 @@ export const  SET_PHOTOSESH_EVENT_TYPE ='SET_PHOTOSESH_EVENT_TYPE';
 export const  SET_DATA_BOOKING ='SET_DATA_BOOKING';
 
 /*booking page*/
-export const  SET_BOOKINGS ='SET_BOOKINGS';
+export const  SET_PROJECTS ='SET_PROJECTS';
 export const  SET_SHOW_MODE ='SET_SHOW_MODE';
 export const  SET_FILTER_STATUS ='SET_FILTER_STATUS';

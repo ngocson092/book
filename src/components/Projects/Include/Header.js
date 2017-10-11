@@ -58,8 +58,8 @@ class Header extends Component{
 
 const mapStateToProps = (state)=>{
     return {
-        show_mode:state.bookings.show_mode,
-        active_status:state.bookings.active_status
+        show_mode:state.projects.show_mode,
+        active_status:state.projects.active_status
     }
 }
 

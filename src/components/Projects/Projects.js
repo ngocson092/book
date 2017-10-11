@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux';
 
-import {getBookings} from '../../actions/manageBookingsAction'
+import {getProjects} from '../../actions/manageBookingsAction'
 import Header from './Include/Header';
 import {GRID,LIST} from '../../define'
 import {Layout} from 'antd';
@@ -17,7 +17,7 @@ class Bookings extends Component{
     }
     componentWillMount (){
 
-        this.props.getBookings()
+        this.props.getProjects()
     }
 
 
@@ -39,10 +39,10 @@ class Bookings extends Component{
 
 const mapStateToProps = (state)=>{
     return {
-        show_mode:state.bookings.show_mode
+        show_mode:state.projects.show_mode
     }
 }
 
 
-export default connect(mapStateToProps,{getBookings})(Bookings)
+export default connect(mapStateToProps,{getProjects})(Bookings)
 

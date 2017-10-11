@@ -1,5 +1,5 @@
 :local(.item_wrapper) {
-    padding: 5px;
+    padding: 5px !important;
 }
 /*first item*/
 
@@ -52,7 +52,7 @@
     text-align: center;
 }
 :local(.status_icon) {
-    position: absolute;
+    position: absolute !important;
     right: 0;
 }
 :local(.status) {

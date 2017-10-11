@@ -1,10 +1,10 @@
 import axios from 'axios';
-import {SET_BOOKINGS,SET_FILTER_STATUS,SET_SHOW_MODE} from './types'
+import {SET_PROJECTS,SET_FILTER_STATUS,SET_SHOW_MODE} from './types'
 
 const API_URL = process.env.API_URL;
 
 
-export function getBookings(offset = 420) {
+export function getProjects(offset = 420) {
     return dispatch => {
         axios.get(API_URL + '/booking/user/getAllAppointments',
             {
@@ -14,7 +14,7 @@ export function getBookings(offset = 420) {
 
                 let data = [...res.data.data['pastAppointment'],...res.data.data['upcomingAppointment']];
                 dispatch({
-                    type:SET_BOOKINGS,
+                    type:SET_PROJECTS,
                     data
                 });
             }

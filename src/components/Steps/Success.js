@@ -25,9 +25,9 @@ class Success extends Component {
                     <h2 className="head-title-center">Booking Successful </h2>
                     <div style={{textAlign:'center',marginBottom:100}}>
                         Your Booking has been successful, Thanks you for Booking in Photosesh
-                        please check <Link to={'/bookings'}>your bookings</Link> <br/>
+                        please check <Link to={'/projects'}>your bookings</Link> <br/>
 
-                        <Button style={{marginTop:30,width:150,marginRight:10}} type={'primary'}> <Link style={{color:'#ffffff'}} to="/bookings">Bookings</Link> </Button>
+                        <Button style={{marginTop:30,width:150,marginRight:10}} type={'primary'}> <Link style={{color:'#ffffff'}} to="/projects">Bookings</Link> </Button>
                         <Button style={{marginTop:30,width:150}} type={'primary'}> <Link style={{color:'#ffffff',marginTop:30,width:150}} to="/">Home Page</Link> </Button>
                     </div>
 

@@ -18,7 +18,7 @@ const LayoutMaster = ({ children }) => (
                 <div className={style.breadcrumbs} style={{position: 'sticky',top: 0}}>
                     <Breadcrumb>
                         <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bookings</Breadcrumb.Item>
+                        <Breadcrumb.Item>Projects</Breadcrumb.Item>
                     </Breadcrumb>
                 </div>
 
