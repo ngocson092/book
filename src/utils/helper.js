@@ -5,8 +5,14 @@ export function cleanSlug(str) {
 
     return str.replace(/[|&;$%@"<>()+,_]/g, ' ').toLowerCase()
 }
+export function getRouteName(str) {
+
+    let arr = str.split('/')
+    return arr[arr.length-1]
+}
 
 
 export default {
     formatMoney:formatMoney
 }
+

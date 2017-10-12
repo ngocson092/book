@@ -9,7 +9,7 @@ import Login from './components/userProfile/Login/LoginPage'
 import Signup from './components/userProfile/Signup/SignupPage'
 import BookingWrapper from './components/Steps/BookingWrapper'
 
-import Projects from './components/Projects/Projects'
+import ProjectsWrapper from './components/Projects/ProjectsWrapper'
 
 
 import requireAuth from './utils/requireAuth'
@@ -48,8 +48,8 @@ class App extends Component {
                     <Route path="/book" render={(props)=> this.generateLayout(props,LayoutBookNowAuthorize,BookingWrapper)} />
                     <Route path="/settings" render={(props)=> this.generateLayout(props, LayoutEmptyWrapperAuthorize, DashboardWrapper)}/>
 
-                    <Route exact={true} path="/" render={(props)=> this.generateLayout(props,LayoutMasterAuthorize,Projects)} />
-                    <Route exact={true} path="/projects" render={(props)=> this.generateLayout(props,LayoutMasterAuthorize,Projects)} />
+                    <Route exact={true} path="/" render={(props)=> this.generateLayout(props,LayoutMasterAuthorize,ProjectsWrapper)} />
+                    <Route path="/projects" render={(props)=> this.generateLayout(props,LayoutMasterAuthorize,ProjectsWrapper)} />
                     <Redirect to="/"/>
                 </Switch>
             </div>

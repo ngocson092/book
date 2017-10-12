@@ -1,0 +1,7 @@
+:local(.breadcrumb){
+    font-size: 25px;
+    text-transform: capitalize;
+}
+:local(.link){
+    color: #f17400 !important;
+}

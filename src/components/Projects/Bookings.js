@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux';
 
-import {getProjects} from '../../actions/manageBookingsAction'
+
 import Header from './Include/Header';
 import {GRID,LIST} from '../../define'
 import {Layout} from 'antd';
@@ -15,10 +15,6 @@ class Bookings extends Component{
         super(props);
         this.state = {};
     }
-    componentWillMount (){
-
-        this.props.getProjects()
-    }
 
 
     render() {
@@ -27,7 +23,7 @@ class Bookings extends Component{
                 <Header />
 
                 <div>
-                    {this.props.show_mode == GRID && (<ShowGrid />) }
+                    {this.props.show_mode == GRID && (<ShowGrid {...this.props} />) }
                     {this.props.show_mode == LIST && (<ShowList />) }
                 </div>
 
@@ -44,5 +40,5 @@ const mapStateToProps = (state)=>{
 }
 
 
-export default connect(mapStateToProps,{getProjects})(Bookings)
+export default connect(mapStateToProps,{})(Bookings)
 

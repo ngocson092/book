@@ -1,8 +1,12 @@
 import style from './layoutmaster.css'
 import React from 'react'
-import {Layout,Breadcrumb} from 'antd'
+import {Layout} from 'antd'
 import LeftMenu from '../common/SideBar'
+import Breadcrumb from '../common/Breadcrumb'
+
 const { Content,Sider} = Layout;
+
+
 
 
 const LayoutMaster = ({ children }) => (
@@ -16,10 +20,7 @@ const LayoutMaster = ({ children }) => (
             <Content style={{ padding: '24px', margin: 0, minHeight: 280 }}>
 
                 <div className={style.breadcrumbs} style={{position: 'sticky',top: 0}}>
-                    <Breadcrumb>
-                        <Breadcrumb.Item>Home</Breadcrumb.Item>
-                        <Breadcrumb.Item>Projects</Breadcrumb.Item>
-                    </Breadcrumb>
+                    <Breadcrumb />
                 </div>
 
                 {children}

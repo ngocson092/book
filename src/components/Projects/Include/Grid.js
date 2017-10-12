@@ -3,14 +3,9 @@ import style from './grid.css'
 import React,{Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Layout,Spin, Row, Col,Icon,Card,Badge} from 'antd';
-import {setShowMode,setFilterStatus} from '../../../actions/manageBookingsAction'
 import {connect} from 'react-redux';
-import classnames from 'classnames'
-import {GRID,LIST,STATUS} from '../../../define'
-import {cleanSlug} from '../../../utils/helper'
+import {STATUS} from '../../../define'
 import moment from 'moment'
-const {  Content } = Layout;
-
 
 class Grid extends Component{
     constructor(props) {
@@ -18,6 +13,9 @@ class Grid extends Component{
         this.state = {};
     }
 
+    goTo(route){
+        this.props.history.replace(route)
+    }
 
     render() {
 
@@ -47,9 +45,9 @@ class Grid extends Component{
                 </Col>
 
 
-                {(this.props.projects.length == 0) ? ( <div style={{textAlign:'center',padding:'100px 0'}}> <Spin /></div>):'' }
+                {(this.props.bookings.length == 0) ? ( <div style={{textAlign:'center',padding:'100px 0'}}> <Spin /></div>):'' }
 
-                {this.props.projects.map (booking=> {
+                {this.props.bookings.map (booking=> {
 
                     let {titleOrDescription,agentName,eventType,appointmentAddress,agentPrice,appointmentStatus,appointmentEndTime,appointmentDate,appointmentStartTime} = booking
 
@@ -72,10 +70,10 @@ class Grid extends Component{
 
                     }
 
+                    let url = `/projects/bookings/${booking._id}`
                     return (
                         <Col {...wrapperCol} key={booking._id}>
-                            <Card className={style.item}>
-
+                            <Card className={style.item} onClick={(e)=>{e.preventDefault(); this.goTo(url) }}>
                                 <div className={style.status}>{appointmentStatus} <Status /></div>
 
                                 <h2 className={style.title}>{titleOrDescription}</h2>
@@ -83,12 +81,12 @@ class Grid extends Component{
                                 <div className={style.address}>at {appointmentAddress}</div>
                                 <div className={style.agent_name}>With {fullName}</div>
 
-                                <div className={style.time}>{appointmentStartTime + ((appointmentEndTime !='') ? ' - ' +  appointmentEndTime : '')}</div>
+                                <div
+                                    className={style.time}>{appointmentStartTime + ((appointmentEndTime != '') ? ' - ' + appointmentEndTime : '')}</div>
                                 <div className={style.date}>On {moment(appointmentDate).format('MMMM Do YYYY')}</div>
 
-                                <Link style={{display:'inline-block',marginTop:20,color:'#000000'}} to={'/'} className={style.item_btn}>DETAILS</Link>
-
-
+                                <Link style={{display: 'inline-block', marginTop: 20, color: '#000000'}} to={url}
+                                      className={style.item_btn}>DETAILS</Link>
                             </Card>
                         </Col>
                     )
@@ -106,7 +104,7 @@ const mapStateToProps = (state)=>{
 
     let active_status = state.projects.active_status
     return {
-        projects :  (active_status == STATUS['ALL']) ? state.projects.data : state.projects.data.filter(booking=> booking.appointmentStatus == active_status )
+        bookings :  (active_status == STATUS['ALL']) ? state.projects.bookings : state.projects.bookings.filter(booking=> booking.appointmentStatus == active_status )
     }
 }
 
