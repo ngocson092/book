@@ -10,11 +10,26 @@ import moment from 'moment'
 class Grid extends Component{
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {loading:false};
     }
+
 
     goTo(route){
         this.props.history.replace(route)
+    }
+
+
+    componentWillMount(){
+        if(this.props.bookings.length == 0){
+            this.setState({loading:true})
+        }
+
+    }
+    componentWillReceiveProps(newProps){
+        console.log(2);
+        if(newProps.bookings.length >0){
+            this.setState({loading:false})
+        }
     }
 
     render() {
@@ -45,7 +60,7 @@ class Grid extends Component{
                 </Col>
 
 
-                {(this.props.bookings.length == 0) ? ( <div style={{textAlign:'center',padding:'100px 0'}}> <Spin /></div>):'' }
+                {(this.state.loading) ? ( <div style={{textAlign:'center',padding:'100px 0'}}> <Spin /></div>):'' }
 
                 {this.props.bookings.map (booking=> {
 
