@@ -27,11 +27,13 @@ class Header extends Component{
                          xl={{span: 8, offset: 0}}>
 
                         View Model <br/>
+                        <div style={{borderBottom: '1px solid #f5f5f5'}}>
 
-                        <a onClick={()=>{ this.props.setShowMode(GRID) }}
-                           className={classnames(style.btn_view_mode,(this.props.show_mode == GRID)? style.active : '' )}> { this.props.show_mode == GRID && (<Icon type="check" />)}  <span>Grid <Icon type="appstore-o" /></span></a>
-                        <a  onClick={()=>{ this.props.setShowMode(LIST) }}
-                            className={classnames(style.btn_view_mode,(this.props.show_mode == LIST)? style.active : '' )}> { this.props.show_mode == LIST && (<Icon type="check" />)}  <span>List <Icon type="bars" /></span></a>
+                            <a onClick={()=>{ this.props.setShowMode(GRID) }}
+                               className={classnames(style.btn_view_mode,(this.props.show_mode == GRID)? style.active : '' )}> { this.props.show_mode == GRID && (<Icon type="check" />)}  <span>Grid <Icon type="appstore-o" /></span></a>
+                            <a  onClick={()=>{ this.props.setShowMode(LIST) }}
+                                className={classnames(style.btn_view_mode,(this.props.show_mode == LIST)? style.active : '' )}> { this.props.show_mode == LIST && (<Icon type="check" />)}  <span>List <Icon type="bars" /></span></a>
+                        </div>
 
 
                     </Col>

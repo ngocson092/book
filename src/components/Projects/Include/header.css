@@ -2,7 +2,7 @@
     margin-bottom: 20px;
 }
 :local(.btn_view_mode) {
-    padding: 5px 60px 5px 40px;
+    padding: 5px 60px;
     cursor: pointer;
     margin-top: 5px;
     display: inline-block;
@@ -10,12 +10,16 @@
     position: relative;
 }
 :local(.btn_view_mode > i) {
-    position: absolute; left: 15px;
+    position: absolute; left: 25px;
     top:9px;
 }
 :local(.active){
     color: #0f65a9;
     background: #f6f8f9;
+    border: 1px solid #eaeaea;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom: 0;
 }
 
 :local(.list_status_right){

@@ -6,7 +6,7 @@ import Header from './Include/Header';
 import {GRID,LIST} from '../../define'
 import {Layout} from 'antd';
 import ShowGrid from './Include/Grid'
-import ShowList from './Include/Grid'
+import ShowList from './Include/List'
 const {  Content } = Layout;
 
 
