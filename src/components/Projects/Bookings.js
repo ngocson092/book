@@ -24,7 +24,7 @@ class Bookings extends Component{
 
                 <div>
                     {this.props.show_mode == GRID && (<ShowGrid {...this.props} />) }
-                    {this.props.show_mode == LIST && (<ShowList />) }
+                    {this.props.show_mode == LIST && (<ShowList {...this.props} />) }
                 </div>
 
             </div>
