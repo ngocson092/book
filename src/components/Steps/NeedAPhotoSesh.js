@@ -21,7 +21,6 @@ class NeedPhotosesh extends Component{
         this.props.setDataBooking(new_book_data)
 
     }
-
     render() {
         return (
             <div className="photosesh-type needphotosesh">

@@ -47,7 +47,7 @@ class LoginPage extends Component {
                 .catch( error => {
                     this.setState({loading:false})
                     let {response} = error
-                    message.error(response.data.message)
+                    message.error(response)
                 });
             }
         });

@@ -1,19 +1,27 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux';
-
+import EditBookingForm from './Include/EditBookingForm';
 
 class DetailBooking extends Component{
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            booking: {
+                agentName: {}
+            }
+        };
+
     }
 
+    componentWillReceiveProps(newProps){
+        this.setState({booking:newProps.booking})
+    }
     render() {
+
+        console.log(this.state.booking)
         return (
             <div>
-                <pre>
-                    {JSON.stringify(this.props.booking)}
-                </pre>
+                <EditBookingForm booking={this.state.booking} />
             </div>
         )
     }
