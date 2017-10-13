@@ -46,8 +46,10 @@ class LoginPage extends Component {
                 })
                 .catch( error => {
                     this.setState({loading:false})
-                    let {response} = error
-                    message.error(response)
+                    if(typeof error.response  != 'undefined' ){
+                        let {response} = error
+                        message.error(response.data.message)
+                    }
                 });
             }
         });
