@@ -7,12 +7,20 @@ import {Layout} from 'antd';
 import ShowGrid from './Include/Grid'
 import ShowList from './Include/List'
 import PropType from 'prop-types'
+import {setFilterStatus} from '../../actions/projectAction'
+import {STATUS} from '../../define'
 const {  Content } = Layout;
 
 class Bookings extends Component{
     constructor(props) {
         super(props);
         this.state = {};
+    }
+
+    componentWillMount(){
+
+        this.props.setFilterStatus(STATUS['ALL'])
+
     }
 
 
@@ -44,5 +52,5 @@ Bookings.propType = {
     loading:PropType.bool.isRequired
 }
 
-export default connect(mapStateToProps,{})(Bookings)
+export default connect(mapStateToProps,{setFilterStatus})(Bookings)
 

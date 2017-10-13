@@ -21,16 +21,22 @@ class ProjectsWrapper extends Component {
     }
     componentWillMount (){
 
-        this.setState({loading:true})
-        getBookings().then(res=>{
-            this.setState({loading:false})
-            if (res.data.data) {
-                let data = [...res.data.data['pastAppointment'],...res.data.data['upcomingAppointment']];
-                this.props.setBookings(data) // dispatch data
-            }
-        },err=>{
-            this.setState({loading:false})
-        })
+
+
+        if(!this.props.has_bookings){
+            this.setState({loading:true})
+            getBookings().then(res=>{
+                this.setState({loading:false})
+                if (res.data.data) {
+                    let data = [...res.data.data['pastAppointment'],...res.data.data['upcomingAppointment']];
+                    this.props.setBookings(data) // dispatch data
+                }
+            },err=>{
+                this.setState({loading:false})
+            })
+        }
+
+
     }
 
 
@@ -48,7 +54,7 @@ class ProjectsWrapper extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-
+        has_bookings:state.projects.bookings.length > 0
     }
 }
 

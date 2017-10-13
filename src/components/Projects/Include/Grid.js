@@ -18,9 +18,6 @@ class Grid extends Component{
         this.props.history.replace(route)
     }
 
-    componentDidMount(){
-        console.log(this.props);
-    }
 
     render() {
 
