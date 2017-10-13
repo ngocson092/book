@@ -1,3 +1,4 @@
+import style from './choose_address.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
@@ -235,7 +236,24 @@ const Contents = createClass({
             <Row>
 
 
-                <Col xs={10} sm={10} md={10} lg={6} xl={6} className={'sidebar'}>
+
+                <Col xs={14} sm={14} md={14} lg={16} xl={16}>
+
+                    <Map {...props}
+                         clickableIcons={false}
+                         containerStyle={{
+                             position: 'relative',
+                             height: 'calc(100vh - 100px)',
+                             width: '100%'
+                         }}
+                         center={this.state.position}
+                         zoom={16}
+                         centerAroundCurrentLocation={true}>
+                        <Marker position={this.state.position}/>
+                    </Map>
+
+                </Col>
+                <Col xs={10} sm={10} md={10} lg={8} xl={8} className={style.sidebar}>
                     <Form layout="vertical" onSubmit={this.onSubmit}>
                         <FormItem label="Your Address">
                             <Input
@@ -284,22 +302,6 @@ const Contents = createClass({
 
 
                 </Col>
-                <Col xs={14} sm={14} md={14} lg={18} xl={18}>
-
-                    <Map {...props}
-                         clickableIcons={false}
-                         containerStyle={{
-                             position: 'relative',
-                             height: 'calc(100vh - 40px)',
-                             width: '100%'
-                         }}
-                         center={this.state.position}
-                         zoom={16}
-                         centerAroundCurrentLocation={true}>
-                        <Marker position={this.state.position}/>
-                    </Map>
-
-                </Col>
                 <style>{css}</style>
             </Row>
         )
@@ -320,7 +322,8 @@ const MapWrapper = createClass({
                      className={'map'}
                      visible={false}
                      containerStyle={{
-                         height: 'initial'
+                         height: 'initial',
+                         position:'relative'
                      }}
                 >
                     <Contents {...props} />
@@ -350,6 +353,7 @@ const css = `
     .error{
         color: red
     }
+    
 `
 
 

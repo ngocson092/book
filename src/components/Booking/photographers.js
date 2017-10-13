@@ -121,8 +121,8 @@ class Photographer extends Component {
                 <Row>
 
 
-                    <Col xs={{span: 24, offset: 0}} sm={{span: 16, offset: 4}} md={{span: 12, offset: 6}}
-                         lg={{span: 8, offset: 8}} xl={{span: 8, offset: 8}}
+                    <Col xs={{span: 24, offset: 0}} sm={{span: 18, offset: 3}} md={{span: 14, offset: 5}}
+                         lg={{span: 10, offset: 7}} xl={{span: 10, offset: 7}}
                         >
 
 

@@ -26,18 +26,13 @@ class BookingWrapper extends Component {
     render() {
         return (
             <div id="booking-wrapper">
-                <HeaderTop style={{background:'#fff'}} {...this.props} />
-                <Layout style={{height:'calc( 100vh) ' ,background:'#f7f7f7'}}>
-                    <Content style={{ padding: 0, margin: 0, minHeight: 280 }}>
-                        <Route  exact={true}  path={`${this.props.match.url}/`} component={Step1} />
-                        <Route  exact={true}  path={`${this.props.match.url}/photosesh-type`} component={Step2}/>
-                        <Route  exact={true}  path={`${this.props.match.url}/photosesh-type/detail`} component={Step3a}/>
-                        <Route  exact={true}  path={`${this.props.match.url}/need-a-photosesh`} component={Step4}/>
-                        <Route  exact={true}  path={`${this.props.match.url}/photographers`} component={Step5}/>
-                        <Route  exact={true}  path={`${this.props.match.url}/booking-review`} component={Step6}/>
-                        <Route  exact={true}  path={`${this.props.match.url}/success`} component={Success}/>
-                    </Content>
-                </Layout>
+                <Route  exact={true}  path={`${this.props.match.url}/`} component={Step1} />
+                <Route  exact={true}  path={`${this.props.match.url}/photosesh-type`} component={Step2}/>
+                <Route  exact={true}  path={`${this.props.match.url}/photosesh-type/detail`} component={Step3a}/>
+                <Route  exact={true}  path={`${this.props.match.url}/need-a-photosesh`} component={Step4}/>
+                <Route  exact={true}  path={`${this.props.match.url}/photographers`} component={Step5}/>
+                <Route  exact={true}  path={`${this.props.match.url}/booking-review`} component={Step6}/>
+                <Route  exact={true}  path={`${this.props.match.url}/success`} component={Success}/>
             </div>
         );
     }

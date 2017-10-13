@@ -2,7 +2,6 @@
 
 :local(.full-height){
   height: calc(100vh);
-  background: #f4f5f5;
 }
 :local(.row){
   padding: 10px 0;

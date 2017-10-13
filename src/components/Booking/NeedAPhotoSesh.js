@@ -1,7 +1,5 @@
-/**
- * Created by lamtanphiho on 8/9/2017.
- */
-import '../../stylesheet/_needaphotosesh.scss'
+
+import style from './need_photosesh.css'
 import React,{Component} from 'react'
 import {Row, Col,Card,Layout,Button,Icon} from 'antd';
 import {connect} from 'react-redux'
@@ -23,9 +21,9 @@ class NeedPhotosesh extends Component{
     }
     render() {
         return (
-            <div className="photosesh-type needphotosesh">
+            <div className={style.need_photosesh}>
 
-                <div className="container">
+                <div className={style.container}>
                     <ul className="menu_simple">
 
                         <li>Event Type</li> |
@@ -40,13 +38,13 @@ class NeedPhotosesh extends Component{
                         {this.props.eventList.map((event, i) => {
                             const img = "/images/"+ ++i +".jpg";
                             return (
-                                <Col xs={12} sm={12} md={12} lg={12} xl={12} key={i}>
+                                <Col xs={24} sm={12} md={12} lg={12} xl={12} key={i} className={style.item}>
                                     <Link to={"/book/photographers"}  onClick={()=>this.handleNext(event.eventName)}>
                                         <Card bodyStyle={{padding: 0}}>
-                                            <div className="custom-image">
+                                            <div className={style.custom_image}>
                                                 <img src={event.eventImage.thumb} alt=""/>
                                             </div>
-                                            <div className="custom-card">
+                                            <div className={style.custom_card}>
                                                 <h2 className="title">{cleanSlug(event.eventName)}</h2>
                                                 <p>
                                                     {event.eventDescription}

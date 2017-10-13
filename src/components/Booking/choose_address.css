@@ -1,0 +1,5 @@
+:local(.sidebar){
+  padding: 20px;
+  height: calc(100vh - 100px);
+  background: linear-gradient(-50deg,#F3F3F3 50%, #F9F9F9 50%);
+}

@@ -103,16 +103,16 @@ class BookingReview extends Component {
 
 
         return (
-            <div className={style['full-height']} style={{paddingTop: 30}}>
+            <div className={style['full-height']}>
                 <div className="book-review">
 
                     <Row className={style.row}>
 
                         <Col xs={{span: 24, offset: 0}}
-                             sm={{span: 16, offset: 4}}
-                             md={{span: 12, offset: 6}}
-                             lg={{span: 10, offset: 7}}
-                             xl={{span: 8, offset: 9}}>
+                             sm={{span: 18, offset: 3}}
+                             md={{span: 16, offset: 4}}
+                             lg={{span: 14, offset: 5}}
+                             xl={{span: 10, offset: 7}}>
                             <Card className={style['ant-card']}>
                                 <h2 className={style['title']}>Booking Review</h2>
                                 <Form onSubmit={this.handleSubmit}>

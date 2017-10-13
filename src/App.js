@@ -1,23 +1,17 @@
 import React, {Component} from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import LayoutMaster from './components/Layout/LayoutMaster'
-import LayoutBookNow from './components/Layout/LayoutBookNow'
-import LayoutEmptyWrapper from './components/Layout/EmptyWrapper'
 import DashboardWrapper from './components/Settings/Dashboard/DashboardWrapper'
 import Forgot from './components/Settings/Login/ForgotPassword'
 import Login from './components/Settings/Login/LoginPage'
 import Signup from './components/Settings/Signup/SignupPage'
-import BookingWrapper from './components/Steps/BookingWrapper'
+import BookingWrapper from './components/Booking/BookingWrapper'
 import ProjectsWrapper from './components/Projects/ProjectsWrapper'
 
 
 import requireAuth from './utils/requireAuth'
 import ReloadAnimate from './components/common/Include/ReloadAnimate';
-
 const LayoutMasterAuthorize = requireAuth(LayoutMaster)
-const LayoutBookNowAuthorize = requireAuth(LayoutBookNow)
-const LayoutEmptyWrapperAuthorize = requireAuth(LayoutEmptyWrapper)
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -44,7 +38,7 @@ class App extends Component {
                     <Route exact path="/signup" render={(props)=> this.generateLayout(props,Signup, '')} />
 
 
-                    <Route path="/book" render={(props)=> this.generateLayout(props,LayoutBookNowAuthorize,BookingWrapper)} />
+                    <Route path="/book" render={(props)=> this.generateLayout(props,LayoutMasterAuthorize,BookingWrapper)} />
                     <Route path="/settings" render={(props)=> this.generateLayout(props, LayoutMasterAuthorize, DashboardWrapper)}/>
 
                     <Route exact={true} path="/" render={(props)=> this.generateLayout(props,LayoutMasterAuthorize,ProjectsWrapper)} />

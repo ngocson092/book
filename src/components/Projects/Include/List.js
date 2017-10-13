@@ -47,8 +47,8 @@ class Grid extends Component {
                         <Card className={style.first_item}>
                             <h2><Link className={style.new_project_text} to={'/book'}>New Project</Link></h2>
                             <Link className={style.icon_wrapper} to={'/book'}><Icon type="plus"/></Link>
-                            <Link to={'/'} className={style.item_btn}>E-Z BOOK</Link>
-                            <Link to={'/'} className={style.item_btn}>Advanced</Link>
+                            <Link to={'/book'} className={style.item_btn}>E-Z BOOK</Link>
+                            <Link to={'/book'} className={style.item_btn}>Advanced</Link>
                         </Card>
                     </Col>
 

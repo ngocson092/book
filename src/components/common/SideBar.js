@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../../actions/authActions'
+import {Popconfirm,message,Button} from 'antd'
 
 class Sidebar extends Component {
     goTo(route){
@@ -25,7 +26,14 @@ class Sidebar extends Component {
                         <li className={style.devider}></li>
                         <li><Link className={style.btn_transparent} to={'/book'}>New Projects</Link></li>
 
-                        <li style={{marginTop: 40}}><a href="" onClick={(e)=>{e.preventDefault(); this.props.logout();this.goTo('/login')}}>LOGOUT</a></li>
+                        <li style={{marginTop: 40}}>
+                            <Popconfirm placement="top" title={'Are you sure logout ?'} onConfirm={()=>{
+                                this.props.logout();
+                                this.goTo('/login')
+                            }} okText="Yes" cancelText="No">
+                                <a>LOGOUT</a>
+                            </Popconfirm>
+                        </li>
                     </ul>
                 </div>
 
@@ -33,6 +41,7 @@ class Sidebar extends Component {
         );
     }
 }
+
 
 const mapStateToProps = (state)=>{
     return {
