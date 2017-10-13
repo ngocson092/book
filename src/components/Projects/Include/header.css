@@ -35,13 +35,15 @@
 }
 
 
-:local(.list_status_right li a){
+:local(.list_status_right li span){
     font-size: 14px;
     color: #4b4b4b;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
-:local(.list_status_right li a.active_status){
+:local(.list_status_right li span.active_status){
     color: #0f65a9 ;
     font-weight: bold;
+
 }

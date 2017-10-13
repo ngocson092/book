@@ -45,7 +45,7 @@ class Header extends Component{
                          xl={{span: 16, offset: 0}}>
                         <ul className={style.list_status_right}>
                             {Object.keys(STATUS).map(key=>{
-                                return (<li key={key}><a onClick={(e)=>{ e.preventDefault(); this.props.setFilterStatus(STATUS[key])}} className={classnames((this.props.active_status == STATUS[key])? style.active_status:'' )} href="">{key}</a></li>)
+                                return (<li key={key}><span onClick={(e)=>{  this.props.setFilterStatus(STATUS[key])}} className={classnames((this.props.active_status == STATUS[key])? style.active_status:'' )} href="">{key}</span></li>)
                             })}
                         </ul>
                     </Col>
