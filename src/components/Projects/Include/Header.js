@@ -2,7 +2,7 @@ import style from './header.css'
 
 import React,{Component} from 'react'
 import {Layout, Row, Col,Icon} from 'antd';
-import {setShowMode,setFilterStatus} from '../../../actions/manageBookingsAction'
+import {setShowMode,setFilterStatus} from '../../../actions/projectAction'
 import {connect} from 'react-redux';
 import classnames from 'classnames'
 import {GRID,LIST,STATUS} from '../../../define'

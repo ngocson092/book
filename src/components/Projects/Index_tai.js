@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Layout, Table, Popconfirm, Modal} from 'antd';
 import EditableCell from './editTableCell';
-import {getBookings} from '../../actions/manageBookingsAction'
+import {getBookings} from '../../actions/projectAction'
 import {connect} from 'react-redux';
 
 const {  Content } = Layout;

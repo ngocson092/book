@@ -1,14 +1,13 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux';
 
-
 import Header from './Include/Header';
 import {GRID,LIST} from '../../define'
 import {Layout} from 'antd';
 import ShowGrid from './Include/Grid'
 import ShowList from './Include/List'
+import PropType from 'prop-types'
 const {  Content } = Layout;
-
 
 class Bookings extends Component{
     constructor(props) {
@@ -18,6 +17,8 @@ class Bookings extends Component{
 
 
     render() {
+
+
         return (
             <div>
                 <Header />
@@ -39,6 +40,9 @@ const mapStateToProps = (state)=>{
     }
 }
 
+Bookings.propType = {
+    loading:PropType.bool.isRequired
+}
 
 export default connect(mapStateToProps,{})(Bookings)
 

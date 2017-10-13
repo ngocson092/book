@@ -10,7 +10,7 @@ import moment from 'moment'
 class Grid extends Component{
     constructor(props) {
         super(props);
-        this.state = {loading:false};
+        this.state = {};
     }
 
 
@@ -18,17 +18,8 @@ class Grid extends Component{
         this.props.history.replace(route)
     }
 
-
-    componentWillMount(){
-        if(this.props.bookings.length == 0){
-            this.setState({loading:true})
-        }
-
-    }
-    componentWillReceiveProps(newProps){
-        if(newProps.bookings.length >0){
-            this.setState({loading:false})
-        }
+    componentDidMount(){
+        console.log(this.props);
     }
 
     render() {
@@ -59,7 +50,7 @@ class Grid extends Component{
                 </Col>
 
 
-                {(this.state.loading) ? ( <div style={{textAlign:'center',padding:'100px 0'}}> <Spin /></div>):'' }
+                {(this.props.loading) ? ( <div style={{textAlign:'center',padding:'100px 0'}}> <Spin /></div>):'' }
 
                 {this.props.bookings.map (booking=> {
 
