@@ -3,12 +3,11 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import LayoutMaster from './components/Layout/LayoutMaster'
 import LayoutBookNow from './components/Layout/LayoutBookNow'
 import LayoutEmptyWrapper from './components/Layout/EmptyWrapper'
-import DashboardWrapper from './components/userProfile/Dashboard/DashboardWrapper'
-import Forgot from './components/userProfile/Login/ForgotPassword'
-import Login from './components/userProfile/Login/LoginPage'
-import Signup from './components/userProfile/Signup/SignupPage'
+import DashboardWrapper from './components/Settings/Dashboard/DashboardWrapper'
+import Forgot from './components/Settings/Login/ForgotPassword'
+import Login from './components/Settings/Login/LoginPage'
+import Signup from './components/Settings/Signup/SignupPage'
 import BookingWrapper from './components/Steps/BookingWrapper'
-
 import ProjectsWrapper from './components/Projects/ProjectsWrapper'
 
 
@@ -46,7 +45,7 @@ class App extends Component {
 
 
                     <Route path="/book" render={(props)=> this.generateLayout(props,LayoutBookNowAuthorize,BookingWrapper)} />
-                    <Route path="/settings" render={(props)=> this.generateLayout(props, LayoutEmptyWrapperAuthorize, DashboardWrapper)}/>
+                    <Route path="/settings" render={(props)=> this.generateLayout(props, LayoutMasterAuthorize, DashboardWrapper)}/>
 
                     <Route exact={true} path="/" render={(props)=> this.generateLayout(props,LayoutMasterAuthorize,ProjectsWrapper)} />
                     <Route path="/projects" render={(props)=> this.generateLayout(props,LayoutMasterAuthorize,ProjectsWrapper)} />

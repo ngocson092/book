@@ -18,7 +18,7 @@ class Sidebar extends Component {
                 <div className={style.menu}>
                     <ul>
                         <li><Link to={'/activity'}>Activity</Link></li>
-                        <li><Link to={'/projects'}>Projects <span className={style.badge}>1</span></Link></li>
+                        <li><Link to={'/projects'}>Projects <span className={style.badge}>{this.props.total_bookings}</span></Link></li>
                         <li><Link to={'/proposals'}>Proposals <span className={style.badge}>2</span></Link></li>
                         <li><Link to={'/settings'}>Settings</Link></li>
                         <li><Link to={'/support'}>Support</Link></li>
@@ -36,8 +36,7 @@ class Sidebar extends Component {
 
 const mapStateToProps = (state)=>{
     return {
-        fullname:state.auth.user.name.firstName + ' ' + state.auth.user.name.lastName,
-        avatar: (state.auth.user.profilePicURL.thumb != '')?state.auth.user.profilePicURL.thumb:''
+        total_bookings:state.projects.bookings.length
     }
 }
 export default connect(mapStateToProps,{logout})(Sidebar)

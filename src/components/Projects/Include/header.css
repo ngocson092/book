@@ -34,16 +34,34 @@
     padding: 5px 40px;
 }
 
-
 :local(.list_status_right li span){
     font-size: 14px;
     color: #4b4b4b;
     text-transform: uppercase;
     cursor: pointer;
 }
-
 :local(.list_status_right li span.active_status){
     color: #0f65a9 ;
     font-weight: bold;
+
+}
+
+@media screen and (max-width: 1200px){
+    :local(.btn_view_mode) {
+        padding: 5px 40px;
+    }
+    :local(.list_status_right li){
+        padding: 5px 15px;
+    }
+}
+@media screen and (max-width: 992px){
+    :local(.list_status_right li){
+        padding: 5px 30px;
+    }
+}
+@media screen and (max-width: 768px){
+    :local(.list_status_right li){
+        padding: 5px 20px;
+    }
 
 }

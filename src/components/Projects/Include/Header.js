@@ -21,9 +21,9 @@ class Header extends Component{
             <div className={style.header}>
                 <Row>
                     <Col xs={{span: 24, offset: 0}}
-                         sm={{span: 12, offset: 0}}
-                         md={{span: 8, offset: 0}}
-                         lg={{span: 8, offset: 0}}
+                         sm={{span: 24, offset: 0}}
+                         md={{span: 10, offset: 0}}
+                         lg={{span: 9, offset: 0}}
                          xl={{span: 8, offset: 0}}>
 
                         View Model <br/>
@@ -39,9 +39,9 @@ class Header extends Component{
                     </Col>
 
                     <Col xs={{span: 24, offset: 0}}
-                         sm={{span: 12, offset: 0}}
-                         md={{span: 16, offset: 0}}
-                         lg={{span: 16, offset: 0}}
+                         sm={{span: 24, offset: 0}}
+                         md={{span: 14, offset: 0}}
+                         lg={{span: 15, offset: 0}}
                          xl={{span: 16, offset: 0}}>
                         <ul className={style.list_status_right}>
                             {Object.keys(STATUS).map(key=>{

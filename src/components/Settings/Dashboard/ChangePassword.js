@@ -17,7 +17,7 @@ class ChangePassword extends Component {
 
         return (
             <div>
-                <h2 className="head-title">Change Password</h2>
+
                 <ChangePasswordForm />
             </div>
         );

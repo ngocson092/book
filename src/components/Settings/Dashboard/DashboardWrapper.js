@@ -32,14 +32,9 @@ class DashboardWrapper extends Component {
 
         return (
             <div id="user-dashboard">
+                <Layout  style={{background:'white'}}>
 
-
-                <HeaderTop {...this.props} />
-
-
-
-                <Layout>
-                    <Sider width={300} style={{  background: 'white', borderRight: '1px solid #dedede' ,height:'calc( 100vh  - 41px ) '}}>
+                    <Sider width={300} style={{     overflow: 'hidden', background: 'white', border: '1px solid #dedede',borderRadius:10}}>
 
                         <div className={style.header_user}>
                             <p> {(this.props.avatar == '') ? ( <Avatar className={style.avatar}   style={{width:60,height:60}} icon="user" />) : (<Avatar  style={{width:60,height:60}} className={style.avatar} src={this.props.avatar} />)} </p>
@@ -51,20 +46,19 @@ class DashboardWrapper extends Component {
                         <Menu
                             defaultSelectedKeys={[]}
                             mode="inline"
-                            style={{ height: '100%', borderRight: 0 }}
+                            style={{borderRight: 0 }}
                         >
                             <Menu.Item key="orders"><Link to="/settings/profile"><Icon type="contacts" /> Edit Profile</Link></Menu.Item>
                             <Menu.Item key="change-password"><Link to="/settings/change-password"><Icon type="qrcode" /> Change Password</Link></Menu.Item>
                             <Menu.Item key="bank-detail"><Link to="/settings/payment-credits"><Icon type="credit-card" /> Payment & Credits</Link></Menu.Item>
                             <Menu.Divider />
-                            <Menu.Item key="homepage"><Link to="/"><Icon type="home" /> Back to Home</Link></Menu.Item>
+                            <Menu.Item key="homepage"><Link to="/"><Icon type="calendar" /> My Projects</Link></Menu.Item>
 
                         </Menu>
 
                     </Sider>
-
-                    <Layout style={{height:'calc( 100vh  - 41px ) ' ,background:'#e9ebee'}}>
-                        <Content style={{ padding: '24px', margin: 0, minHeight: 280 }}>
+                    <Layout style={{background:'white'}}>
+                        <Content style={{margin: 0, minHeight: 280,paddingLeft:15 }}>
                             <Route  exact={true}  path={`${this.props.match.url}/`} component={Profile}/>
                             <Route  exact={true}  path={`${this.props.match.url}/profile`} component={Profile}/>
                             <Route  exact={true}  path={`${this.props.match.url}/change-password`} component={ChangePassword}/>

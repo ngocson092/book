@@ -35,7 +35,7 @@ class PaymentCredit extends Component {
         const wrap_style ={textAlign:'center',marginBottom:20,overflow:'hidden',background: '#efefef',boxShadow:'1px 1px 1px #ccc'}
         const menu_style ={width:'50%',background:'#f1f1f1'}
         return (
-            <div id="payment-credit">
+            <div id="payment-credit" style={{maxWidth:800}}>
                <div style={wrap_style}>
                    <Menu
                        onClick={this.handleClick}

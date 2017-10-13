@@ -18,11 +18,7 @@ const LayoutMaster = ({ children }) => (
 
         <Layout style={{height:'100vh' ,background:'#ffffff'}}>
             <Content style={{ padding: '24px', margin: 0, minHeight: 280 }}>
-
-                <div className={style.breadcrumbs} style={{position: 'sticky',top: 0}}>
-                    <Breadcrumb />
-                </div>
-
+                <Breadcrumb {...children.props} />
                 {children}
             </Content>
         </Layout>

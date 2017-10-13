@@ -25,8 +25,8 @@ class Grid extends Component{
 
         let wrapperCol = {
             xs: {span: 24, offset: 0},
-            sm: {span: 8, offset: 0},
-            md: {span: 8, offset: 0},
+            sm: {span: 24, offset: 0},
+            md: {span: 16, offset: 4},
             lg: {span: 8, offset: 0},
             xl: {span: 6, offset: 0},
             className: style.item_wrapper

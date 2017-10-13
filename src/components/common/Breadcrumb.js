@@ -2,14 +2,25 @@ import style from './breadcrumb.css'
 import React, {Component} from 'react';
 import {Route,Link} from 'react-router-dom'
 import {getRouteName} from '../../utils/helper'
-import {Breadcrumb} from 'antd'
 
 
 
-export default (props) => (
-    <div>
-        <Route path='/:path' component={Breadcrumbs} />
-    </div>
+
+export default (props) =>{
+
+    return (
+
+        <div className={style.breadcrumbs}>
+            {(props.match.path == '/')  ? HomeBreadcrumb :(<div><Route path='/:path' component={Breadcrumbs} /></div>)}
+        </div>
+
+    )
+
+}
+
+
+const HomeBreadcrumb = (
+    <div  className={style.breadcrumb}><Link  className={style.link}  to={'/'}>Projects</Link><span className="ant-breadcrumb-separator">/</span><span> Bookings</span></div>
 )
 
 const BreadcrumbsItem = ({ ...rest, match }) => {

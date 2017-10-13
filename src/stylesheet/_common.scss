@@ -33,6 +33,13 @@ h2.head-title-center{
 .ant-table-content{
   background: white;
 }
+#user-dashboard .ant-card{
+  border-radius: 4px;
+}
+#user-dashboard .ant-card:not(.ant-card-no-hovering):hover{
+  box-shadow: none;
+  border-color: #dddddd;
+}
 .fullheight-with-top {
   height: calc(100vh - 40px);
 }

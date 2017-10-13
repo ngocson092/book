@@ -24,7 +24,6 @@ class Profile extends Component {
 
         return (
             <div>
-                <h2 className="head-title">Edit Profile</h2>
                 <ProfileForm user={this.props.user} setToken={this.props.setToken} />
             </div>
         );

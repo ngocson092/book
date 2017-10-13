@@ -4,7 +4,7 @@
 import React, {Component} from 'react';
 import {Route,Link} from 'react-router-dom'
 import { Menu, Icon } from 'antd';
-import Login from '../userProfile/login'
+import Login from '../Settings/login'
 const MenuItemGroup = Menu.ItemGroup;
 const request = require('../../controllers/request')
 

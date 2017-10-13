@@ -3,16 +3,18 @@ export function formatMoney(n, currency) {
 }
 export function cleanSlug(str) {
 
-    return str.replace(/[|&;$%@"<>()+,_]/g, ' ').toLowerCase()
+    return str.replace(/[|&;$%@"<>()+,_-]/g, ' ').toLowerCase()
 }
 export function getRouteName(str) {
 
     let arr = str.split('/')
-    return arr[arr.length-1]
+    return cleanSlug(arr[arr.length-1])
 }
 
 
 export default {
-    formatMoney:formatMoney
+    formatMoney,
+    getRouteName,
+    cleanSlug
 }
 

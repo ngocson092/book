@@ -59,9 +59,10 @@ class ChangePasswordForm extends Component {
     render() {
         const {getFieldDecorator} = this.props.form;
         return (
-            <Form style={{maxWidth:500,marginTop:30}} onSubmit={this.handleChangePassword}>
+            <Form style={{maxWidth:500}} onSubmit={this.handleChangePassword}>
 
                 <Card>
+                    <h2 className="head-title">Change Password</h2>
                     <FormItem
                         label="Old Password"
                         hasFeedback
