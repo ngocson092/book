@@ -26,7 +26,6 @@ class Grid extends Component{
 
     }
     componentWillReceiveProps(newProps){
-        console.log(2);
         if(newProps.bookings.length >0){
             this.setState({loading:false})
         }

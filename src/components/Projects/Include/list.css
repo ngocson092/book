@@ -13,7 +13,7 @@
 
 }
 :local(.icon_wrapper) {
-    font-size: 60px;
+    font-size: 40px;
     display: block;
     text-align: center;
 
@@ -26,7 +26,7 @@
 }
 :local(.first_item a) {
     color: #4b4b4b;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 :local(.first_item:hover) {
@@ -34,10 +34,10 @@
     box-shadow: none !important;
 }
 :local(.first_item) {
-    height: 350px;
+    height: 200px;
     text-align: center;
     border: 0 !important;
-    padding-top: 30px;
+    margin-bottom: 0px;
 }
 /*first item*/
 
@@ -46,20 +46,19 @@
 /*item*/
 
 :local(.item) {
-    min-height: 350px;
+    min-height: 200px;
     border: 3px solid #f3f3f3;
     border-radius: 0;
     text-align: center;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 :local(.status_icon) {
-    position: absolute !important;
-    right: 0;
+   margin-left: 10px;
 }
 :local(.status) {
     text-align: center;
     position: relative;
-    padding: 30px 0;
     font-size: 20px;
     color: #b1b1b1;
 }

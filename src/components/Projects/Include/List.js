@@ -1,4 +1,4 @@
-import style from './grid.css'
+import style from './list.css'
 
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
@@ -10,22 +10,41 @@ import moment from 'moment'
 class Grid extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {loading:false};
     }
 
     goTo(route) {
         this.props.history.replace(route)
     }
 
+    componentWillMount(){
+        if(this.props.bookings.length == 0){
+            this.setState({loading:true})
+        }
+
+    }
+    componentWillReceiveProps(newProps){
+        if(newProps.bookings.length >0){
+            this.setState({loading:false})
+        }
+    }
     render() {
 
 
-        let wrapperCol = {
+        let ColColumn_first = {
             xs: {span: 24, offset: 0},
             sm: {span: 24, offset: 0},
             md: {span: 24, offset: 0},
             lg: {span: 24, offset: 0},
             xl: {span: 24, offset: 0},
+        }
+
+        let ColColumn = {
+            xs: {span: 24, offset: 0},
+            sm: {span: 12, offset: 0},
+            md: {span: 12, offset: 0},
+            lg: {span: 12, offset: 0},
+            xl: {span: 12, offset: 0},
             className: style.item_wrapper
         }
 
@@ -34,7 +53,7 @@ class Grid extends Component {
 
             <div>
                 <Row>
-                    <Col {...wrapperCol}>
+                    <Col {...ColColumn_first}>
                         <Card className={style.first_item}>
                             <h2><Link className={style.new_project_text} to={'/book'}>New Project</Link></h2>
                             <Link className={style.icon_wrapper} to={'/book'}><Icon type="plus"/></Link>
@@ -44,10 +63,7 @@ class Grid extends Component {
                     </Col>
 
                 </Row>
-                {
-                    (this.props.bookings.length == 0) ? (
-                        <div style={{textAlign: 'center', padding: '100px 0'}}><Spin /></div>) : ''
-                }
+                { (this.state.loading) ? (<div style={{textAlign: 'center', padding: '100px 0'}}><Spin /></div>) : '' }
 
                 {this.props.bookings.map (booking=> {
 
@@ -74,24 +90,33 @@ class Grid extends Component {
 
                     let url = `/projects/bookings/${booking._id}`
                     return (
-                        <Row>
-                            <Col {...wrapperCol} key={booking._id}>
+                        <Row key={booking._id}>
+
                                 <Card className={style.item} onClick={(e)=>{e.preventDefault(); this.goTo(url) }}>
-                                    <div className={style.status}>{appointmentStatus} <Status /></div>
 
-                                    <h2 className={style.title}>{titleOrDescription}</h2>
+                                    <Col {...ColColumn}>
 
-                                    <div className={style.address}>at {appointmentAddress}</div>
-                                    <div className={style.agent_name}>With {fullName}</div>
 
-                                    <div
-                                        className={style.time}>{appointmentStartTime + ((appointmentEndTime != '') ? ' - ' + appointmentEndTime : '')}</div>
-                                    <div className={style.date}>On {moment(appointmentDate).format('MMMM Do YYYY')}</div>
+                                        <h2 className={style.title}>{titleOrDescription}</h2>
 
-                                    <Link style={{display: 'inline-block', marginTop: 20, color: '#000000'}} to={url}
-                                          className={style.item_btn}>DETAILS</Link>
+                                        <div className={style.address}>at {appointmentAddress}</div>
+                                        <div className={style.agent_name}>With {fullName}</div>
+
+
+                                    </Col>
+
+
+                                    <Col {...ColColumn}>
+                                        <div className={style.status}>{appointmentStatus} <Status /></div>
+                                        <div
+                                            className={style.time}>{appointmentStartTime + ((appointmentEndTime != '') ? ' - ' + appointmentEndTime : '')}</div>
+                                        <div className={style.date}>On {moment(appointmentDate).format('MMMM Do YYYY')}</div>
+
+                                        <Link style={{display: 'inline-block', marginTop: 20, color: '#000000'}} to={url}
+                                              className={style.item_btn}>DETAILS</Link>
+                                    </Col>
                                 </Card>
-                            </Col>
+
                         </Row>
                     )
                 })}
